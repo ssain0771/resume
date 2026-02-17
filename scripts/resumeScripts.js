@@ -56,20 +56,7 @@
                 renderGroupedSkills(data.skills?.grouped || [], $("#printSkills"));
 
                 // Contact links
-                const contactUl = $("#printContact");
-                if (contactUl) {
-                    contactUl.innerHTML = "";
-                    (data.links || []).forEach((link) => {
-                        const li = document.createElement("li");
-                        const a = document.createElement("a");
-                        a.href = link.href || "#";
-                        a.textContent = link.text || "";
-                        if (link.target) a.target = link.target;
-                        if (link.rel) a.rel = link.rel;
-                        li.appendChild(a);
-                        contactUl.appendChild(li);
-                    });
-                }
+                fillPrintContact(data.links || []);
 
                 // Optional: only change the browser tab title while printing
                 const originalTitle = document.title;
@@ -385,5 +372,3 @@ function fillPrintContact(links) {
     contactUl.appendChild(li);
   });
 }
-
-fillPrintContact(data.links || []);
