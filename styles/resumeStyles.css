@@ -2,35 +2,27 @@
     Styles for resume page.
     This file controls styles that are specific to the resume page.
 */
+.print-only {
+    display: none !important;
+}
 
-.print-only { display: none !important; }
-.screen-only { display: inline !important; }
+.screen-only {
+    display: inline !important;
+}
 
 @media print {
-    .print-only { display: block !important; }
-    .screen-only { display: none !important; }
+    .print-only {
+        display: block !important;
+    }
 
-    .page-title .print-only { display: inline !important; }
-}
+    .screen-only {
+        display: none !important;
+    }
 
-#work-experience ul li,
-#education ul li {
-    margin-bottom: 6px;
-}
-
-.exp-role {
-    font-weight: 700;
-}
-
-.exp-period {
-    margin-left: auto;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.exp-org {
-    margin: 0 0 6px;
-    font-style: italic;
+    /* Print-only name inside the <h1> should stay inline */
+    .page-title .print-only {
+        display: inline !important;
+    }
 }
 
 .section-header-row {
@@ -38,9 +30,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-
     border-bottom: 2px solid #ddd;
     padding-bottom: 4px;
+    margin: 0.83em 0;
 }
 
 .section-header-row h2 {
@@ -52,20 +44,6 @@
 .exp-controls {
     display: flex;
     gap: 10px;
-}
-
-.exp-summary {
-    cursor: pointer;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    list-style: none;
-}
-
-.exp-summary .exp-period {
-    margin-left: auto;
-    font-size: 0.85rem;
-    color: #555;
 }
 
 .header-controls {
@@ -97,12 +75,90 @@
     }
 }
 
+#work-experience ul li,
+#education ul li {
+    margin-bottom: 6px;
+}
+
+.exp-summary {
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    list-style: none;
+}
+
+.exp-role {
+    font-weight: 700;
+}
+
+.exp-org {
+    margin: 0 0 6px;
+    font-style: italic;
+}
+
+.exp-period {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.contact-row {
+    margin-top: 6px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    /* Keep on a single line by default */
+    flex-wrap: nowrap;
+    gap: 0.10in;
+
+    /* Prevent mid-item breaks */
+    white-space: nowrap;
+}
+
+.contact-list li,
+.contact-list a {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.contact-list li::after {
+    content: "•";
+    margin-left: 0.08in;
+}
+
+.contact-list li:last-child::after {
+    content: "";
+    margin: 0;
+}
+
+#printSkills {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#printSkills li {
+    margin: 0 0 4px 0;
+}
+
+
 @media print {
     @page {
         margin: 0.5in;
         size: letter;
     }
 
+    /* Remove the "card" look from base styles */
     header,
     main,
     section,
@@ -123,12 +179,13 @@
         line-height: 1.3;
     }
 
+    /* Hide non-resume chrome in print */
     nav,
     footer,
     #themeToggle,
     #backToTop,
-    .exp-controls,
     #printResume,
+    .exp-controls,
     .resume-variant-label,
     .resume-variant-select {
         display: none !important;
@@ -140,16 +197,23 @@
 
     header {
         display: block !important;
+        text-align: center;
+
+        /* Prevent edge clipping of contact text */
+        padding-left: 0.06in !important;
+        padding-right: 0.06in !important;
+        box-sizing: border-box;
     }
 
     main {
-        max-width: 100% !important;
         width: 100% !important;
+        max-width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    h1 {
+    .page-title {
+        text-align: center;
         margin: 0 0 0.2in 0;
     }
 
@@ -174,6 +238,7 @@
         list-style: none;
     }
 
+    /* Ensure details content prints even if browser doesn't respect <details> state */
     details.exp-card > .exp-body {
         display: block !important;
     }
@@ -182,74 +247,20 @@
         margin: 0.02in 0 0.08in;
         padding-left: 0.22in;
     }
-}
 
-.contact-row {
-    margin-top: 6px;
-}
+    /* Contact row print specifics */
+    .contact-row {
+        margin: 0 0 0.12in 0;
+    }
 
-.contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    align-items: baseline;
-    white-space: nowrap;
-}
-
-.contact-list li {
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-}
-
-.contact-list a {
-    white-space: nowrap;
-}
-
-.contact-list li::after {
-    content: "•";
-    margin-left: 10px;
-}
-
-.contact-list li:last-child::after {
-    content: "";
-    margin: 0;
-}
-
-@media print {
-    .contact-row { margin: 0 0 0.12in 0; }
-    .contact-list { gap: 0.12in; }
+    .contact-list {
+        /* Tiny compression to avoid edge clipping */
+        font-size: 9.6pt;
+        gap: 0.10in;
+    }
 
     .contact-list a {
         color: #000 !important;
         text-decoration: none !important;
-    }
-}
-
-#printSkills {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-#printSkills li {
-    margin: 0 0 4px 0;
-}
-
-@media print {
-    header { text-align: center; }
-    .page-title { text-align: center; }
-
-    .contact-list {
-        justify-content: center;
-    }
-
-    .contact-list li,
-    .contact-list a {
-        white-space: nowrap;
     }
 }
