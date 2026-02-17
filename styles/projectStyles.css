@@ -1,0 +1,112 @@
+/* Map two-column layout */
+.map-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    height: 520px; /* map + panel height */
+    margin-top: 10px;
+}
+
+.map-panel {
+    flex: 0 0 33%;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
+    overflow: auto;
+}
+
+.map-canvas {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* keeps leaflet tiles inside rounded corners */
+}
+
+/* Legend styling */
+.map-panel-title {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+}
+
+.legend-item {
+    margin: 8px 0;
+}
+
+.legend-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.legend-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.legend-line {
+    width: 22px;
+    height: 0;
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-radius: 2px;
+}
+
+.swatch-parks {
+    background: rgba(42, 127, 255, 0.25);
+    border-color: rgba(42, 127, 255, 0.9);
+}
+
+.line-trails {
+    border-top-color: #33aa55;
+}
+
+.line-boundary {
+    border-top-color: #183de6;
+}
+
+.legend-divider {
+    margin: 12px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.legend-notes {
+    margin: 8px 0 0;
+}
+
+/* Dark mode compatibility */
+body.is-dark .map-panel,
+body.is-dark .map-canvas {
+    background: #1c1c1c;
+    border-color: #444;
+}
+
+body.is-dark .legend-divider {
+    border-top-color: #444;
+}
+
+body.is-dark .legend-swatch {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Responsive: stack panel above map */
+@media (max-width: 900px) {
+    .map-row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .map-panel {
+        flex: 0 0 auto;
+    }
+
+    .map-canvas {
+        height: 420px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/baseStyles.css">
+        <link rel="stylesheet" href="styles/indexStyles.css">
+        <meta name="author" content="Jot">
+        <title>Home</title>
+    </head>
+    <body data-page="index">
+        <header>
+            <h1>Home Page</h1>
+            <p id="heroLine"></p>
+            <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
+        </header>
+
+        <div class="layout">
+            <nav>
+                <p id="navLabelNavigate">Navigate to:</p>
+                <ul id="globalNavList"></ul>
+
+                <p id="navLabelJump">Jump to:</p>
+                <ul id="pageJumpList"></ul>
+            </nav>
+
+            <main>
+                <section id="about">
+                    <h2>About Me</h2>
+                    <div class="about-layout">
+                        <div class="about-text">
+                            <p id="heroIntro"></p>
+                            <p id="aboutBio1"></p>
+                            <p id="aboutBio2"></p>
+                        </div>
+
+                        <img id="aboutImage" src="images/jot.jpg" alt="Picture of Jot">
+                    </div>
+                </section>
+
+                <section id="skills">
+                    <div class="section-header-row">
+                        <h2>Skills</h2>
+                        <button id="skillsGroupToggle" class="btn" type="button" aria-pressed="false">Group skills</button>
+                    </div>
+                    <ul id="skillsIndividual"></ul>
+                    <ul id="skillsGrouped" class="is-hidden" aria-hidden="true"></ul>
+                </section>
+
+                <section id="links">
+                    <h2>Connect with me:</h2>
+                    <ul id="connectList"></ul>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
+        </footer>
+
+        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+
+        <script src="scripts/baseScripts.js" defer></script>
+        <script src="scripts/indexScripts.js" defer></script>
+    </body>
+</html>

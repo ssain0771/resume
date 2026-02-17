@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/baseStyles.css">
+        <link rel="stylesheet" href="styles/projectStyles.css">
+        <meta name="author" content="Jot">
+        <title>Project</title>
+
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+        >
+    </head>
+    <body data-page="project">
+        <header>
+            <h1>Project Page</h1>
+            <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
+        </header>
+
+        <div class="layout">
+            <nav>
+                <p id="navLabelNavigate">Navigate to:</p>
+                <ul id="globalNavList"></ul>
+
+                <p id="navLabelJump">Jump to:</p>
+                <ul id="pageJumpList"></ul>
+            </nav>
+
+            <main>
+                <section id="overview">
+                    <h2 id="overviewTitle">Parks & Pathways Overview</h2>
+                    <p id="overviewText" class="panel"></p>
+                </section>
+
+                <section id="mapSection">
+                    <h2>Map</h2>
+                    <div class="map-row">
+                        <aside class="map-panel" aria-label="Map legend and controls">
+                            <h3 id="mapPanelTitle" class="map-panel-title">Legend & Layers</h3>
+                            <div class="legend-item">
+                                <label class="legend-label">
+                                    <input id="toggleParks" type="checkbox" checked>
+                                    <span class="legend-swatch swatch-parks" aria-hidden="true"></span>
+                                    <span id="parksLabel">Parks</span>
+                                </label>
+                            </div>
+                            <div class="legend-item">
+                                <label class="legend-label">
+                                    <input id="toggleTrails" type="checkbox" checked>
+                                    <span class="legend-line line-trails" aria-hidden="true"></span>
+                                    <span id="trailsLabel">Pathways / Trails</span>
+                                </label>
+                            </div>
+                            <div class="legend-item">
+                                <label class="legend-label">
+                                    <input id="toggleBoundary" type="checkbox" checked>
+                                    <span class="legend-line line-boundary" aria-hidden="true"></span>
+                                    <span id="boundaryLabel">City Boundary</span>
+                                </label>
+                            </div>
+                            <hr class="legend-divider">
+                            <p id="legendTip" class="legend-notes"></p>
+                            <p id="legendDataSource" class="legend-notes small"></p>
+                        </aside>
+                        <div id="map" class="map-canvas" aria-label="Calgary map"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
+        </footer>
+
+        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+
+        <script src="scripts/baseScripts.js" defer></script>
+
+        <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""
+        ></script>
+
+        <script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+        <script src="scripts/projectScripts.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="styles/baseStyles.css" />
+        <link rel="stylesheet" href="styles/resumeStyles.css" />
+        <meta name="author" content="Jot" />
+        <title>Resume</title>
+    </head>
+
+    <body data-page="resume">
+        <header>
+            <h1 class="page-title">
+                <span class="screen-only">Resume</span>
+                <span class="print-only" id="printName">Your Name</span>
+            </h1>
+            <div id="printContactRow" class="print-only contact-row" aria-label="Contact information">
+                <ul id="printContact" class="contact-list"></ul>
+            </div>
+
+            <div class="header-controls" role="group" aria-label="Resume and theme controls">
+                <label class="resume-variant-label" for="resumeVariant">Resume type</label>
+                <select id="resumeVariant" class="resume-variant-select" aria-label="Select resume variant">
+                    <option value="general">General</option>
+                    <option value="analyst">Data Analyst</option>
+                    <option value="geospatial">Geospatial</option>
+                    <option value="science">Science</option>
+                </select>
+
+                <button id="printResume" class="btn" type="button">Print / Save PDF</button>
+                <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
+            </div>
+        </header>
+
+        <div class="layout">
+            <nav>
+                <p id="navLabelNavigate">Navigate to:</p>
+                <ul id="globalNavList"></ul>
+
+                <p id="navLabelJump">Jump to:</p>
+                <ul id="pageJumpList"></ul>
+            </nav>
+
+            <main>
+                <!-- PRINT-ONLY: pulled from data/index.json via JS -->
+                <section id="print-profile" class="print-only">
+                    <h2>Profile</h2>
+                    <p id="printTitleLine"></p>
+                    <p id="printBio1"></p>
+                    <p id="printBio2"></p>
+                </section>
+
+                <section id="print-skills" class="print-only">
+                    <h2>Skills</h2>
+                    <ul id="printSkills"></ul>
+                </section>
+
+                <section id="education">
+                    <div class="section-header-row">
+                        <h2>Education</h2>
+                        <div class="exp-controls" role="group" aria-label="Education visibility controls">
+                            <button id="expandAllEdu" class="btn" type="button">Expand all</button>
+                            <button id="collapseAllEdu" class="btn" type="button">Collapse all</button>
+                        </div>
+                    </div>
+
+                    <div id="educationList"></div>
+
+                    <template id="educationItemTemplate">
+                        <details class="panel exp-card edu-card">
+                            <summary class="exp-summary">
+                                <span class="exp-role edu-program"></span>
+                                <span class="exp-org edu-inst"></span>
+                                <span class="exp-period edu-year"></span>
+                            </summary>
+
+                            <div class="exp-body">
+                                <ul class="exp-details edu-details"></ul>
+                            </div>
+                        </details>
+                    </template>
+                </section>
+
+                <section id="work-experience">
+                    <div class="section-header-row">
+                        <h2>Work Experience</h2>
+                        <div class="exp-controls" role="group" aria-label="Work experience visibility controls">
+                            <button id="expandAllExp" class="btn" type="button">Expand all</button>
+                            <button id="collapseAllExp" class="btn" type="button">Collapse all</button>
+                        </div>
+                    </div>
+
+                    <div id="experienceList"></div>
+
+                    <template id="experienceItemTemplate">
+                        <details class="panel exp-card">
+                            <summary class="exp-summary">
+                                <span class="exp-role"></span>
+                                <span class="exp-org"></span>
+                                <span class="exp-period"></span>
+                            </summary>
+
+                            <div class="exp-body">
+                                <ul class="exp-details"></ul>
+                            </div>
+                        </details>
+                    </template>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
+        </footer>
+
+        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+
+        <script src="scripts/baseScripts.js" defer></script>
+        <script src="scripts/resumeScripts.js" defer></script>
+    </body>
+</html>

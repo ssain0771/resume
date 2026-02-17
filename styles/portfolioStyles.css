@@ -1,0 +1,213 @@
+/* 
+    Styles for portfolio page.
+    This file controls styles that are specific to the portfolio page.
+    To save time, the initial styles were
+    generated using AI. These were then manually
+    reviewed, resulting in styles being added, removed,
+    and modified to suit my liking.
+ */
+
+#project-container { /* Grid layout allows projects to wrap automatically based on screen width */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.projects { /* Individual project cards */
+    border: 1px solid #ccc;
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.projects img { /* Ensures images fit inside cards */
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+.project-summary {
+    margin: 8px 0 0 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Long details are stored in the card but NOT shown in the card */
+.projects .project-details {
+    display: none;
+}
+
+/* Selected + keyboard focus */
+.projects.is-selected {
+    outline: 2px solid #0047ab;
+    outline-offset: 2px;
+}
+
+.projects:focus-visible {
+    outline: 3px solid #0047ab;
+    outline-offset: 2px;
+}
+
+/* Dark mode overrides for cards */
+body.is-dark .projects {
+    background-color: #222;
+    border-color: #555;
+}
+
+body.is-dark .project-summary {
+    color: #cccccc;
+}
+
+#projectInfo {
+    scroll-margin-top: 16px;
+}
+
+body.is-dark #projectInfo {
+    border-color: #555;
+}
+
+.project-info-wrap {
+    overflow: auto; /* clears the float so the panel contains the image */
+}
+
+.project-info-image {
+    float: right;
+    width: 50%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+
+    margin: 0 0 12px 16px; /* space between image (right) and text (left) */
+}
+
+/* Responsive: stack image above text on small screens */
+@media (max-width: 700px) {
+    .project-info-image {
+        float: none;
+        width: 100%;
+        margin: 0 0 12px 0;
+    }
+}
+
+#portfolioFilters, #portfolioFilters * {
+    box-sizing: border-box;
+}
+
+#portfolioFilters {
+    display: grid;
+    grid-template-columns: max-content minmax(260px, 1fr) max-content;
+    grid-template-areas:
+        "label search clear"
+        ".     chips  .";
+    gap: 12px;
+    align-items: center;
+
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+#portfolioFilters label {
+    grid-area: label;
+}
+
+/* Combobox container must be allowed to shrink inside flex */
+.tag-combobox {
+    position: relative;
+    grid-area: search;
+    flex: 1 1 260px;
+    min-width: 0;
+}
+
+#clearTags {
+    grid-area: clear;
+}
+
+#tagSearch {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+
+    padding: 6px 10px;
+    border: 1px solid #888;
+    border-radius: 6px;
+}
+
+/* Dropdown options panel */
+.tag-options {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+
+    max-height: 220px;
+    overflow: auto;
+
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: #ffffff;
+
+    display: none;
+    z-index: 1000;
+}
+
+.tag-options.is-open {
+    display: block;
+}
+
+.tag-option {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.tag-option:hover, .tag-option.is-active {
+    background: #eeeeee;
+}
+
+/* Active tag chips */
+#activeTags {
+    grid-area: chips;
+}
+
+.tag-chip {
+    border: 1px solid #888;
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+/* Dark mode overrides for filter UI */
+body.is-dark #tagSearch {
+    background: #1c1c1c;
+    border-color: #666;
+    color: #eee;
+}
+
+body.is-dark .tag-options {
+    background: #1c1c1c;
+    border-color: #666;
+    color: #eee;
+}
+
+body.is-dark .tag-option:hover, body.is-dark .tag-option.is-active {
+    background: #333333;
+}
+
+body.is-dark .tag-chip {
+    background: #222;
+    border-color: #666;
+    color: #eee;
+}
+
+@media (max-width: 700px) {
+    #portfolioFilters {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "label"
+            "search"
+            "clear"
+            "chips";
+    }
+}

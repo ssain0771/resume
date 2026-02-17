@@ -1,0 +1,89 @@
+/* 
+    Styles for index/home page.
+    This file controls styles that are specific to the home page.
+    To save time, the initial styles were
+    generated using AI. These were then manually
+    reviewed, resulting in styles being added, removed,
+    and modified to suit my liking.
+ */
+
+/* Individual skills: 3 columns */
+#skillsIndividual {
+    column-count: 3;
+    column-gap: 24px;
+}
+
+/* Grouped skills: 2 columns */
+#skillsGrouped {
+    column-count: 2;
+    column-gap: 24px;
+}
+
+/* Optional: make list items behave nicely in columns */
+#skillsIndividual li,
+#skillsGrouped li {
+    break-inside: avoid;
+    margin-bottom: 3px;
+}
+
+.about-layout { /* Flexbox layout for About section (text left, image right) */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.about-text { /* Allows text to take remaining width */
+    flex: 1;
+}
+
+.about-layout img { /* Prevents image from shrinking, rounds corners */
+    flex-shrink: 0;
+    border-radius: 20px;
+    width: 250px;
+}
+
+header p { /* Subtitle styling */
+    text-align: center;
+    margin: 0;
+    color: #0047ab;
+}
+
+body.is-dark header p {
+    color: #9ed3f1;
+}
+
+#skillsGroupToggle {
+    margin: 10px 0 0 0;
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.section-header-row h2 {
+    margin: 0;
+}
+
+/* Skills header row: keep the underline full width */
+#skills .section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 4px;
+}
+
+/* Remove the default h2 underline inside this row
+   (otherwise you get a short underline under just the text) */
+#skills .section-header-row h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin: 0;
+}

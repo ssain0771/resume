@@ -1,0 +1,137 @@
+{
+    "tagline": "Spatial Data Science | GIS | Python | SQL | Physics | Chemistry",
+    "title": "I'm Simranjot Saini (Jot), based in Calgary, Alberta.",
+    "bio": [
+        "I am a Spatial Data Science student in Calgary focused on GIS and Python. Turning messy spatial and tabular data into clear maps, models, and stories.",
+        "I've supported environmental reporting and built interactive web maps, and I enjoy creating tools that help people make confident decisions from data."
+    ],
+    "skills": {
+        "individual": [
+            "Python",
+            "SQL",
+            "JavaScript",
+            "C#",
+            "Pandas",
+            "NumPy",
+            "Matplotlib",
+            "PyTorch",
+            "Machine Learning",
+            "ArcGIS Pro",
+            "ArcGIS Online",
+            "QGIS",
+            "Google Earth Engine",
+            "StoryMaps",
+            "GitHub",
+            "Jupyter",
+            "Microsoft Office",
+            "Microsoft Azure Fundamentals",
+            "HTML",
+            "CSS",
+            "Titration",
+            "Spectroscopy",
+            "Recrystallization",
+            "Synthesis",
+            "Scientific writing",
+            "Error analysis & uncertainty propagation",
+            "ArcGIS Pro/Online",
+            "Microsoft Azure",
+            "Pytorch",
+            "Thermodynamics",
+            "Organic Chemistry",
+            "Biophysics",
+            "Classical Physics",
+            "Quantum Mechanics",
+            "Electromagnetism",
+            "Nuclear Physics"
+        ],
+        "grouped": [
+            {
+                "label": "Programming",
+                "items": [
+                    "Python",
+                    "JavaScript",
+                    "SQL",
+                    "C#"
+                ]
+            },
+            {
+                "label": "GIS",
+                "items": [
+                    "ArcGIS Pro",
+                    "ArcGIS Online",
+                    "QGIS",
+                    "Google Earth Engine",
+                    "StoryMaps"
+                ]
+            },
+            {
+                "label": "Data / ML",
+                "items": [
+                    "NumPy",
+                    "Pandas",
+                    "Matplotlib",
+                    "PyTorch",
+                    "Machine Learning"
+                ]
+            },
+            {
+                "label": "Lab / Science",
+                "items": [
+                    "Titration",
+                    "Spectroscopy",
+                    "Recrystallization",
+                    "Synthesis",
+                    "Error analysis & uncertainty propagation",
+                    "Scientific writing",
+                    "Thermodynamics",
+                    "Organic Chemistry",
+                    "Biophysics",
+                    "Classical Physics",
+                    "Quantum Mechanics",
+                    "Electromagnetism",
+                    "Nuclear Physics"
+                ]
+            },
+            {
+                "label": "Tools",
+                "items": [
+                    "GitHub",
+                    "Jupyter",
+                    "Microsoft Office",
+                    "Microsoft Azure Fundamentals"
+                ]
+            }
+        ]
+    },
+    "links": [
+        {
+            "href": "mailto:sainijot28@gmail.com",
+            "text": "sainijot28@gmail.com"
+        },
+        {
+            "href": "https://github.com/ssain0771",
+            "text": "github.com/ssain0771",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+        },
+        {
+            "href": "https://www.linkedin.com/in/simranjot-saini-961b49390",
+            "text": "linkedin.com/in/simranjot-saini-961b49390",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+        },
+        {
+            "href": "tel:+14036060493",
+            "text": "+1 (403) 606-0493"
+        }
+    ],
+    "aboutImage": {
+        "src": "images/jot.jpg",
+        "alt": "Picture of Jot"
+    },
+    "languages": [
+        "English",
+        "Punjabi",
+        "Hindi"
+    ]
+}

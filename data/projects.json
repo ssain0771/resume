@@ -1,0 +1,129 @@
+{
+    "projects": [
+        {
+            "id": "solar",
+            "title": "Solar Farm GIS Project",
+            "image": "images/solar_farm.jpg",
+            "imageAlt": "Solar Farm GIS Project Screenshot",
+            "summary": "GIS suitability model to identify the best solar farm parcels on Saddle Lake IR #125.",
+            "tags": [
+                "gis",
+                "site-suitability",
+                "spatial-analysis",
+                "cost-surface",
+                "arcgis"
+            ],
+            "tools": "ArcGIS Pro",
+            "description": "Built a GIS suitability workflow to identify solar farm locations on Saddle Lake Indian Reserve #125. Process included DEM-derived slope/aspect screening (excluding slopes > 10\u00b0 and north-facing aspects), legal/environmental filtering using WHS, and a combined road + transmission access cost surface using distance accumulation.",
+            "result": "Produced a \u201ctruly potential land\u201d layer and a final map of four candidate parcels, evaluated by minimum access cost and Cost/MWh (generation estimated from area-based capacity assumptions)."
+        },
+        {
+            "id": "lander",
+            "title": "PPO LunarLander-v3",
+            "image": "images/lunar_lander.png",
+            "imageAlt": "PPO LunarLander-v3 Gameplay Screenshot",
+            "summary": "Reinforcement learning project: PPO with parallel environments, evaluation tracking, and model deployment.",
+            "tags": [
+                "reinforcement-learning",
+                "ppo",
+                "python",
+                "evaluation",
+                "deployment"
+            ],
+            "tools": "Python, Gymnasium, Stable-Baselines3 (PPO), NumPy, Matplotlib, Hugging Face Hub",
+            "description": "Trained a Proximal Policy Optimization (PPO) agent on LunarLander-v3 using 16 parallel environments. Used evaluation callbacks to save the best checkpoint and tracked training performance over time.",
+            "result": "Best model saved automatically during training, evaluated over 100 episodes, plotted mean reward vs. timesteps, and packaged/uploaded the trained agent to the Hugging Face Hub. Evaluation performance: 302.83 \u00b1 17.47 mean reward (100 episodes).",
+            "link": {
+                "href": "https://huggingface.co/ssain0771/ppo-LunarLander-v3",
+                "text": "View on Hugging Face Hub"
+            }
+        },
+        {
+            "id": "wtw",
+            "title": "White Tiger Websites",
+            "image": "images/website.png",
+            "imageAlt": "White Tiger Websites Screenshot",
+            "summary": "Designed and built a responsive multi-page website with reusable layout components and interactive forms.",
+            "tags": [
+                "web",
+                "html",
+                "css",
+                "responsive",
+                "forms",
+                "bootstrap"
+            ],
+            "tools": "HTML, CSS (responsive layout), Bootstrap (CDN), Forms",
+            "description": "Built a multi-page website for a fictional web development company with shared navigation/header/footer styling, a portfolio-style home page, a quotes page with pricing table + quote request form, and a feedback form page.",
+            "result": "A responsive site using CSS Grid + media queries for layout, reusable header/footer components, and interactive form behavior (e.g., showing/hiding additional inputs based on checkbox selections)."
+        },
+        {
+            "id": "patch",
+            "title": "Video Game Patch Data Impact Analysis",
+            "image": "images/game_patch.png",
+            "imageAlt": "Gameplay data analysis chart",
+            "summary": "Analyzed gameplay performance before and after a patch to quantify balance changes.",
+            "tags": [
+                "data-analysis",
+                "pandas",
+                "matplotlib",
+                "python",
+                "cleaning",
+                "visualization"
+            ],
+            "tools": "Python, Pandas, Matplotlib",
+            "description": "Collected, cleaned, and analyzed gameplay data to compare performance metrics pre- and post-patch. Built plots to highlight shifts in key indicators and support conclusions about balance impact.",
+            "result": "Delivered a concise analysis showing which metrics shifted most after the update and summarized implications for game balance."
+        },
+        {
+            "id": "parks-pathways",
+            "title": "Parks & Pathways Overview",
+            "image": "images/parks_pathways.png",
+            "imageAlt": "Interactive map showing Calgary parks and pathways layers",
+            "summary": "Interactive Leaflet map exploring Calgary's green space network with toggleable layers for parks, pathways/trails, and the city boundary.",
+            "tools": "Leaflet, Esri-Leaflet, ArcGIS FeatureServer, GeoJSON",
+            "description": "Built a responsive web map with a legend panel and layer toggles to compare how parks and trails connect across Calgary.",
+            "result": "Users can switch layers on/off and visually identify corridors where major park areas connect via pathways.",
+            "link": {
+                "href": "project.html",
+                "text": "Open project page"
+            },
+            "tags": [
+                "web",
+                "web-mapping",
+                "gis",
+                "leaflet",
+                "esri-leaflet",
+                "arcgis",
+                "geojson",
+                "javascript",
+                "html",
+                "css"
+            ]
+        },
+        {
+            "id": "tank-artillery",
+            "title": "Procedural Tank Artillery Game",
+            "image": "images/tank_game.png",
+            "imageAlt": "Plot of projectile trajectories over procedural terrain in a tank artillery game",
+            "summary": "Turn-based artillery game with procedurally generated terrain, projectile physics, and a simple computer opponent.",
+            "tools": "Python, NumPy, Matplotlib",
+            "description": "Implemented terrain generation with random sine parameters, discrete collision detection against the ground, and hit detection between tanks; visualized each turn's shots and terrain.",
+            "result": "Playable terminal game that plots each round and tracks tank health until a win/loss.",
+            "tags": [
+                "Python",
+                "Game Dev",
+                "Physics",
+                "Simulation",
+                "Matplotlib",
+                "NumPy"
+            ]
+        }
+    ],
+    "page": {
+        "filterLabel": "Filter projects:",
+        "searchPlaceholder": "Search tags...",
+        "clearButton": "Clear",
+        "infoTitle": "Project Info",
+        "emptyMessage": "Click a project card to see details here."
+    }
+}

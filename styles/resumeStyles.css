@@ -1,0 +1,255 @@
+/* 
+    Styles for resume page.
+    This file controls styles that are specific to the resume page.
+*/
+
+.print-only { display: none !important; }
+.screen-only { display: inline !important; }
+
+@media print {
+    .print-only { display: block !important; }
+    .screen-only { display: none !important; }
+
+    .page-title .print-only { display: inline !important; }
+}
+
+#work-experience ul li,
+#education ul li {
+    margin-bottom: 6px;
+}
+
+.exp-role {
+    font-weight: 700;
+}
+
+.exp-period {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.exp-org {
+    margin: 0 0 6px;
+    font-style: italic;
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 4px;
+}
+
+.section-header-row h2 {
+    border-bottom: none;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.exp-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.exp-summary {
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    list-style: none;
+}
+
+.exp-summary .exp-period {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.resume-variant-label {
+    font-weight: 600;
+}
+
+.resume-variant-select {
+    padding: 6px 8px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    font: inherit;
+}
+
+@media (max-width: 700px) {
+    .section-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-controls {
+        width: 100%;
+    }
+}
+
+@media print {
+    @page {
+        margin: 0.5in;
+        size: letter;
+    }
+
+    header,
+    main,
+    section,
+    .panel,
+    details.exp-card {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 10.5pt;
+        line-height: 1.3;
+    }
+
+    nav,
+    footer,
+    #themeToggle,
+    #backToTop,
+    .exp-controls,
+    #printResume,
+    .resume-variant-label,
+    .resume-variant-select {
+        display: none !important;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    header {
+        display: block !important;
+    }
+
+    main {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    h1 {
+        margin: 0 0 0.2in 0;
+    }
+
+    h2 {
+        font-size: 12pt;
+        margin: 0.14in 0 0.08in;
+    }
+
+    section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 0.1in;
+    }
+
+    details.exp-card {
+        margin-bottom: 0.06in;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    details.exp-card summary {
+        list-style: none;
+    }
+
+    details.exp-card > .exp-body {
+        display: block !important;
+    }
+
+    .exp-details {
+        margin: 0.02in 0 0.08in;
+        padding-left: 0.22in;
+    }
+}
+
+.contact-row {
+    margin-top: 6px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: baseline;
+    white-space: nowrap;
+}
+
+.contact-list li {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.contact-list a {
+    white-space: nowrap;
+}
+
+.contact-list li::after {
+    content: "•";
+    margin-left: 10px;
+}
+
+.contact-list li:last-child::after {
+    content: "";
+    margin: 0;
+}
+
+@media print {
+    .contact-row { margin: 0 0 0.12in 0; }
+    .contact-list { gap: 0.12in; }
+
+    .contact-list a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+}
+
+#printSkills {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#printSkills li {
+    margin: 0 0 4px 0;
+}
+
+@media print {
+    header { text-align: center; }
+    .page-title { text-align: center; }
+
+    .contact-list {
+        justify-content: center;
+    }
+
+    .contact-list li,
+    .contact-list a {
+        white-space: nowrap;
+    }
+}

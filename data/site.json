@@ -1,0 +1,36 @@
+{
+  "navigationLabel": "Navigate to:",
+  "jumpLabel": "Jump to:",
+  "navLinks": [
+    { "href": "index.html", "text": "Home" },
+    { "href": "resume.html", "text": "Resume" },
+    { "href": "portfolio.html", "text": "Portfolio" },
+    { "href": "project.html", "text": "Highlight Project" }
+  ],
+  "themeToggle": {
+    "light": "Dark mode",
+    "dark": "Light mode"
+  },
+  "backToTop": "Back to top",
+  "footerAuthor": "Author: Simranjot (Jot) Saini",
+  "jumpLinks": {
+    "index": [
+      { "href": "#about", "text": "About Me" },
+      { "href": "#skills", "text": "Skills" },
+      { "href": "#links", "text": "Connect with me" }
+    ],
+    "resume": [
+      { "href": "#education", "text": "Education" },
+      { "href": "#work-experience", "text": "Work Experience" }
+    ],
+    "portfolio": [
+      { "href": "#projectFilters", "text": "Project Filters" },
+      { "href": "#projects", "text": "Projects" },
+      { "href": "#projectInfo", "text": "Project Info" }
+    ],
+    "project": [
+      { "href": "#overview", "text": "Overview" },
+      { "href": "#mapSection", "text": "Map" }
+    ]
+  }
+}

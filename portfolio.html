@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/baseStyles.css">
+        <link rel="stylesheet" href="styles/portfolioStyles.css">
+        <meta name="author" content="Jot">
+        <title>Portfolio</title>
+    </head>
+    <body data-page="portfolio">
+        <header>
+            <h1>Portfolio</h1>
+            <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
+        </header>
+
+        <div class="layout">
+            <nav>
+                <p id="navLabelNavigate">Navigate to:</p>
+                <ul id="globalNavList"></ul>
+
+                <p id="navLabelJump">Jump to:</p>
+                <ul id="pageJumpList"></ul>
+            </nav>
+
+            <main>
+                <section id="projectFilters">
+                    <h2>Project Filters</h2>
+                    <div id="portfolioFilters">
+                        <label for="tagSearch"><strong id="filterProjectsLabel">Filter projects:</strong></label>
+
+                        <div class="tag-combobox">
+                            <input id="tagSearch" type="text" placeholder="Search tags..." autocomplete="off" role="combobox" aria-expanded="false" aria-controls="tagOptions" aria-autocomplete="list">
+                            <div id="tagOptions" class="tag-options" role="listbox"></div>
+                        </div>
+
+                        <button id="clearTags" class="btn" type="button">Clear</button>
+                        <div id="activeTags" aria-label="Active filters"></div>
+                    </div>
+                </section>
+
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div id="project-container"></div>
+
+                    <template id="projectCardTemplate">
+                        <article class="projects" tabindex="0" role="button" aria-selected="false" aria-expanded="false" aria-controls="projectInfoBody" data-tags="">
+                            <h3 class="project-title"></h3>
+                            <img class="project-thumb" src="" alt="" loading="lazy">
+                            <p class="project-summary"></p>
+                            <div class="project-details"></div>
+                        </article>
+                    </template>
+                </section>
+
+                <section id="projectInfo" aria-live="polite">
+                    <h2 id="projectInfoTitle">Project Info</h2>
+                    <div id="projectInfoBody">
+                        <p id="projectInfoEmpty">Click a project card to see details here.</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
+        </footer>
+
+        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+
+        <script src="scripts/baseScripts.js" defer></script>
+        <script src="scripts/portfolioScripts.js" defer></script>
+    </body>
+</html>

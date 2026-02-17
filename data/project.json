@@ -1,0 +1,12 @@
+{
+  "overviewTitle": "Parks & Pathways Overview",
+  "overviewText": "This map explores Calgary's green space network by showing park sites alongside the city's pathways and trails. Use the layer checkboxes to compare where parks and paths overlap and to visually identify corridors that connect the city's major park areas.",
+  "mapPanelTitle": "Legend & Layers",
+  "layers": {
+    "parks": "Parks",
+    "trails": "Pathways / Trails",
+    "boundary": "City Boundary"
+  },
+  "tip": "Tip: Use the checkboxes to toggle layers.",
+  "dataSource": "Data: OSM tiles, ArcGIS FeatureServer layers, and local GeoJSON."
+}
