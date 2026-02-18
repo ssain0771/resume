@@ -42,7 +42,8 @@
             "Classical Physics",
             "Quantum Mechanics",
             "Electromagnetism",
-            "Nuclear Physics"
+            "Nuclear Physics",
+            "Web GIS"
         ],
         "grouped": [
             {
@@ -61,7 +62,8 @@
                     "ArcGIS Online",
                     "QGIS",
                     "Google Earth Engine",
-                    "StoryMaps"
+                    "StoryMaps",
+                    "Web GIS"
                 ]
             },
             {
