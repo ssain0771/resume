@@ -1,30 +1,58 @@
 (function loadProjectContent() {
-    if (!document.querySelector('#overview')) {
+    if (!document.querySelector("#overview")) {
         return;
     }
 
-    fetch('data/project.json')
+    fetch("data/project.json")
         .then((res) => res.json())
         .then((data) => {
-            const overviewTitle = document.querySelector('#overviewTitle');
-            const overviewText = document.querySelector('#overviewText');
-            const mapPanelTitle = document.querySelector('#mapPanelTitle');
-            const parksLabel = document.querySelector('#parksLabel');
-            const trailsLabel = document.querySelector('#trailsLabel');
-            const boundaryLabel = document.querySelector('#boundaryLabel');
-            const legendTip = document.querySelector('#legendTip');
-            const legendDataSource = document.querySelector('#legendDataSource');
+            const overviewTitle = document.querySelector("#overviewTitle");
+            const overviewText = document.querySelector("#overviewText");
+            const mapPanelTitle = document.querySelector("#mapPanelTitle");
+            const parksLabel = document.querySelector("#parksLabel");
+            const trailsLabel = document.querySelector("#trailsLabel");
+            const boundaryLabel = document.querySelector("#boundaryLabel");
+            const legendTip = document.querySelector("#legendTip");
+            const legendDataSource = document.querySelector("#legendDataSource");
 
-            if (overviewTitle) overviewTitle.textContent = data.overviewTitle || overviewTitle.textContent;
-            if (overviewText) overviewText.textContent = data.overviewText || '';
-            if (mapPanelTitle) mapPanelTitle.textContent = data.mapPanelTitle || mapPanelTitle.textContent;
-            if (parksLabel) parksLabel.textContent = (data.layers && data.layers.parks) || parksLabel.textContent;
-            if (trailsLabel) trailsLabel.textContent = (data.layers && data.layers.trails) || trailsLabel.textContent;
-            if (boundaryLabel) boundaryLabel.textContent = (data.layers && data.layers.boundary) || boundaryLabel.textContent;
-            if (legendTip) legendTip.textContent = data.tip || '';
-            if (legendDataSource) legendDataSource.textContent = data.dataSource || '';
+            const filterMajorParksLabel = document.querySelector("#filterMajorParksLabel");
+            const filterNamedTrailsLabel = document.querySelector("#filterNamedTrailsLabel");
+
+            if (overviewTitle) {
+                overviewTitle.textContent = data.overviewTitle || overviewTitle.textContent;
+            }
+            if (overviewText) {
+                overviewText.textContent = data.overviewText || "";
+            }
+            if (mapPanelTitle) {
+                mapPanelTitle.textContent = data.mapPanelTitle || mapPanelTitle.textContent;
+            }
+            if (parksLabel) {
+                parksLabel.textContent = (data.layers && data.layers.parks) || parksLabel.textContent;
+            }
+            if (trailsLabel) {
+                trailsLabel.textContent = (data.layers && data.layers.trails) || trailsLabel.textContent;
+            }
+            if (boundaryLabel) {
+                boundaryLabel.textContent = (data.layers && data.layers.boundary) || boundaryLabel.textContent;
+            }
+            if (legendTip) {
+                legendTip.textContent = data.tip || "";
+            }
+            if (legendDataSource) {
+                legendDataSource.textContent = data.dataSource || "";
+            }
+
+            if (filterMajorParksLabel) {
+                filterMajorParksLabel.textContent =
+                    data.filterMajorParksLabel || filterMajorParksLabel.textContent;
+            }
+            if (filterNamedTrailsLabel) {
+                filterNamedTrailsLabel.textContent =
+                    data.filterNamedTrailsLabel || filterNamedTrailsLabel.textContent;
+            }
         })
-        .catch((err) => console.error('Failed to load project.json', err));
+        .catch((err) => console.error("Failed to load project.json", err));
 })();
 
 (function initProjectMap() {
@@ -34,19 +62,30 @@
         return;
     }
 
-    // Create map
-    const map = L.map("map").setView([51.05, -114.07], 11);
+    const CONFIG = {
+        initialCenter: [51.05, -114.07],
+        initialZoom: 11,
+        boundaryGeoJsonUrl: "data/City_Boundary.geojson",
+        parksUrl:
+            "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Sites_Calgary_Geog_280/FeatureServer/0",
+        trailsUrl:
+            "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Trails_for_Calgary/FeatureServer/0",
 
-    // Basemaps (light + dark)
-    const lightTiles = L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        { attribution: "&copy; OpenStreetMap contributors" }
-    );
+        parksAreaField: "Shape__Area",
+        trailsNameField: "trail_name",
 
-    const darkTiles = L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-        { attribution: "&copy; OpenStreetMap contributors &copy; CARTO" }
-    );
+        majorParksAreaThreshold: 500000
+    };
+
+    const map = L.map("map").setView(CONFIG.initialCenter, CONFIG.initialZoom);
+
+    const lightTiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors"
+    });
+
+    const darkTiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+    });
 
     function applyBasemapForTheme() {
         const isDark = document.body.classList.contains("is-dark");
@@ -70,56 +109,58 @@
 
     applyBasemapForTheme();
 
-    // Also re-apply basemap after your theme toggle button is clicked
-    const themeToggle = document.querySelector("#themeToggle");
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            // Let baseScripts flip the class first
-            setTimeout(applyBasemapForTheme, 0);
-        });
+    const bodyObserver = new MutationObserver(applyBasemapForTheme);
+    bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+    const DEFAULT_VIEW = {
+        center: CONFIG.initialCenter,
+        zoom: CONFIG.initialZoom
+    };
+    let defaultBounds = null;
+
+    function escapeHtml(v) {
+        return String(v ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
     }
 
-    // Related layers: Parks (polygons) + Pathways/Trails (lines)
     const parks = L.esri.featureLayer({
-        url: "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Sites_Calgary_Geog_280/FeatureServer/0",
-        style: function () {
-            return {
-                color: "#2a7fff",
-                weight: 1,
-                fillColor: "#2a7fff",
-                fillOpacity: 0.20
-            };
-        }
+        url: CONFIG.parksUrl,
+        style: () => ({
+            color: "#2a7fff",
+            weight: 1,
+            fillColor: "#2a7fff",
+            fillOpacity: 0.20
+        })
+    }).addTo(map);
+
+    parks.bindPopup((layer) => {
+        const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
+        const name = props.site_name || "Park";
+        return `<strong>${escapeHtml(name)}</strong>`;
     });
 
     const trails = L.esri.featureLayer({
-        url: "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Trails_for_Calgary/FeatureServer/0",
-        style: function () {
-            return {
-                color: "#33aa55",
-                weight: 3,
-                opacity: 0.9
-            };
-        }
+        url: CONFIG.trailsUrl,
+        style: () => ({
+            color: "#33aa55",
+            weight: 3,
+            opacity: 0.9
+        })
+    }).addTo(map);
+
+    trails.bindPopup((layer) => {
+        const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
+        const name = props.trail_name || "Unnamed trail";
+        return `<strong>${escapeHtml(name)}</strong>`;
     });
 
-    // Add both by default
-    parks.addTo(map);
-    // Click a park to view its name (if available)
-    parks.bindPopup(function (layer) {
-        const props = layer.feature && layer.feature.properties ? layer.feature.properties : {};
-        
-        // Try a few common field names (different datasets sometimes use different ones)
-        const name = props.site_name || props.name || props.park_name || props.PARK_NAME || "Park";
-        return `<strong>${name}</strong>`;
-    });
-
-    trails.addTo(map);
-
-    // Boundary (GeoJSON), stored so we can toggle it on/off
     let boundaryLayer = null;
 
-    fetch("data/City_Boundary.geojson")
+    fetch(CONFIG.boundaryGeoJsonUrl)
         .then((res) => res.json())
         .then((geo) => {
             boundaryLayer = L.geoJSON(geo, {
@@ -130,14 +171,15 @@
                 }
             }).addTo(map);
 
-            map.fitBounds(boundaryLayer.getBounds());
+            const b = boundaryLayer.getBounds();
+            if (b && b.isValid()) {
+                defaultBounds = b;
+                map.fitBounds(b);
+            } else {
+                map.setView(DEFAULT_VIEW.center, DEFAULT_VIEW.zoom);
+            }
         })
         .catch((err) => console.error("Boundary load failed", err));
-
-    // Legend toggles (checkboxes)
-    const toggleParks = document.querySelector("#toggleParks");
-    const toggleTrails = document.querySelector("#toggleTrails");
-    const toggleBoundary = document.querySelector("#toggleBoundary");
 
     function setLayerVisible(layer, visible) {
         if (!layer) {
@@ -152,6 +194,10 @@
             map.removeLayer(layer);
         }
     }
+
+    const toggleParks = document.querySelector("#toggleParks");
+    const toggleTrails = document.querySelector("#toggleTrails");
+    const toggleBoundary = document.querySelector("#toggleBoundary");
 
     if (toggleParks) {
         toggleParks.addEventListener("change", () => {
@@ -171,11 +217,55 @@
         });
     }
 
-    // Optional logging for lab observation (enable with localStorage.debugMap = "true")
+    const resetBtn = document.querySelector("#resetViewBtn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            if (defaultBounds) {
+                map.fitBounds(defaultBounds);
+            } else {
+                map.setView(DEFAULT_VIEW.center, DEFAULT_VIEW.zoom);
+            }
+        });
+    }
+
+    function applyMajorParksFilter(enabled) {
+        const field = CONFIG.parksAreaField;
+        const threshold = CONFIG.majorParksAreaThreshold;
+
+        if (enabled) {
+            parks.setWhere(`${field} > ${threshold}`);
+        } else {
+            parks.setWhere("1=1");
+        }
+    }
+
+    const filterMajorParksCb = document.querySelector("#filterMajorParks");
+    if (filterMajorParksCb) {
+        filterMajorParksCb.addEventListener("change", () => {
+            applyMajorParksFilter(filterMajorParksCb.checked);
+        });
+    }
+
+    function applyNamedTrailsFilter(enabled) {
+        const field = CONFIG.trailsNameField;
+
+        if (enabled) {
+            trails.setWhere(`${field} IS NOT NULL AND ${field} <> ''`);
+        } else {
+            trails.setWhere("1=1");
+        }
+    }
+
+    const filterNamedTrailsCb = document.querySelector("#filterNamedTrails");
+    if (filterNamedTrailsCb) {
+        filterNamedTrailsCb.addEventListener("change", () => {
+            applyNamedTrailsFilter(filterNamedTrailsCb.checked);
+        });
+    }
+
     if (DEBUG_MAP) {
         map.on("moveend zoomend resize", () => {
             console.log("---- MAP STATE ----");
-            console.log("Size:", map.getSize());
             console.log("Center:", map.getCenter());
             console.log("Zoom:", map.getZoom());
             console.log("Bounds:", map.getBounds());
