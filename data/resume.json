@@ -67,7 +67,7 @@
         { "label": "Programming", "items": ["Python", "SQL", "JavaScript"] },
         { "label": "Data / ML", "items": ["Pandas", "NumPy", "Matplotlib", "Machine Learning", "PyTorch"] },
         { "label": "GIS", "items": ["ArcGIS Pro", "ArcGIS Online", "QGIS"] },
-        { "label": "Tools", "items": ["Jupyter", "GitHub", "Microsoft Office"] }
+        { "label": "Tools", "items": ["Jupyter", "GitHub", "Microsoft Office", "Power BI"] }
       ],
       "education": [
         {
