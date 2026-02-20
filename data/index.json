@@ -1,9 +1,9 @@
 {
     "tagline": "Spatial Data Science | GIS | Python | SQL | Physics | Chemistry",
-    "title": "I'm Simranjot Saini (Jot), based in Calgary, Alberta.",
+    "title": "I'm Simranjot Saini (Jot) — a Spatial Data Science student in Calgary, Alberta.",
     "bio": [
-        "I am a Spatial Data Science student in Calgary focused on GIS and Python. Turning messy spatial and tabular data into clear maps, models, and stories.",
-        "I've supported environmental reporting and built interactive web maps, and I enjoy creating tools that help people make confident decisions from data."
+        "I focus on GIS, Python, and SQL, building clean, automated spatial workflows and interactive maps that turn messy data into decisions.",
+        "Experienced supporting environmental reporting and web mapping, with interests in geospatial analytics and reproducible data products."
     ],
     "skills": {
         "individual": [
@@ -11,48 +11,49 @@
             "SQL",
             "JavaScript",
             "C#",
+            "HTML",
+            "CSS",
+            "ArcGIS Pro",
+            "ArcGIS Online",
+            "ArcGIS Field Maps",
+            "ArcGIS Survey123",
+            "QGIS",
+            "Google Earth Engine",
+            "StoryMaps",
+            "Web GIS",
             "Pandas",
             "NumPy",
             "Matplotlib",
             "PyTorch",
             "Machine Learning",
-            "ArcGIS Pro",
-            "ArcGIS Online",
-            "QGIS",
-            "Google Earth Engine",
-            "StoryMaps",
             "GitHub",
             "Jupyter",
             "Microsoft Office",
-            "Microsoft Azure Fundamentals",
-            "HTML",
-            "CSS",
+            "Microsoft Azure",
+            "Scientific writing",
+            "Error analysis & uncertainty propagation",
             "Titration",
             "Spectroscopy",
             "Recrystallization",
             "Synthesis",
-            "Scientific writing",
-            "Error analysis & uncertainty propagation",
-            "ArcGIS Pro/Online",
-            "Microsoft Azure",
-            "Pytorch",
             "Thermodynamics",
             "Organic Chemistry",
             "Biophysics",
             "Classical Physics",
             "Quantum Mechanics",
             "Electromagnetism",
-            "Nuclear Physics",
-            "Web GIS"
+            "Nuclear Physics"
         ],
         "grouped": [
             {
                 "label": "Programming",
                 "items": [
                     "Python",
-                    "JavaScript",
                     "SQL",
-                    "C#"
+                    "JavaScript",
+                    "C#",
+                    "HTML",
+                    "CSS"
                 ]
             },
             {
@@ -60,6 +61,8 @@
                 "items": [
                     "ArcGIS Pro",
                     "ArcGIS Online",
+                    "ArcGIS Field Maps",
+                    "ArcGIS Survey123",
                     "QGIS",
                     "Google Earth Engine",
                     "StoryMaps",
@@ -69,29 +72,11 @@
             {
                 "label": "Data / ML",
                 "items": [
-                    "NumPy",
                     "Pandas",
+                    "NumPy",
                     "Matplotlib",
                     "PyTorch",
                     "Machine Learning"
-                ]
-            },
-            {
-                "label": "Lab / Science",
-                "items": [
-                    "Titration",
-                    "Spectroscopy",
-                    "Recrystallization",
-                    "Synthesis",
-                    "Error analysis & uncertainty propagation",
-                    "Scientific writing",
-                    "Thermodynamics",
-                    "Organic Chemistry",
-                    "Biophysics",
-                    "Classical Physics",
-                    "Quantum Mechanics",
-                    "Electromagnetism",
-                    "Nuclear Physics"
                 ]
             },
             {
@@ -100,7 +85,30 @@
                     "GitHub",
                     "Jupyter",
                     "Microsoft Office",
-                    "Microsoft Azure Fundamentals"
+                    "Microsoft Azure"
+                ]
+            },
+            {
+                "label": "Lab / Science",
+                "items": [
+                    "Scientific writing",
+                    "Error analysis & uncertainty propagation",
+                    "Titration",
+                    "Spectroscopy",
+                    "Recrystallization",
+                    "Synthesis"
+                ]
+            },
+            {
+                "label": "Physics / Chemistry",
+                "items": [
+                    "Thermodynamics",
+                    "Organic Chemistry",
+                    "Biophysics",
+                    "Classical Physics",
+                    "Quantum Mechanics",
+                    "Electromagnetism",
+                    "Nuclear Physics"
                 ]
             }
         ]

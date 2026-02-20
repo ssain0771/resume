@@ -1,213 +1,238 @@
 {
-    "defaultVariant": "general",
-    "variants": {
-        "general": {
-            "education": [
-                {
-                    "year": "2019 - 2025",
-                    "program": "Bachelor of Science in General Science (Physics, Chemistry)",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.5 GPA."
-                ]
-                },
-                {
-                    "year": "2025 - 2026",
-                    "program": "Spatial Data Science Certificate",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.8."
-                    ]
-                }
-            ],
-            "experience": [
-                {
-                    "role": "GIS Analyst (Community Service Learning)",
-                    "organization": "Freshwater Conservation Canada",
-                    "period": "Jan 2026 - Present",
-                    "details": [
-                        "Used GIS to quantify stream-restoration impacts for reporting and decision support.",
-                        "Collaborated with stakeholders to define analysis needs and communicate results."
-                    ]
-                },
-                {
-                    "role": "Hydrologic Solutions Internship",
-                    "period": "Jan 2024 - Apr 2024",
-                    "organization": "Hydrologic Solutions Inc.",
-                    "details": [
-                        "Processed and tabulated lab results into clean templates to support contamination analysis.",
-                        "Compared new results with historical datasets and guidelines to identify exceedances.",
-                        "Wrote clear stakeholder-ready summaries with recommended next steps."
-                    ]
-                },
-                {
-                    "role": "Realtor Assistant",
-                    "period": "2018 - 2026",
-                    "organization": "Independent/Family Business",
-                    "details": [
-                        "Managed listings, scheduling, and client communications; supported property showings."
-                    ]
-                }
-            ]
+  "defaultVariant": "full",
+  "variants": {
+    "full": {
+      "education": [
+        {
+          "year": "2019 - 2025",
+          "program": "Bachelor of Science in General Science (Physics, Chemistry)",
+          "institution": "Mount Royal University",
+          "details": [
+            "General Science degree with a concentration in physics and chemistry.",
+            "Graduated with a 3.5 GPA."
+          ]
         },
-
-        "analyst": {
-            "education": [
-                {
-                    "year": "2019 - 2025",
-                    "program": "Bachelor of Science in General Science (Physics, Chemistry)",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.5 GPA."
-                ]
-                },
-                {
-                    "year": "2025 - 2026",
-                    "program": "Spatial Data Science Certificate",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.8."
-                    ]
-                }
-            ],
-            "experience": [
-                {
-                    "role": "Hydrologic Solutions Internship",
-                    "period": "Jan 2024 - Apr 2024",
-                    "organization": "Hydrologic Solutions Inc.",
-                    "details": [
-                        "Cleaned, structured, and tabulated laboratory datasets for contamination assessment.",
-                        "Compared results against historical data and provincial/federal thresholds to flag exceedances.",
-                        "Produced concise summary reports translating technical findings into actionable recommendations."
-                    ]
-                },
-                {
-                    "role": "Data Analyst (Community Service Learning)",
-                    "organization": "Freshwater Conservation Canada",
-                    "period": "Jan 2026 - Present",
-                    "details": [
-                        "Performed GIS-based quantification to support restoration reporting and decisions."
-                    ]
-                },
-                {
-                    "role": "Fulfillment Associate",
-                    "period": "Sep 2020 - Feb 2021",
-                    "organization": "Amazon",
-                    "details": [
-                        "Worked in a high-throughput operation; resolved labeling/packaging exceptions to keep flow accurate."
-                    ]
-                }
-            ]
-        },
-
-        "geospatial": {
-            "education": [
-                {
-                    "year": "2019 - 2025",
-                    "program": "Bachelor of Science in General Science (Physics, Chemistry)",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.5 GPA."
-                ]
-                },
-                {
-                    "year": "2025 - 2026",
-                    "program": "Spatial Data Science Certificate",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.8."
-                    ]
-                }
-            ],
-            "experience": [
-                {
-                    "role": "GIS Analyst (Community Service Learning)",
-                    "organization": "Freshwater Conservation Canada",
-                    "period": "Jan 2026 - Present",
-                    "details": [
-                        "Used GIS to quantify restoration impacts and produce map-ready reporting outputs.",
-                        "Communicated spatial findings to support stakeholder decisions."
-                    ]
-                },
-                {
-                    "role": "Hydrologic Solutions Internship",
-                    "period": "Jan 2024 - Apr 2024",
-                    "organization": "Hydrologic Solutions Inc.",
-                    "details": [
-                        "Organized environmental datasets and compared results against guidelines to identify exceedances.",
-                        "Supported remediation planning through volume estimates and clear reporting."
-                    ]
-                },
-                {
-                    "role": "Realtor Assistant",
-                    "period": "2018 - 2026",
-                    "organization": "Independent/Family Business",
-                    "details": [
-                        "Supported location-driven workflows (showings, documentation, coordination) with strong attention to detail."
-                    ]
-                }
-            ]
-        },
-
-        "science": {
-            "education": [
-                {
-                    "year": "2019 - 2025",
-                    "program": "Bachelor of Science in General Science (Physics, Chemistry)",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.5 GPA."
-                ]
-                },
-                {
-                    "year": "2025 - 2026",
-                    "program": "Spatial Data Science Certificate",
-                    "institution": "Mount Royal University",
-                    "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.8."
-                    ]
-                }
-            ],
-            "experience": [
-                {
-                    "role": "Hydrologic Solutions Internship",
-                    "period": "Jan 2024 - Apr 2024",
-                    "organization": "Hydrologic Solutions Inc.",
-                    "details": [
-                        "Processed laboratory results and ensured data quality for environmental contamination assessments.",
-                        "Interpreted findings against regulatory guidance to support remediation recommendations.",
-                        "Authored technical summaries with clear methods, observations, and conclusions."
-                    ]
-                },
-                {
-                    "role": "Data Analyst (Community Service Learning)",
-                    "organization": "Freshwater Conservation Canada",
-                    "period": "Jan 2026 - Present",
-                    "details": [
-                        "Supported evidence-based reporting by quantifying restoration outcomes with spatial analysis."
-                    ]
-                },
-                {
-                    "role": "Fulfillment Associate",
-                    "period": "Sep 2020 - Feb 2021",
-                    "organization": "Amazon",
-                    "details": [
-                        "Followed SOPs in a safety- and accuracy-critical environment; resolved exceptions to maintain quality."
-                    ]
-                }
-            ]
+        {
+          "year": "2025 - 2026",
+          "program": "Spatial Data Science Certificate",
+          "institution": "Mount Royal University",
+          "details": [
+            "Ongoing, expected completion in April 2026.",
+            "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
+            "Current GPA: 3.8."
+          ]
         }
+      ],
+      "experience": [
+        {
+          "role": "GIS / Data Analyst (Community Service Learning)",
+          "organization": "Freshwater Conservation Canada",
+          "period": "Jan 2026 - Present",
+          "details": [
+            "Used GIS to quantify stream-restoration impacts for reporting and decision support.",
+            "Collaborated with stakeholders to define analysis needs and communicate results."
+          ]
+        },
+        {
+          "role": "Hydrologic Solutions Internship",
+          "organization": "Hydrologic Solutions Inc.",
+          "period": "Jan 2024 - Apr 2024",
+          "details": [
+            "Processed and tabulated lab results into clean templates to support contamination analysis.",
+            "Compared new results with historical datasets and guidelines to identify exceedances.",
+            "Wrote clear stakeholder-ready summaries with recommended next steps."
+          ]
+        },
+        {
+          "role": "Realtor Assistant",
+          "organization": "Independent/Family Business",
+          "period": "2018 - 2026",
+          "details": [
+            "Managed listings, scheduling, and client communications; supported property showings."
+          ]
+        },
+        {
+          "role": "Fulfillment Associate",
+          "organization": "Amazon",
+          "period": "Sep 2020 - Feb 2021",
+          "details": [
+            "Worked in a high-throughput operation; resolved labeling/packaging exceptions to keep flow accurate."
+          ]
+        }
+      ]
+    },
+    
+    "analyst": {
+      "printSkillsGrouped": [
+        { "label": "Programming", "items": ["Python", "SQL", "JavaScript"] },
+        { "label": "Data / ML", "items": ["Pandas", "NumPy", "Matplotlib", "Machine Learning", "PyTorch"] },
+        { "label": "GIS", "items": ["ArcGIS Pro", "ArcGIS Online", "QGIS"] },
+        { "label": "Tools", "items": ["Jupyter", "GitHub", "Microsoft Office"] }
+      ],
+      "education": [
+        {
+          "year": "2025 - 2026",
+          "program": "Spatial Data Science Certificate",
+          "institution": "Mount Royal University",
+          "details": [
+            "Ongoing, expected completion in April 2026.",
+            "Focused on spatial analysis, GIS, and geospatial technologies.",
+            "Current GPA: 3.8."
+          ]
+        },
+        {
+          "year": "2019 - 2025",
+          "program": "Bachelor of Science in General Science (Physics, Chemistry)",
+          "institution": "Mount Royal University",
+          "details": [
+            "General Science degree with a concentration in physics and chemistry.",
+            "Graduated with a 3.5 GPA."
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "role": "Data Analyst (Community Service Learning)",
+          "organization": "Freshwater Conservation Canada",
+          "period": "Jan 2026 - Present",
+          "details": [
+            "Performed GIS-based quantification to support restoration reporting and decisions."
+          ]
+        },
+        {
+          "role": "Hydrologic Solutions Internship",
+          "organization": "Hydrologic Solutions Inc.",
+          "period": "Jan 2024 - Apr 2024",
+          "details": [
+            "Cleaned, structured, and tabulated laboratory datasets for contamination assessment.",
+            "Compared results against historical data and provincial/federal thresholds to flag exceedances.",
+            "Produced concise summary reports translating technical findings into actionable recommendations."
+          ]
+        },
+        {
+          "role": "Fulfillment Associate",
+          "organization": "Amazon",
+          "period": "Sep 2020 - Feb 2021",
+          "details": [
+            "Worked in a high-throughput operation; resolved labeling/packaging exceptions to keep flow accurate."
+          ]
+        }
+      ]
+    },
+
+    "geospatial": {
+      "printSkillsGrouped": [
+        { "label": "GIS", "items": ["ArcGIS Pro", "ArcGIS Online", "ArcGIS Field Maps", "ArcGIS Survey123", "QGIS", "Google Earth Engine", "StoryMaps", "Web GIS"] },
+        { "label": "Programming", "items": ["Python", "SQL", "JavaScript"] },
+        { "label": "Data", "items": ["Pandas", "NumPy", "Matplotlib"] },
+        { "label": "Tools", "items": ["Jupyter", "GitHub", "Microsoft Office"] }
+      ],
+      "education": [
+        {
+          "year": "2025 - 2026",
+          "program": "Spatial Data Science Certificate",
+          "institution": "Mount Royal University",
+          "details": [
+            "Ongoing, expected completion in April 2026.",
+            "Focused on spatial data analysis, GIS, and geospatial technologies.",
+            "Current GPA: 3.8."
+          ]
+        },
+        {
+          "year": "2019 - 2025",
+          "program": "Bachelor of Science in General Science (Physics, Chemistry)",
+          "institution": "Mount Royal University",
+          "details": [
+            "General Science degree with a concentration in physics and chemistry.",
+            "Graduated with a 3.5 GPA."
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "role": "GIS Analyst (Community Service Learning)",
+          "organization": "Freshwater Conservation Canada",
+          "period": "Jan 2026 - Present",
+          "details": [
+            "Used GIS to quantify restoration impacts and produce map-ready reporting outputs.",
+            "Communicated spatial findings to support stakeholder decisions."
+          ]
+        },
+        {
+          "role": "Hydrologic Solutions Internship",
+          "organization": "Hydrologic Solutions Inc.",
+          "period": "Jan 2024 - Apr 2024",
+          "details": [
+            "Organized environmental datasets and compared results against guidelines to identify exceedances.",
+            "Supported remediation planning through volume estimates and clear reporting."
+          ]
+        },
+        {
+          "role": "Realtor Assistant",
+          "organization": "Independent/Family Business",
+          "period": "2018 - 2026",
+          "details": [
+            "Supported location-driven workflows (showings, documentation, coordination) with strong attention to detail."
+          ]
+        }
+      ]
+    },
+
+    "science": {
+      "printSkillsGrouped": [
+        { "label": "Lab / Science", "items": ["Scientific writing", "Error analysis & uncertainty propagation", "Titration", "Spectroscopy", "Recrystallization", "Synthesis"] },
+        { "label": "Chemistry / Physics", "items": ["Thermodynamics", "Organic Chemistry", "Biophysics", "Classical Physics", "Quantum Mechanics", "Electromagnetism", "Nuclear Physics"] },
+        { "label": "Data", "items": ["Python", "Excel", "Data cleaning", "Reporting"] }
+      ],
+      "education": [
+        {
+          "year": "2019 - 2025",
+          "program": "Bachelor of Science in General Science (Physics, Chemistry)",
+          "institution": "Mount Royal University",
+          "details": [
+            "General Science degree with a concentration in physics and chemistry.",
+            "Graduated with a 3.5 GPA."
+          ]
+        },
+        {
+          "year": "2025 - 2026",
+          "program": "Spatial Data Science Certificate",
+          "institution": "Mount Royal University",
+          "details": [
+            "Ongoing, expected completion in April 2026.",
+            "Focused on spatial data analysis, GIS, and geospatial technologies.",
+            "Current GPA: 3.8."
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "role": "Hydrologic Solutions Internship",
+          "organization": "Hydrologic Solutions Inc.",
+          "period": "Jan 2024 - Apr 2024",
+          "details": [
+            "Processed laboratory results and ensured data quality for environmental contamination assessments.",
+            "Interpreted findings against regulatory guidance to support remediation recommendations.",
+            "Authored technical summaries with clear methods, observations, and conclusions."
+          ]
+        },
+        {
+          "role": "Data Analyst (Community Service Learning)",
+          "organization": "Freshwater Conservation Canada",
+          "period": "Jan 2026 - Present",
+          "details": [
+            "Supported evidence-based reporting by quantifying restoration outcomes with spatial analysis."
+          ]
+        },
+        {
+          "role": "Fulfillment Associate",
+          "organization": "Amazon",
+          "period": "Sep 2020 - Feb 2021",
+          "details": [
+            "Followed SOPs in a safety- and accuracy-critical environment; resolved exceptions to maintain quality."
+          ]
+        }
+      ]
     }
+  }
 }

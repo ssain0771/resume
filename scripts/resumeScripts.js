@@ -8,6 +8,11 @@
     const $ = (sel) => document.querySelector(sel);
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
+    // Cache: full skills from index.json + resume variants, so print skills can follow the selected variant
+    let indexPrintSkillsGrouped = [];
+    let resumeVariantsCache = null;
+    let currentVariantKey = "full";
+
     // ---------- Print-only content from index.json ----------
     function extractNameFromIndexTitle(titleText) {
         const raw = String(titleText || "").trim();
@@ -34,6 +39,22 @@
         });
     }
 
+    // Decide which grouped skills to print based on active variant:
+    // - Prefer resume.json variant.printSkillsGrouped if present
+    // - Otherwise fall back to the "full" grouped skills from index.json
+    function renderPrintSkillsForVariant(variantKey, variants) {
+        const target = $("#printSkills");
+        if (!target) return;
+
+        const v = variants && variantKey ? variants[variantKey] : null;
+        const groups =
+            (v && (v.printSkillsGrouped || v.skillsGrouped)) ||
+            indexPrintSkillsGrouped ||
+            [];
+
+        renderGroupedSkills(groups, target);
+    }
+
     function fillPrintOnlyFromIndexJson() {
         return fetch("data/index.json")
             .then((res) => res.json())
@@ -52,8 +73,17 @@
                 if (bio1) bio1.textContent = data.bio?.[0] || "";
                 if (bio2) bio2.textContent = data.bio?.[1] || "";
 
-                // ✅ grouped skills (NOT individual)
-                renderGroupedSkills(data.skills?.grouped || [], $("#printSkills"));
+                // Cache the "full" grouped skills from index.json
+                indexPrintSkillsGrouped = data.skills?.grouped || [];
+
+                // Render print skills:
+                // - if resume variants are already loaded, prefer the active variant's printSkillsGrouped
+                // - otherwise render the full index skills for now (will be replaced when resume.json loads)
+                if (resumeVariantsCache) {
+                    renderPrintSkillsForVariant(currentVariantKey, resumeVariantsCache);
+                } else {
+                    renderGroupedSkills(indexPrintSkillsGrouped, $("#printSkills"));
+                }
 
                 // Contact links
                 fillPrintContact(data.links || []);
@@ -167,7 +197,7 @@
         container.addEventListener(
             "toggle",
             () => {
-                const variant = variantSelect ? variantSelect.value : "general";
+                const variant = variantSelect ? variantSelect.value : "full";
                 const cards = getSectionCards(section);
                 if (cards.length === 0) return;
 
@@ -191,7 +221,7 @@
     function syncVariantSelectOptions(selectEl, keys) {
         if (!selectEl) return;
         const labelMap = {
-            general: "General",
+            full: "Full",
             analyst: "Data Analyst",
             geospatial: "Geospatial",
             science: "Science",
@@ -212,11 +242,11 @@
     function initResumeVariants() {
         const variantSelect = $("#resumeVariant");
 
-        // Education controls (NEW)
+        // Education controls
         const expandEdu = $("#expandAllEdu");
         const collapseEdu = $("#collapseAllEdu");
 
-        // Experience controls (existing)
+        // Experience controls
         const expandExp = $("#expandAllExp");
         const collapseExp = $("#collapseAllExp");
 
@@ -225,7 +255,7 @@
         // Hook up section controls
         if (expandEdu) {
             expandEdu.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "general";
+                const v = variantSelect ? variantSelect.value : "full";
                 setSectionOpen("education", true);
                 localStorage.setItem(openKey(v, "education"), "all");
             });
@@ -233,7 +263,7 @@
 
         if (collapseEdu) {
             collapseEdu.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "general";
+                const v = variantSelect ? variantSelect.value : "full";
                 setSectionOpen("education", false);
                 localStorage.setItem(openKey(v, "education"), "collapsed");
             });
@@ -241,7 +271,7 @@
 
         if (expandExp) {
             expandExp.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "general";
+                const v = variantSelect ? variantSelect.value : "full";
                 setSectionOpen("experience", true);
                 localStorage.setItem(openKey(v, "experience"), "all");
             });
@@ -249,20 +279,19 @@
 
         if (collapseExp) {
             collapseExp.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "general";
+                const v = variantSelect ? variantSelect.value : "full";
                 setSectionOpen("experience", false);
                 localStorage.setItem(openKey(v, "experience"), "collapsed");
             });
         }
 
-        // Track toggles for both sections (NEW)
+        // Track toggles for both sections
         trackSectionTogglePreference("education", variantSelect);
         trackSectionTogglePreference("experience", variantSelect);
 
         // Print expands everything + restores previous states
         let prePrintStates = [];
-        const allCards = () =>
-            $$("#educationList details.exp-card, #experienceList details.exp-card");
+        const allCards = () => $$("#educationList details.exp-card, #experienceList details.exp-card");
 
         if (printBtn) {
             printBtn.addEventListener("click", () => {
@@ -292,10 +321,15 @@
                 const keys = Object.keys(variants);
                 if (keys.length === 0) return;
 
+                // cache for print skills
+                resumeVariantsCache = variants;
+
                 syncVariantSelectOptions(variantSelect, keys);
 
                 const defaultVariant =
-                    data.defaultVariant && variants[data.defaultVariant] ? data.defaultVariant : keys[0];
+                    data.defaultVariant && variants[data.defaultVariant]
+                        ? data.defaultVariant
+                        : (keys.includes("full") ? "full" : keys[0]);
 
                 const urlVariant = new URLSearchParams(window.location.search).get("variant");
                 const savedVariant = localStorage.getItem("resumeVariant");
@@ -305,10 +339,15 @@
 
                 const renderVariant = (variantKey) => {
                     const v = variants[variantKey];
+                    currentVariantKey = variantKey;
+
                     clearAndRenderEducation(v.education || []);
                     clearAndRenderExperience(v.experience || []);
 
-                    // Apply saved prefs to BOTH sections (NEW)
+                    // Print-only skills should follow the selected variant
+                    renderPrintSkillsForVariant(variantKey, variants);
+
+                    // Apply saved prefs to BOTH sections
                     applySavedPreference(variantKey, "education");
                     applySavedPreference(variantKey, "experience");
                 };
@@ -336,39 +375,39 @@
 })();
 
 function prettyContactText(link) {
-  const text = String(link.text || "").trim();
-  const href = String(link.href || "").trim();
+    const text = String(link.text || "").trim();
+    const href = String(link.href || "").trim();
 
-  // If text is already descriptive (contains @, digits, or a dot/slug), keep it.
-  const looksDescriptive =
-    /@/.test(text) || /\d/.test(text) || /\.com|\.ca|\.io|\.org|\/in\//i.test(text);
-  if (text && looksDescriptive) return text;
+    // If text is already descriptive (contains @, digits, or a dot/slug), keep it.
+    const looksDescriptive =
+        /@/.test(text) || /\d/.test(text) || /\.com|\.ca|\.io|\.org|\/in\//i.test(text);
+    if (text && looksDescriptive) return text;
 
-  // Otherwise derive from href
-  if (href.startsWith("mailto:")) return href.replace(/^mailto:/i, "");
-  if (href.startsWith("tel:")) return href.replace(/^tel:/i, "");
-  if (/^https?:\/\//i.test(href)) return href.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+    // Otherwise derive from href
+    if (href.startsWith("mailto:")) return href.replace(/^mailto:/i, "");
+    if (href.startsWith("tel:")) return href.replace(/^tel:/i, "");
+    if (/^https?:\/\//i.test(href)) return href.replace(/^https?:\/\//i, "").replace(/\/$/, "");
 
-  return text || href;
+    return text || href;
 }
 
 function fillPrintContact(links) {
-  const contactUl = document.getElementById("printContact");
-  if (!contactUl) return;
+    const contactUl = document.getElementById("printContact");
+    if (!contactUl) return;
 
-  contactUl.innerHTML = "";
-  (links || []).forEach((link) => {
-    const li = document.createElement("li");
-    const a = document.createElement("a");
+    contactUl.innerHTML = "";
+    (links || []).forEach((link) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
 
-    a.href = link.href || "#";
-    a.textContent = prettyContactText(link);
+        a.href = link.href || "#";
+        a.textContent = prettyContactText(link);
 
-    // For print + general accessibility
-    if (link.target) a.target = link.target;
-    if (link.rel) a.rel = link.rel;
+        // For print + general accessibility
+        if (link.target) a.target = link.target;
+        if (link.rel) a.rel = link.rel;
 
-    li.appendChild(a);
-    contactUl.appendChild(li);
-  });
+        li.appendChild(a);
+        contactUl.appendChild(li);
+    });
 }
