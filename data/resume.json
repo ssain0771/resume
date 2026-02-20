@@ -120,6 +120,56 @@
       ]
     },
 
+    "developer": {
+      "printSkillsGrouped": [
+        { "label": "Languages", "items": ["JavaScript", "Python", "C#", "SQL", "HTML", "CSS"] },
+        { "label": "Web", "items": ["REST APIs", "Frontend fundamentals", "Node.js (if true)"] },
+        { "label": "Data", "items": ["Pandas", "Data cleaning", "ETL basics"] },
+        { "label": "Tools", "items": ["GitHub", "Git", "Jupyter", "Docker (if true)"] }
+      ],
+      "education": [
+        {
+          "year": "2025 - 2026",
+          "program": "Spatial Data Science Certificate",
+          "institution": "Mount Royal University",
+          "details": [
+            "Ongoing, expected completion in April 2026.",
+            "Focused on data science, spatial analysis, GIS, and geospatial technologies.",
+            "Current GPA: 3.8."
+          ]
+        },
+        {
+          "year": "2019 - 2025",
+          "program": "Bachelor of Science in General Science (Physics, Chemistry)",
+          "institution": "Mount Royal University",
+          "details": [
+            "Quantitative background with strong problem-solving and technical communication.",
+            "Graduated with a 3.5 GPA."
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "role": "Data Analyst (Community Service Learning)",
+          "organization": "Freshwater Conservation Canada",
+          "period": "Jan 2026 - Present",
+          "details": [
+            "Built repeatable data processing workflows in Python to support analysis and reporting.",
+            "Produced stakeholder-ready outputs and documented assumptions to ensure reproducibility."
+          ]
+        },
+        {
+          "role": "Hydrologic Solutions Internship",
+          "organization": "Hydrologic Solutions Inc.",
+          "period": "Jan 2024 - Apr 2024",
+          "details": [
+            "Cleaned and validated datasets using structured templates and clear QA checks.",
+            "Automated parts of analysis and reporting where possible to reduce manual effort."
+          ]
+        }
+      ]
+    },
+
     "geospatial": {
       "printSkillsGrouped": [
         { "label": "GIS", "items": ["ArcGIS Pro", "ArcGIS Online", "ArcGIS Field Maps", "ArcGIS Survey123", "QGIS", "Google Earth Engine", "StoryMaps", "Web GIS"] },

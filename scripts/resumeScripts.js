@@ -223,6 +223,7 @@
         const labelMap = {
             full: "Full",
             analyst: "Data Analyst",
+            developer: "Developer",
             geospatial: "Geospatial",
             science: "Science",
         };
