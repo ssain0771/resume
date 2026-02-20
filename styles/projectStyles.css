@@ -80,7 +80,6 @@
     margin: 8px 0 0;
 }
 
-/* Dark mode compatibility */
 body.is-dark .map-panel,
 body.is-dark .map-canvas {
     background: #1c1c1c;
@@ -95,7 +94,6 @@ body.is-dark .legend-swatch {
     border-color: rgba(255, 255, 255, 0.35);
 }
 
-/* Responsive: stack panel above map */
 @media (max-width: 900px) {
     .map-row {
         flex-direction: column;
@@ -109,4 +107,29 @@ body.is-dark .legend-swatch {
     .map-canvas {
         height: 420px;
     }
+}
+
+.legend-input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 8px 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: inherit;
+
+    font: inherit;
+    line-height: 1.2;
+}
+
+.legend-input:focus-visible {
+    outline: 3px solid #0047ab;
+    outline-offset: 2px;
+}
+
+body.is-dark .legend-input {
+    background: #1c1c1c;
+    border-color: #444;
 }

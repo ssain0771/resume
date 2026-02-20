@@ -68,8 +68,19 @@
 
                                 <label class="legend-label" for="filterMajorParks">
                                     <input id="filterMajorParks" type="checkbox">
-                                    <span id="filterMajorParksLabel">Show major parks only</span>
+                                    <span id="filterMajorParksLabel">Limit parks based on area</span>
                                 </label>
+                                <div class="legend-item">
+                                    <input
+                                        id="minParkAreaKm2"
+                                        class="legend-input"
+                                        type="number"
+                                        inputmode="decimal"
+                                        min="0"
+                                        step="0.1"
+                                        placeholder="Minimum Area (km&#178;)"
+                                    >
+                                </div>
                                 <label class="legend-label" for="filterNamedTrails">
                                     <input id="filterNamedTrails" type="checkbox">
                                     <span id="filterNamedTrailsLabel">Show named trails only</span>

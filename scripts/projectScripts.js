@@ -15,7 +15,6 @@
             const legendTip = document.querySelector("#legendTip");
             const legendDataSource = document.querySelector("#legendDataSource");
 
-            const filterMajorParksLabel = document.querySelector("#filterMajorParksLabel");
             const filterNamedTrailsLabel = document.querySelector("#filterNamedTrailsLabel");
 
             if (overviewTitle) {
@@ -43,10 +42,6 @@
                 legendDataSource.textContent = data.dataSource || "";
             }
 
-            if (filterMajorParksLabel) {
-                filterMajorParksLabel.textContent =
-                    data.filterMajorParksLabel || filterMajorParksLabel.textContent;
-            }
             if (filterNamedTrailsLabel) {
                 filterNamedTrailsLabel.textContent =
                     data.filterNamedTrailsLabel || filterNamedTrailsLabel.textContent;
@@ -72,12 +67,20 @@
             "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Trails_for_Calgary/FeatureServer/0",
 
         parksAreaField: "Shape__Area",
-        trailsNameField: "trail_name",
-
-        majorParksAreaThreshold: 500000
+        parksNameField: "site_name",
+        trailsNameField: "trail_name"
     };
 
     const map = L.map("map").setView(CONFIG.initialCenter, CONFIG.initialZoom);
+
+    map.createPane("pane-parks");
+    map.getPane("pane-parks").style.zIndex = 200;
+
+    map.createPane("pane-trails");
+    map.getPane("pane-trails").style.zIndex = 300;
+
+    map.createPane("pane-boundary");
+    map.getPane("pane-boundary").style.zIndex = 400;
 
     const lightTiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors"
@@ -127,8 +130,17 @@
             .replaceAll("'", "&#039;");
     }
 
+    function km2ToM2(km2) {
+        const n = Number(km2);
+        if (!Number.isFinite(n) || n < 0) {
+            return null;
+        }
+        return n * 1000000;
+    }
+
     const parks = L.esri.featureLayer({
         url: CONFIG.parksUrl,
+        pane: "pane-parks",
         style: () => ({
             color: "#2a7fff",
             weight: 1,
@@ -139,12 +151,13 @@
 
     parks.bindPopup((layer) => {
         const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
-        const name = props.site_name || "Park";
+        const name = props[CONFIG.parksNameField] || "Park";
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
     const trails = L.esri.featureLayer({
         url: CONFIG.trailsUrl,
+        pane: "pane-trails",
         style: () => ({
             color: "#33aa55",
             weight: 3,
@@ -154,7 +167,7 @@
 
     trails.bindPopup((layer) => {
         const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
-        const name = props.trail_name || "Unnamed trail";
+        const name = props[CONFIG.trailsNameField] || "Unnamed trail";
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
@@ -164,6 +177,7 @@
         .then((res) => res.json())
         .then((geo) => {
             boundaryLayer = L.geoJSON(geo, {
+                pane: "pane-boundary",
                 style: {
                     color: "#183de6",
                     weight: 2,
@@ -186,12 +200,14 @@
             return;
         }
 
-        if (visible && !map.hasLayer(layer)) {
-            map.addLayer(layer);
-        }
-
-        if (!visible && map.hasLayer(layer)) {
-            map.removeLayer(layer);
+        if (visible) {
+            if (!map.hasLayer(layer)) {
+                map.addLayer(layer);
+            }
+        } else {
+            if (map.hasLayer(layer)) {
+                map.removeLayer(layer);
+            }
         }
     }
 
@@ -228,21 +244,74 @@
         });
     }
 
-    function applyMajorParksFilter(enabled) {
-        const field = CONFIG.parksAreaField;
-        const threshold = CONFIG.majorParksAreaThreshold;
+    const filterMajorParksCb = document.querySelector("#filterMajorParks");
+    const minParkAreaInput = document.querySelector("#minParkAreaKm2");
+    const minParkAreaEcho = document.querySelector("#minParkAreaKm2Echo");
 
-        if (enabled) {
-            parks.setWhere(`${field} > ${threshold}`);
-        } else {
-            parks.setWhere("1=1");
-        }
+    function clearParkAreaFilter() {
+        parks.setWhere("1=1");
     }
 
-    const filterMajorParksCb = document.querySelector("#filterMajorParks");
+    function isParkAreaFilterEnabled() {
+        return !!(filterMajorParksCb && filterMajorParksCb.checked);
+    }
+
+    function applyParkAreaFilterFromInput() {
+        if (!minParkAreaInput) {
+            return;
+        }
+
+        const km2 = Number(minParkAreaInput.value);
+        const m2 = km2ToM2(km2);
+
+        if (minParkAreaEcho && Number.isFinite(km2) && km2 >= 0) {
+            minParkAreaEcho.textContent = String(km2);
+        }
+
+        if (!isParkAreaFilterEnabled()) {
+            return;
+        }
+
+        if (m2 === null || m2 === 0) {
+            clearParkAreaFilter();
+            return;
+        }
+
+        parks.setWhere(`${CONFIG.parksAreaField} >= ${m2}`);
+    }
+
+    if (isParkAreaFilterEnabled()) {
+        applyParkAreaFilterFromInput();
+    } else {
+        clearParkAreaFilter();
+    }
+
+    if (minParkAreaInput) {
+        minParkAreaInput.addEventListener("input", applyParkAreaFilterFromInput);
+
+        minParkAreaInput.addEventListener("blur", () => {
+            const km2 = Number(minParkAreaInput.value);
+            if (!Number.isFinite(km2) || km2 < 0) {
+                minParkAreaInput.value = "0";
+                if (minParkAreaEcho) {
+                    minParkAreaEcho.textContent = "0";
+                }
+                if (isParkAreaFilterEnabled()) {
+                    clearParkAreaFilter();
+                }
+            } else {
+                applyParkAreaFilterFromInput();
+            }
+        });
+    }
+
     if (filterMajorParksCb) {
         filterMajorParksCb.addEventListener("change", () => {
-            applyMajorParksFilter(filterMajorParksCb.checked);
+            if (filterMajorParksCb.checked) {
+                applyParkAreaFilterFromInput();
+            } else {
+                clearParkAreaFilter();
+            }
         });
     }
 
@@ -265,7 +334,7 @@
 
     if (DEBUG_MAP) {
         map.on("moveend zoomend resize", () => {
-            console.log("---- MAP STATE ----");
+            console.log("MAP STATE:");
             console.log("Center:", map.getCenter());
             console.log("Zoom:", map.getZoom());
             console.log("Bounds:", map.getBounds());
