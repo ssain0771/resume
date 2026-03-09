@@ -1,12 +1,51 @@
 {
-  "overviewTitle": "Parks & Pathways Overview",
-  "overviewText": "This map explores Calgary's green space network by showing park sites alongside the city's pathways and trails. Use the layer checkboxes to compare where parks and paths overlap and to visually identify corridors that connect the city's major park areas.",
-  "mapPanelTitle": "Legend & Layers",
-  "layers": {
-    "parks": "Parks",
-    "trails": "Pathways / Trails",
-    "boundary": "City Boundary"
-  },
-  "tip": "Tip: Use the checkboxes to toggle layers.",
-  "dataSource": "Data: OSM tiles, ArcGIS FeatureServer layers, and local GeoJSON."
+    "breadcrumb": "Portfolio / Featured Project",
+    "heroTitle": "Parks & Pathways Overview",
+    "heroLead": "An interactive web map exploring Calgary\u2019s green-space network through parks, trails, and boundary context.",
+    "overviewTitle": "Project overview",
+    "overviewText": "This case study turns the map into a fuller project writeup. It explains what the project set out to show, how the interface was built, and why the controls matter for a user trying to explore spatial relationships rather than just view a static result.",
+    "meta": [
+        {
+            "label": "Focus",
+            "value": "Web mapping, GIS communication, interface design"
+        },
+        {
+            "label": "Tools",
+            "value": "Leaflet, Esri-Leaflet, ArcGIS FeatureServer, GeoJSON"
+        },
+        {
+            "label": "Role",
+            "value": "Mapping, interaction design, front-end implementation"
+        }
+    ],
+    "detailSections": [
+        {
+            "title": "What the project was",
+            "body": "The goal was to create a map that helped users compare parks, pathways, and the city boundary in a cleaner and more approachable interface than a typical GIS viewer."
+        },
+        {
+            "title": "What was done",
+            "body": "Hosted feature layers were combined with a local boundary dataset, then wrapped in a panel that lets users toggle layers, reset the map, and apply lightweight filtering."
+        },
+        {
+            "title": "How it was done",
+            "body": "Leaflet handled the client-side mapping, Esri-Leaflet provided access to ArcGIS services, and the interface was organized to keep the controls visible without overwhelming the map."
+        },
+        {
+            "title": "Impact",
+            "body": "The result is a more useful exploratory map that encourages users to inspect relationships between park areas and pathway corridors. <Add specific audience/result placeholder.>"
+        }
+    ],
+    "mapPanelTitle": "Legend & layers",
+    "layers": {
+        "parks": "Parks",
+        "trails": "Pathways / trails",
+        "boundary": "City boundary"
+    },
+    "tip": "Tip: toggle layers and apply the optional filters to compare how visible network patterns change.",
+    "dataSource": "Data sources: OpenStreetMap tiles, ArcGIS FeatureServer layers, and local GeoJSON.",
+    "filterMajorParksLabel": "Filter parks by minimum area",
+    "filterNamedTrailsLabel": "Show named trails only",
+    "resetViewLabel": "Reset view",
+    "backLabel": "Back to portfolio"
 }

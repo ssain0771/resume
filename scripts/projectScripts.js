@@ -1,84 +1,96 @@
-(function loadProjectContent() {
-    if (!document.querySelector("#overview")) {
-        return;
-    }
-
-    fetch("data/project.json")
-        .then((res) => res.json())
+(function loadProjectCaseStudyContent() {
+    fetch(`${typeof getRootPath === "function" ? getRootPath() : ""}data/project.json`)
+        .then((response) => response.json())
         .then((data) => {
+            const breadcrumb = document.querySelector("#projectBreadcrumb");
+            const heroTitle = document.querySelector("#projectHeroTitle");
+            const heroLead = document.querySelector("#projectHeroLead");
             const overviewTitle = document.querySelector("#overviewTitle");
             const overviewText = document.querySelector("#overviewText");
+            const metaList = document.querySelector("#projectMetaList");
+            const detailGrid = document.querySelector("#detailSectionGrid");
             const mapPanelTitle = document.querySelector("#mapPanelTitle");
             const parksLabel = document.querySelector("#parksLabel");
             const trailsLabel = document.querySelector("#trailsLabel");
             const boundaryLabel = document.querySelector("#boundaryLabel");
             const legendTip = document.querySelector("#legendTip");
             const legendDataSource = document.querySelector("#legendDataSource");
-
             const filterNamedTrailsLabel = document.querySelector("#filterNamedTrailsLabel");
+            const filterMajorParksLabel = document.querySelector("#filterMajorParksLabel");
+            const resetViewBtn = document.querySelector("#resetViewBtn");
+            const backLink = document.querySelector("#backToPortfolioLink");
 
-            if (overviewTitle) {
-                overviewTitle.textContent = data.overviewTitle || overviewTitle.textContent;
-            }
-            if (overviewText) {
-                overviewText.textContent = data.overviewText || "";
-            }
-            if (mapPanelTitle) {
-                mapPanelTitle.textContent = data.mapPanelTitle || mapPanelTitle.textContent;
-            }
-            if (parksLabel) {
-                parksLabel.textContent = (data.layers && data.layers.parks) || parksLabel.textContent;
-            }
-            if (trailsLabel) {
-                trailsLabel.textContent = (data.layers && data.layers.trails) || trailsLabel.textContent;
-            }
-            if (boundaryLabel) {
-                boundaryLabel.textContent = (data.layers && data.layers.boundary) || boundaryLabel.textContent;
-            }
-            if (legendTip) {
-                legendTip.textContent = data.tip || "";
-            }
-            if (legendDataSource) {
-                legendDataSource.textContent = data.dataSource || "";
+            if (breadcrumb) breadcrumb.textContent = data.breadcrumb || breadcrumb.textContent;
+            if (heroTitle) heroTitle.textContent = data.heroTitle || heroTitle.textContent;
+            if (heroLead) heroLead.textContent = data.heroLead || heroLead.textContent;
+            if (overviewTitle) overviewTitle.textContent = data.overviewTitle || overviewTitle.textContent;
+            if (overviewText) overviewText.textContent = data.overviewText || "";
+            if (mapPanelTitle) mapPanelTitle.textContent = data.mapPanelTitle || mapPanelTitle.textContent;
+            if (parksLabel) parksLabel.textContent = (data.layers && data.layers.parks) || parksLabel.textContent;
+            if (trailsLabel) trailsLabel.textContent = (data.layers && data.layers.trails) || trailsLabel.textContent;
+            if (boundaryLabel) boundaryLabel.textContent = (data.layers && data.layers.boundary) || boundaryLabel.textContent;
+            if (legendTip) legendTip.textContent = data.tip || "";
+            if (legendDataSource) legendDataSource.textContent = data.dataSource || "";
+            if (filterNamedTrailsLabel) filterNamedTrailsLabel.textContent = data.filterNamedTrailsLabel || filterNamedTrailsLabel.textContent;
+            if (filterMajorParksLabel) filterMajorParksLabel.textContent = data.filterMajorParksLabel || filterMajorParksLabel.textContent;
+            if (resetViewBtn) resetViewBtn.textContent = data.resetViewLabel || resetViewBtn.textContent;
+            if (backLink) backLink.textContent = data.backLabel || backLink.textContent;
+
+            if (metaList) {
+                metaList.innerHTML = "";
+                (data.meta || []).forEach((item) => {
+                    const li = document.createElement("li");
+                    li.className = "meta-item";
+                    li.innerHTML = `
+                        <span class="meta-label">${item.label || ""}</span>
+                        <span>${item.value || ""}</span>
+                    `;
+                    metaList.appendChild(li);
+                });
             }
 
-            if (filterNamedTrailsLabel) {
-                filterNamedTrailsLabel.textContent =
-                    data.filterNamedTrailsLabel || filterNamedTrailsLabel.textContent;
+            if (detailGrid) {
+                detailGrid.innerHTML = "";
+                (data.detailSections || []).forEach((section) => {
+                    const article = document.createElement("article");
+                    article.className = "info-card";
+                    article.innerHTML = `
+                        <h3>${section.title || ""}</h3>
+                        <p>${section.body || ""}</p>
+                    `;
+                    detailGrid.appendChild(article);
+                });
             }
         })
-        .catch((err) => console.error("Failed to load project.json", err));
+        .catch((error) => console.error("Failed to load case study content.", error));
 })();
 
+/* Initialize the interactive Leaflet map and connect the UI controls to the map layers. */
 (function initProjectMap() {
-    const DEBUG_MAP = window.localStorage.getItem("debugMap") === "true";
-    const mapEl = document.querySelector("#map");
-    if (!mapEl) {
+    const mapElement = document.querySelector("#map");
+    if (!mapElement) {
         return;
     }
 
-    const CONFIG = {
+    const config = {
         initialCenter: [51.05, -114.07],
         initialZoom: 11,
-        boundaryGeoJsonUrl: "data/City_Boundary.geojson",
-        parksUrl:
-            "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Sites_Calgary_Geog_280/FeatureServer/0",
-        trailsUrl:
-            "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Trails_for_Calgary/FeatureServer/0",
-
+        boundaryGeoJsonUrl: `${typeof getRootPath === "function" ? getRootPath() : ""}data/City_Boundary.geojson`,
+        parksUrl: "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Sites_Calgary_Geog_280/FeatureServer/0",
+        trailsUrl: "https://services2.arcgis.com/XSv3KNGfmrd1txPN/ArcGIS/rest/services/Parks_Trails_for_Calgary/FeatureServer/0",
         parksAreaField: "Shape__Area",
         parksNameField: "site_name",
         trailsNameField: "trail_name"
     };
 
-    const map = L.map("map").setView(CONFIG.initialCenter, CONFIG.initialZoom);
+    const map = L.map("map", {
+        zoomControl: true
+    }).setView(config.initialCenter, config.initialZoom);
 
     map.createPane("pane-parks");
     map.getPane("pane-parks").style.zIndex = 200;
-
     map.createPane("pane-trails");
     map.getPane("pane-trails").style.zIndex = 300;
-
     map.createPane("pane-boundary");
     map.getPane("pane-boundary").style.zIndex = 400;
 
@@ -90,39 +102,28 @@
         attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
     });
 
+    /* Swap map tiles when the site theme changes so the map matches light/dark mode. */
     function applyBasemapForTheme() {
         const isDark = document.body.classList.contains("is-dark");
 
         if (isDark) {
-            if (map.hasLayer(lightTiles)) {
-                map.removeLayer(lightTiles);
-            }
-            if (!map.hasLayer(darkTiles)) {
-                map.addLayer(darkTiles);
-            }
+            if (map.hasLayer(lightTiles)) map.removeLayer(lightTiles);
+            if (!map.hasLayer(darkTiles)) darkTiles.addTo(map);
         } else {
-            if (map.hasLayer(darkTiles)) {
-                map.removeLayer(darkTiles);
-            }
-            if (!map.hasLayer(lightTiles)) {
-                map.addLayer(lightTiles);
-            }
+            if (map.hasLayer(darkTiles)) map.removeLayer(darkTiles);
+            if (!map.hasLayer(lightTiles)) lightTiles.addTo(map);
         }
     }
 
     applyBasemapForTheme();
+    const observer = new MutationObserver(applyBasemapForTheme);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
-    const bodyObserver = new MutationObserver(applyBasemapForTheme);
-    bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-
-    const DEFAULT_VIEW = {
-        center: CONFIG.initialCenter,
-        zoom: CONFIG.initialZoom
-    };
     let defaultBounds = null;
 
-    function escapeHtml(v) {
-        return String(v ?? "")
+    /* Escape popup text before injecting it into HTML. */
+    function escapeHtml(value) {
+        return String(value ?? "")
             .replaceAll("&", "&amp;")
             .replaceAll("<", "&lt;")
             .replaceAll(">", "&gt;")
@@ -130,33 +131,47 @@
             .replaceAll("'", "&#039;");
     }
 
+    /* Add or remove a layer from the map based on a checkbox state. */
+    function setLayerVisible(layer, visible) {
+        if (!layer) return;
+
+        if (visible && !map.hasLayer(layer)) {
+            map.addLayer(layer);
+        }
+
+        if (!visible && map.hasLayer(layer)) {
+            map.removeLayer(layer);
+        }
+    }
+
+    /* Convert user-entered square-kilometre values into square metres for the ArcGIS query. */
     function km2ToM2(km2) {
-        const n = Number(km2);
-        if (!Number.isFinite(n) || n < 0) {
+        const number = Number(km2);
+        if (!Number.isFinite(number) || number < 0) {
             return null;
         }
-        return n * 1000000;
+        return number * 1000000;
     }
 
     const parks = L.esri.featureLayer({
-        url: CONFIG.parksUrl,
+        url: config.parksUrl,
         pane: "pane-parks",
         style: () => ({
             color: "#2a7fff",
             weight: 1,
             fillColor: "#2a7fff",
-            fillOpacity: 0.20
+            fillOpacity: 0.2
         })
     }).addTo(map);
 
     parks.bindPopup((layer) => {
-        const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
-        const name = props[CONFIG.parksNameField] || "Park";
+        const properties = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
+        const name = properties[config.parksNameField] || "Park";
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
     const trails = L.esri.featureLayer({
-        url: CONFIG.trailsUrl,
+        url: config.trailsUrl,
         pane: "pane-trails",
         style: () => ({
             color: "#33aa55",
@@ -166,17 +181,17 @@
     }).addTo(map);
 
     trails.bindPopup((layer) => {
-        const props = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
-        const name = props[CONFIG.trailsNameField] || "Unnamed trail";
+        const properties = layer && layer.feature && layer.feature.properties ? layer.feature.properties : {};
+        const name = properties[config.trailsNameField] || "Unnamed trail";
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
     let boundaryLayer = null;
 
-    fetch(CONFIG.boundaryGeoJsonUrl)
-        .then((res) => res.json())
-        .then((geo) => {
-            boundaryLayer = L.geoJSON(geo, {
+    fetch(config.boundaryGeoJsonUrl)
+        .then((response) => response.json())
+        .then((geojson) => {
+            boundaryLayer = L.geoJSON(geojson, {
                 pane: "pane-boundary",
                 style: {
                     color: "#183de6",
@@ -185,159 +200,84 @@
                 }
             }).addTo(map);
 
-            const b = boundaryLayer.getBounds();
-            if (b && b.isValid()) {
-                defaultBounds = b;
-                map.fitBounds(b);
-            } else {
-                map.setView(DEFAULT_VIEW.center, DEFAULT_VIEW.zoom);
+            const bounds = boundaryLayer.getBounds();
+            if (bounds && bounds.isValid()) {
+                defaultBounds = bounds;
+                map.fitBounds(bounds);
             }
         })
-        .catch((err) => console.error("Boundary load failed", err));
-
-    function setLayerVisible(layer, visible) {
-        if (!layer) {
-            return;
-        }
-
-        if (visible) {
-            if (!map.hasLayer(layer)) {
-                map.addLayer(layer);
-            }
-        } else {
-            if (map.hasLayer(layer)) {
-                map.removeLayer(layer);
-            }
-        }
-    }
+        .catch((error) => console.error("Failed to load city boundary.", error));
 
     const toggleParks = document.querySelector("#toggleParks");
     const toggleTrails = document.querySelector("#toggleTrails");
     const toggleBoundary = document.querySelector("#toggleBoundary");
+    const resetViewBtn = document.querySelector("#resetViewBtn");
+    const filterMajorParks = document.querySelector("#filterMajorParks");
+    const minParkAreaKm2 = document.querySelector("#minParkAreaKm2");
+    const filterNamedTrails = document.querySelector("#filterNamedTrails");
 
     if (toggleParks) {
-        toggleParks.addEventListener("change", () => {
-            setLayerVisible(parks, toggleParks.checked);
-        });
+        toggleParks.addEventListener("change", () => setLayerVisible(parks, toggleParks.checked));
     }
 
     if (toggleTrails) {
-        toggleTrails.addEventListener("change", () => {
-            setLayerVisible(trails, toggleTrails.checked);
-        });
+        toggleTrails.addEventListener("change", () => setLayerVisible(trails, toggleTrails.checked));
     }
 
     if (toggleBoundary) {
-        toggleBoundary.addEventListener("change", () => {
-            setLayerVisible(boundaryLayer, toggleBoundary.checked);
-        });
+        toggleBoundary.addEventListener("change", () => setLayerVisible(boundaryLayer, toggleBoundary.checked));
     }
 
-    const resetBtn = document.querySelector("#resetViewBtn");
-    if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
+    if (resetViewBtn) {
+        resetViewBtn.addEventListener("click", () => {
             if (defaultBounds) {
                 map.fitBounds(defaultBounds);
             } else {
-                map.setView(DEFAULT_VIEW.center, DEFAULT_VIEW.zoom);
+                map.setView(config.initialCenter, config.initialZoom);
             }
         });
     }
 
-    const filterMajorParksCb = document.querySelector("#filterMajorParks");
-    const minParkAreaInput = document.querySelector("#minParkAreaKm2");
-    const minParkAreaEcho = document.querySelector("#minParkAreaKm2Echo");
-
+    /* Reset the parks layer query so all parks are visible again. */
     function clearParkAreaFilter() {
         parks.setWhere("1=1");
     }
 
-    function isParkAreaFilterEnabled() {
-        return !!(filterMajorParksCb && filterMajorParksCb.checked);
-    }
-
-    function applyParkAreaFilterFromInput() {
-        if (!minParkAreaInput) {
-            return;
-        }
-
-        const km2 = Number(minParkAreaInput.value);
-        const m2 = km2ToM2(km2);
-
-        if (minParkAreaEcho && Number.isFinite(km2) && km2 >= 0) {
-            minParkAreaEcho.textContent = String(km2);
-        }
-
-        if (!isParkAreaFilterEnabled()) {
-            return;
-        }
-
-        if (m2 === null || m2 === 0) {
+    /* Apply a minimum-area filter to the parks layer when enabled. */
+    function applyParkAreaFilter() {
+        if (!filterMajorParks || !minParkAreaKm2 || !filterMajorParks.checked) {
             clearParkAreaFilter();
             return;
         }
 
-        parks.setWhere(`${CONFIG.parksAreaField} >= ${m2}`);
+        const area = km2ToM2(minParkAreaKm2.value);
+        if (area === null || area === 0) {
+            clearParkAreaFilter();
+            return;
+        }
+
+        parks.setWhere(`${config.parksAreaField} >= ${area}`);
     }
 
-    if (isParkAreaFilterEnabled()) {
-        applyParkAreaFilterFromInput();
-    } else {
-        clearParkAreaFilter();
-    }
-
-    if (minParkAreaInput) {
-        minParkAreaInput.addEventListener("input", applyParkAreaFilterFromInput);
-
-        minParkAreaInput.addEventListener("blur", () => {
-            const km2 = Number(minParkAreaInput.value);
-            if (!Number.isFinite(km2) || km2 < 0) {
-                minParkAreaInput.value = "0";
-                if (minParkAreaEcho) {
-                    minParkAreaEcho.textContent = "0";
-                }
-                if (isParkAreaFilterEnabled()) {
-                    clearParkAreaFilter();
-                }
-            } else {
-                applyParkAreaFilterFromInput();
-            }
-        });
-    }
-
-    if (filterMajorParksCb) {
-        filterMajorParksCb.addEventListener("change", () => {
-            if (filterMajorParksCb.checked) {
-                applyParkAreaFilterFromInput();
-            } else {
-                clearParkAreaFilter();
-            }
-        });
-    }
-
-    function applyNamedTrailsFilter(enabled) {
-        const field = CONFIG.trailsNameField;
-
-        if (enabled) {
-            trails.setWhere(`${field} IS NOT NULL AND ${field} <> ''`);
+    /* Restrict the trails layer to named trails when that filter is enabled. */
+    function applyNamedTrailFilter() {
+        if (filterNamedTrails && filterNamedTrails.checked) {
+            trails.setWhere(`${config.trailsNameField} IS NOT NULL AND ${config.trailsNameField} <> ''`);
         } else {
             trails.setWhere("1=1");
         }
     }
 
-    const filterNamedTrailsCb = document.querySelector("#filterNamedTrails");
-    if (filterNamedTrailsCb) {
-        filterNamedTrailsCb.addEventListener("change", () => {
-            applyNamedTrailsFilter(filterNamedTrailsCb.checked);
-        });
+    if (filterMajorParks) {
+        filterMajorParks.addEventListener("change", applyParkAreaFilter);
     }
 
-    if (DEBUG_MAP) {
-        map.on("moveend zoomend resize", () => {
-            console.log("MAP STATE:");
-            console.log("Center:", map.getCenter());
-            console.log("Zoom:", map.getZoom());
-            console.log("Bounds:", map.getBounds());
-        });
+    if (minParkAreaKm2) {
+        minParkAreaKm2.addEventListener("input", applyParkAreaFilter);
+        minParkAreaKm2.addEventListener("blur", applyParkAreaFilter);
+    }
+
+    if (filterNamedTrails) {
+        filterNamedTrails.addEventListener("change", applyNamedTrailFilter);
     }
 })();

@@ -1,0 +1,153 @@
+/*
+    RGB Guesser styles.
+    These rules handle the two-column layout, the game controls, and the clickable colour palette.
+*/
+
+.game-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.45fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.game-sidebar,
+.game-main {
+    display: grid;
+    gap: 1rem;
+}
+
+.control-panel,
+.target-panel,
+.feedback-panel {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface-alt);
+}
+
+.control-field {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.control-field input {
+    width: 100%;
+    padding: 0.85rem 0.95rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.control-note {
+    margin: 0;
+    color: var(--muted);
+}
+
+.game-stat-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.target-heading-wrap {
+    margin-bottom: 0.75rem;
+}
+
+.target-rgb {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 7rem;
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-strong);
+    background: var(--surface);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-align: center;
+}
+
+.feedback-panel {
+    color: var(--text);
+}
+
+.feedback-panel.is-ready,
+.target-panel.is-ready {
+    cursor: pointer;
+}
+
+.feedback-panel.is-ready {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.palette-grid {
+    --game-columns: 3;
+    display: grid;
+    grid-template-columns: repeat(var(--game-columns), minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.swatch-button {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0.8rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+}
+
+.swatch-button:hover,
+.swatch-button:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+.swatch-button:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.swatch-button.is-correct {
+    border-color: rgba(15, 118, 110, 0.55);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+.swatch-button.is-incorrect {
+    border-color: rgba(180, 83, 9, 0.55);
+    box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.12);
+}
+
+.swatch-colour {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: calc(var(--radius-md) - 4px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 960px) {
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .game-stat-list,
+    .palette-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .target-rgb {
+        min-height: 5.6rem;
+        font-size: 1.6rem;
+    }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        HTML template for this page.
+        Shared styling and behaviors come from styles/baseStyles.css and scripts/baseScripts.js.
+        Page-specific structure is documented inline below.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parks & Pathways Web Map | Simranjot Saini</title>
+    <meta name="description" content="Detailed case study and interactive map for the Parks & Pathways Overview project.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="../styles/baseStyles.css">
+    <link rel="stylesheet" href="../styles/projectStyles.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
+</head>
+<body data-page="project" data-root="../">
+<!-- Skip link improves keyboard navigation by allowing users to jump directly to the main content. -->
+<a class="skip-link" href="#mainContent">Skip to content</a>
+    <!-- Shared site header: brand, navigation, and theme toggle. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="../index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main page content for the interactive web-mapping project. -->
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Page intro and back link to the portfolio overview. -->
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow" id="projectBreadcrumb">Portfolio / Featured project</div>
+                    <h1 id="projectHeroTitle" class="page-title">Parks & Pathways Overview</h1>
+                    <p id="projectHeroLead" class="page-lead">An interactive web map exploring Calgary’s green-space network through parks, trails, and boundary context.</p>
+
+                    <div class="hero-actions">
+                        <a id="backToPortfolioLink" class="button-link" href="../portfolio.html">Back to portfolio</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project summary, metadata, and supporting detail cards. -->
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Overview</div>
+                        <h2 id="overviewTitle" class="section-heading">Project overview</h2>
+                    </div>
+
+                    <p id="overviewText" class="section-description"></p>
+
+                    <ul id="projectMetaList" class="project-meta-grid stat-list"></ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Case study</div>
+                        <h2 class="section-heading">What it was, how it worked, and why it mattered</h2>
+                    </div>
+
+                    <div id="detailSectionGrid" class="detail-section-grid"></div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Interactive map</div>
+                        <h2 class="section-heading">Explore the map</h2>
+                        <p class="section-description">The interactive map is embedded below so visitors can read the case study and then test the interface directly.</p>
+                    </div>
+
+                    <!-- Two-column map layout: controls on the left, interactive map on the right. -->
+                    <div class="map-layout">
+                        <aside class="map-panel" aria-label="Map legend and controls">
+                            <h3 id="mapPanelTitle" class="map-panel-title">Legend &amp; layers</h3>
+
+                            <div class="legend-stack">
+                                <div class="legend-item">
+                                    <label class="legend-label">
+                                        <input id="toggleParks" type="checkbox" checked>
+                                        <span class="legend-swatch swatch-parks" aria-hidden="true"></span>
+                                        <span id="parksLabel">Parks</span>
+                                    </label>
+                                </div>
+
+                                <div class="legend-item">
+                                    <label class="legend-label">
+                                        <input id="toggleTrails" type="checkbox" checked>
+                                        <span class="legend-line line-trails" aria-hidden="true"></span>
+                                        <span id="trailsLabel">Pathways / trails</span>
+                                    </label>
+                                </div>
+
+                                <div class="legend-item">
+                                    <label class="legend-label">
+                                        <input id="toggleBoundary" type="checkbox" checked>
+                                        <span class="legend-line line-boundary" aria-hidden="true"></span>
+                                        <span id="boundaryLabel">City boundary</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="legend-actions">
+                                <button id="resetViewBtn" class="btn" type="button">Reset view</button>
+
+                                <div class="legend-item">
+                                    <label class="legend-label" for="filterMajorParks">
+                                        <input id="filterMajorParks" type="checkbox">
+                                        <span id="filterMajorParksLabel">Filter parks by minimum area</span>
+                                    </label>
+
+                                    <input
+                                        id="minParkAreaKm2"
+                                        class="legend-input"
+                                        type="number"
+                                        inputmode="decimal"
+                                        min="0"
+                                        step="0.1"
+                                        placeholder="Minimum area (km²)"
+                                    >
+                                </div>
+
+                                <div class="legend-item">
+                                    <label class="legend-label" for="filterNamedTrails">
+                                        <input id="filterNamedTrails" type="checkbox">
+                                        <span id="filterNamedTrailsLabel">Show named trails only</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <p id="legendTip" class="legend-notes"></p>
+                            <p id="legendDataSource" class="legend-notes small"></p>
+                        </aside>
+
+                        <div id="map" class="map-canvas" aria-label="Calgary map"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!-- Shared footer: kept intentionally minimal so it does not compete with page content. -->
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <!-- Shared behavior loads first, then third-party map libraries, then page-specific map logic. -->
+    <script src="../scripts/baseScripts.js" defer></script>
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+    <script src="../scripts/projectScripts.js" defer></script>
+</body>
+</html>

@@ -1,65 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="styles/baseStyles.css">
-        <link rel="stylesheet" href="styles/indexStyles.css">
-        <meta name="author" content="Jot">
-        <title>Home</title>
-    </head>
-    <body data-page="index">
-        <header>
-            <h1>Home Page</h1>
-            <p id="heroLine"></p>
-            <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
-        </header>
+<head>
+    <!--
+        HTML template for this page.
+        Shared styling and behaviors come from styles/baseStyles.css and scripts/baseScripts.js.
+        Page-specific structure is documented inline below.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simranjot Saini | Spatial Data Science</title>
+    <meta name="description" content="Portfolio and resume site for Simranjot Saini, a Spatial Data Science student focused on GIS, workflow automation, and scientific problem solving.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="styles/baseStyles.css">
+    <link rel="stylesheet" href="styles/indexStyles.css">
+</head>
+<body data-page="index" data-root="">
+<!-- Skip link improves keyboard navigation by allowing users to jump directly to the main content. -->
+<a class="skip-link" href="#mainContent">Skip to content</a>
+    <!-- Shared site header: brand, navigation, and theme toggle. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
 
-        <div class="layout">
-            <nav>
-                <p id="navLabelNavigate">Navigate to:</p>
-                <ul id="globalNavList"></ul>
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
 
-                <p id="navLabelJump">Jump to:</p>
-                <ul id="pageJumpList"></ul>
-            </nav>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-            <main>
-                <section id="about">
-                    <h2>About Me</h2>
-                    <div class="about-layout">
-                        <div class="about-text">
-                            <p id="heroIntro"></p>
-                            <p id="aboutBio1"></p>
-                            <p id="aboutBio2"></p>
+    <!-- Main page content for the home page. -->
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Hero section: short positioning statement, quick actions, and core contact info. -->
+            <section class="hero page-hero" aria-labelledby="heroTitle">
+                <div class="hero-card">
+                    <div class="eyebrow" id="heroTagline">Spatial Data Science | Workflow Automation | Sciences</div>
+                    <h1 id="heroTitle" class="hero-title">Spatial data science student building practical, decision-ready analytical workflows.</h1>
+                    <p id="heroLead" class="hero-lead">I work across GIS, automation, and scientific problem solving to turn messy information into maps, analyses, and tools that are easier to trust and act on.</p>
+
+                    <div class="hero-actions">
+                        <a class="button-link button-link-primary" href="portfolio.html">View portfolio</a>
+                        <a class="button-link" href="resume.html">Open resume</a>
+                    </div>
+                </div>
+
+                <aside class="hero-aside surface-card">
+                    <div class="profile-card">
+                        <div class="profile-image-wrap">
+                            <img id="aboutImage" class="profile-image" src="images/jot.jpg" alt="Portrait of Simranjot Saini">
                         </div>
 
-                        <img id="aboutImage" src="images/jot.jpg" alt="Picture of Jot">
+                        <ul id="contactIcons" class="contact-icon-list" aria-label="Contact links"></ul>
+                        <ul id="contactDetails" class="contact-detail-list"></ul>
                     </div>
-                </section>
 
-                <section id="skills">
-                    <div class="section-header-row">
-                        <h2>Skills</h2>
-                        <button id="skillsGroupToggle" class="btn" type="button" aria-pressed="false">Group skills</button>
+                    <ul class="meta-list">
+                        <li class="meta-item">
+                            <span class="meta-label">Location</span>
+                            <span id="heroLocation">Calgary, Alberta</span>
+                        </li>
+                        <li class="meta-item">
+                            <span class="meta-label">Availability</span>
+                            <span id="heroAvailability">&lt;availability placeholder&gt;</span>
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- About section: summary paragraphs and supporting focus areas. -->
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">About</div>
+                        <h2 class="section-heading">A clearer picture of how I work.</h2>
+                        <p class="section-description">&lt;helper line placeholder&gt;</p>
                     </div>
-                    <ul id="skillsIndividual"></ul>
-                    <ul id="skillsGrouped" class="is-hidden" aria-hidden="true"></ul>
-                </section>
 
-                <section id="links">
-                    <h2>Connect with me:</h2>
-                    <ul id="connectList"></ul>
-                </section>
-            </main>
+                    <div class="grid-two">
+                        <div id="aboutCopy" class="about-copy"></div>
+                        <div id="focusGrid" class="card-stack"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Selected work section: three featured projects that point into deeper portfolio pages. -->
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow" id="selectedWorkEyebrow">Selected work</div>
+                        <h2 id="selectedWorkTitle" class="section-heading">Projects that show how I approach analysis, mapping, and automation.</h2>
+                        <p id="selectedWorkDescription" class="section-description">A few highlighted projects are shown here. The full portfolio includes deeper case studies with methods, tools, results, and more detail on process and impact.</p>
+                    </div>
+
+                    <div id="selectedWorkGrid" class="featured-preview-grid"></div>
+
+                    <div class="hero-actions">
+                        <a id="selectedWorkLink" class="button-link button-link-primary" href="portfolio.html">View full portfolio</a>
+                    </div>
+                </div>
+            </section>
         </div>
+    </main>
 
-        <footer>
-            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
-        </footer>
+<!-- Shared footer: kept intentionally minimal so it does not compete with page content. -->
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
 
-        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
 
-        <script src="scripts/baseScripts.js" defer></script>
-        <script src="scripts/indexScripts.js" defer></script>
-    </body>
+    <!-- Shared behavior loads first, then page-specific behavior for the home page. -->
+    <script src="scripts/baseScripts.js" defer></script>
+    <script src="scripts/indexScripts.js" defer></script>
+</body>
 </html>

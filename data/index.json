@@ -1,149 +1,67 @@
 {
-    "tagline": "Spatial Data Science | GIS | Python | SQL | Physics | Chemistry",
-    "title": "I'm Simranjot Saini (Jot) — a Spatial Data Science student in Calgary, Alberta.",
-    "bio": [
-        "I focus on GIS, Python, and SQL, building clean, automated spatial workflows and interactive maps that turn messy data into decisions.",
-        "Experienced supporting environmental reporting and web mapping, with interests in geospatial analytics and reproducible data products."
+    "tagline": "Spatial Data Science | Workflow Automation | Sciences",
+    "name": "Simranjot Saini",
+    "heroTitle": "Spatial data science student building practical, decision-ready analytical workflows.",
+    "heroLead": "I work across GIS, automation, and scientific problem solving to turn messy information into maps, analyses, and tools that are easier to trust and act on.",
+    "location": "Calgary, Alberta",
+    "availability": "<availability placeholder>",
+    "about": [
+        "I am a Spatial Data Science student in Calgary with a background in physics and chemistry, and I am especially interested in work that sits between geospatial analysis, applied data work, and workflow automation.",
+        "My projects typically combine GIS, Python, SQL, and web-based communication. I enjoy taking a workflow that is repetitive, hard to explain, or spread across too many steps and turning it into something more structured, reproducible, and useful.",
+        "I have supported environmental reporting and web mapping, and I am continuing to build case-study style project work that explains not just what I made, but why it mattered, how it was built, and what decisions it supported."
     ],
-    "skills": {
-        "individual": [
-            "Python",
-            "SQL",
-            "JavaScript",
-            "C#",
-            "HTML",
-            "CSS",
-            "ArcGIS Pro",
-            "ArcGIS Online",
-            "ArcGIS Field Maps",
-            "ArcGIS Survey123",
-            "QGIS",
-            "Google Earth Engine",
-            "StoryMaps",
-            "Web GIS",
-            "Pandas",
-            "NumPy",
-            "Matplotlib",
-            "PyTorch",
-            "Machine Learning",
-            "GitHub",
-            "Jupyter",
-            "Power BI",
-            "Microsoft Office",
-            "Microsoft Azure",
-            "Scientific writing",
-            "Error analysis & uncertainty propagation",
-            "Titration",
-            "Spectroscopy",
-            "Recrystallization",
-            "Synthesis",
-            "Thermodynamics",
-            "Organic Chemistry",
-            "Biophysics",
-            "Classical Physics",
-            "Quantum Mechanics",
-            "Electromagnetism",
-            "Nuclear Physics"
-        ],
-        "grouped": [
-            {
-                "label": "Programming",
-                "items": [
-                    "Python",
-                    "SQL",
-                    "JavaScript",
-                    "C#",
-                    "HTML",
-                    "CSS"
-                ]
-            },
-            {
-                "label": "GIS",
-                "items": [
-                    "ArcGIS Pro",
-                    "ArcGIS Online",
-                    "ArcGIS Field Maps",
-                    "ArcGIS Survey123",
-                    "QGIS",
-                    "Google Earth Engine",
-                    "StoryMaps",
-                    "Web GIS"
-                ]
-            },
-            {
-                "label": "Data / ML",
-                "items": [
-                    "Pandas",
-                    "NumPy",
-                    "Matplotlib",
-                    "PyTorch",
-                    "Machine Learning"
-                ]
-            },
-            {
-                "label": "Tools",
-                "items": [
-                    "GitHub",
-                    "Jupyter",
-                    "Microsoft Office",
-                    "Microsoft Azure",
-                    "Power BI"
-                ]
-            },
-            {
-                "label": "Lab / Science",
-                "items": [
-                    "Scientific writing",
-                    "Error analysis & uncertainty propagation",
-                    "Titration",
-                    "Spectroscopy",
-                    "Recrystallization",
-                    "Synthesis"
-                ]
-            },
-            {
-                "label": "Physics / Chemistry",
-                "items": [
-                    "Thermodynamics",
-                    "Organic Chemistry",
-                    "Biophysics",
-                    "Classical Physics",
-                    "Quantum Mechanics",
-                    "Electromagnetism",
-                    "Nuclear Physics"
-                ]
-            }
-        ]
-    },
+    "focusAreas": [
+        {
+            "title": "Spatial analysis",
+            "text": "GIS workflows, map-based decision support, suitability analysis, and web mapping."
+        },
+        {
+            "title": "Workflow automation",
+            "text": "Python-driven data cleaning, repeatable analysis steps, and tools that reduce manual work."
+        },
+        {
+            "title": "Scientific grounding",
+            "text": "A science background that supports careful interpretation, documentation, and technical communication."
+        }
+    ],
     "links": [
         {
-            "href": "mailto:sainijot28@gmail.com",
-            "text": "sainijot28@gmail.com"
+            "href": "mailto:simranjotssaini@gmail.com",
+            "text": "Email",
+            "label": "Email Simranjot Saini"
         },
         {
             "href": "https://github.com/ssain0771",
-            "text": "github.com/ssain0771",
+            "text": "GitHub",
+            "label": "Open GitHub profile",
             "target": "_blank",
             "rel": "noopener noreferrer"
         },
         {
             "href": "https://www.linkedin.com/in/simranjot-saini-961b49390",
-            "text": "linkedin.com/in/simranjot-saini-961b49390",
+            "text": "LinkedIn",
+            "label": "Open LinkedIn profile",
             "target": "_blank",
             "rel": "noopener noreferrer"
         },
         {
             "href": "tel:+14036060493",
-            "text": "+1 (403) 606-0493"
+            "text": "Phone",
+            "label": "Call +1 403 606 0493"
         }
+    ],
+    "contactDetails": [
+        "Calgary, Alberta"
     ],
     "aboutImage": {
         "src": "images/jot.jpg",
-        "alt": "Picture of Jot"
+        "alt": "Portrait of Simranjot Saini"
     },
-    "languages": [
-        "English",
-        "Punjabi",
-        "Hindi"
-    ]
+    "featuredSection": {
+        "eyebrow": "Selected work",
+        "title": "Projects that show how I approach analysis, mapping, and automation.",
+        "description": "A few highlighted projects are shown here. The full portfolio includes deeper case studies with methods, tools, results, and more detail on process and impact.",
+        "ctaHref": "portfolio.html",
+        "ctaText": "View full portfolio"
+    }
 }

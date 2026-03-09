@@ -1,121 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="styles/baseStyles.css" />
-        <link rel="stylesheet" href="styles/resumeStyles.css" />
-        <meta name="author" content="Jot" />
-        <title>Resume</title>
-    </head>
+<head>
+    <!--
+        Resume page template.
+        This page intentionally supports two different layouts:
+        1) a richer on-screen layout for browsing resume variants
+        2) a separate print-only layout that is optimized for paper / PDF export
 
-    <body data-page="resume">
-        <header>
-            <h1 class="page-title">
-                <span class="screen-only">Resume</span>
-                <span class="print-only" id="printName">Your Name</span>
-            </h1>
-            <div id="printContactRow" class="print-only contact-row" aria-label="Contact information">
-                <ul id="printContact" class="contact-list"></ul>
+        Shared site styles live in styles/baseStyles.css.
+        Resume-specific styles and print rules live in styles/resumeStyles.css.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resume | Simranjot Saini</title>
+    <meta name="description" content="Resume variants for Simranjot Saini, including full, data analyst, geospatial, and science versions.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="styles/baseStyles.css">
+    <link rel="stylesheet" href="styles/resumeStyles.css">
+</head>
+<body data-page="resume" data-root="">
+    <!-- Skip link improves keyboard navigation by allowing users to jump straight to the main content area. -->
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+
+    <!-- Shared site header shown on screen; baseStyles.css hides it automatically during printing. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
             </div>
-
-            <div class="header-controls" role="group" aria-label="Resume and theme controls">
-                <label class="resume-variant-label" for="resumeVariant">Resume type</label>
-                <select id="resumeVariant" class="resume-variant-select" aria-label="Select resume variant">
-                    <option value="general">General</option>
-                    <option value="analyst">Data Analyst</option>
-                    <option value="geospatial">Geospatial</option>
-                    <option value="science">Science</option>
-                </select>
-
-                <button id="printResume" class="btn" type="button">Print / Save PDF</button>
-                <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
-            </div>
-        </header>
-
-        <div class="layout">
-            <nav>
-                <p id="navLabelNavigate">Navigate to:</p>
-                <ul id="globalNavList"></ul>
-
-                <p id="navLabelJump">Jump to:</p>
-                <ul id="pageJumpList"></ul>
-            </nav>
-
-            <main>
-                <!-- PRINT-ONLY: pulled from data/index.json via JS -->
-                <section id="print-profile" class="print-only">
-                    <h2>Profile</h2>
-                    <p id="printTitleLine"></p>
-                    <p id="printBio1"></p>
-                    <p id="printBio2"></p>
-                </section>
-
-                <section id="print-skills" class="print-only">
-                    <h2>Skills</h2>
-                    <ul id="printSkills"></ul>
-                </section>
-
-                <section id="education">
-                    <div class="section-header-row">
-                        <h2>Education</h2>
-                        <div class="exp-controls" role="group" aria-label="Education visibility controls">
-                            <button id="expandAllEdu" class="btn" type="button">Expand all</button>
-                            <button id="collapseAllEdu" class="btn" type="button">Collapse all</button>
-                        </div>
-                    </div>
-
-                    <div id="educationList"></div>
-
-                    <template id="educationItemTemplate">
-                        <details class="panel exp-card edu-card">
-                            <summary class="exp-summary">
-                                <span class="exp-role edu-program"></span>
-                                <span class="exp-org edu-inst"></span>
-                                <span class="exp-period edu-year"></span>
-                            </summary>
-
-                            <div class="exp-body">
-                                <ul class="exp-details edu-details"></ul>
-                            </div>
-                        </details>
-                    </template>
-                </section>
-
-                <section id="work-experience">
-                    <div class="section-header-row">
-                        <h2>Work Experience</h2>
-                        <div class="exp-controls" role="group" aria-label="Work experience visibility controls">
-                            <button id="expandAllExp" class="btn" type="button">Expand all</button>
-                            <button id="collapseAllExp" class="btn" type="button">Collapse all</button>
-                        </div>
-                    </div>
-
-                    <div id="experienceList"></div>
-
-                    <template id="experienceItemTemplate">
-                        <details class="panel exp-card">
-                            <summary class="exp-summary">
-                                <span class="exp-role"></span>
-                                <span class="exp-org"></span>
-                                <span class="exp-period"></span>
-                            </summary>
-
-                            <div class="exp-body">
-                                <ul class="exp-details"></ul>
-                            </div>
-                        </details>
-                    </template>
-                </section>
-            </main>
         </div>
+    </header>
 
-        <footer>
-            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
-        </footer>
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Education is intentionally printed before skills so the PDF reads like a conventional professional resume. -->
+            <!--
+                Dedicated print-only resume.
+                This is separate from the screen layout on purpose.
+                Keeping print markup separate makes it much easier to create a professional PDF without
+                fighting the spacing, cards, and controls needed for the screen version.
+            -->
+            <article id="printResumeLayout" class="print-resume" aria-label="Printable resume">
+                <header class="print-resume-header">
+                    <h1 id="printResumeName">Simranjot Saini</h1>
+                    <ul id="printResumeContact" class="print-resume-contact" aria-label="Resume contact information"></ul>
+                </header>
 
-        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+                <section class="print-resume-section" aria-labelledby="printProfileHeading">
+                    <h2 id="printProfileHeading">Profile</h2>
+                    <div id="printResumeProfile" class="print-resume-copy"></div>
+                </section>
 
-        <script src="scripts/baseScripts.js" defer></script>
-        <script src="scripts/resumeScripts.js" defer></script>
-    </body>
+                <section class="print-resume-section" aria-labelledby="printEducationHeading">
+                    <h2 id="printEducationHeading">Education</h2>
+                    <div id="printResumeEducation" class="print-resume-list"></div>
+                </section>
+
+                <section class="print-resume-section" aria-labelledby="printSkillsHeading">
+                    <h2 id="printSkillsHeading">Skills</h2>
+                    <div id="printResumeSkills" class="print-resume-skill-lines"></div>
+                </section>
+
+                <section class="print-resume-section" aria-labelledby="printExperienceHeading">
+                    <h2 id="printExperienceHeading">Work Experience</h2>
+                    <div id="printResumeExperience" class="print-resume-list"></div>
+                </section>
+            </article>
+
+            <!-- Screen-only hero with the resume selector and print button. -->
+            <section class="page-hero section screen-only">
+                <div class="hero-card">
+                    <div class="resume-toolbar">
+                        <div>
+                            <div class="eyebrow">Resume</div>
+                            <h1 id="resumePageTitle" class="page-title">Full resume</h1>
+                            <p id="resumePageLead" class="page-lead">Structured for screen and print, with grouped skills and content tailored to the selected resume version.</p>
+                        </div>
+
+                        <div class="resume-toolbar-controls">
+                            <div class="resume-select-wrap">
+                                <label for="resumeVariant">Resume version</label>
+                                <select id="resumeVariant" class="resume-select" aria-label="Select resume variant"></select>
+                            </div>
+
+                            <button id="printResume" class="btn btn-primary" type="button">Print / Save PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Short on-screen profile block; the print version above has its own formatting. -->
+            <section class="section screen-only">
+                <div class="section-card resume-intro">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Profile</div>
+                        <h2 id="resumeIntroTitle" class="section-heading">Spatial data science student</h2>
+                    </div>
+
+                    <div id="resumeIntroCopy" class="about-copy"></div>
+                    <ul id="resumeContact" class="resume-contact" aria-label="Contact links"></ul>
+                </div>
+            </section>
+
+            <!-- Education stays above skills, matching the requested screen order. -->
+            <section class="section screen-only">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Education</div>
+                        <h2 class="section-heading">Education</h2>
+                    </div>
+
+                    <div id="educationList" class="resume-entry-list"></div>
+                </div>
+            </section>
+
+            <!-- Grouped skills remain on the resume page, but only for screen browsing. -->
+            <section class="section screen-only">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Skills</div>
+                        <h2 class="section-heading">Grouped skills</h2>
+                    </div>
+
+                    <div id="skillsList" class="resume-skill-groups"></div>
+                </div>
+            </section>
+
+            <!-- Experience entries are rendered from the currently selected resume variant. -->
+            <section class="section screen-only">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Experience</div>
+                        <h2 class="section-heading">Experience</h2>
+                    </div>
+
+                    <div id="experienceList" class="resume-entry-list"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Minimal shared footer for the screen version of the site. -->
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <!-- Shared site behaviors load first, then resume-specific rendering logic. -->
+    <script src="scripts/baseScripts.js" defer></script>
+    <script src="scripts/resumeScripts.js" defer></script>
+</body>
 </html>

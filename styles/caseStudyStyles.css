@@ -1,0 +1,48 @@
+/* Case-study overview layout: key facts beside the image. */
+.case-study-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.case-study-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.case-study-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface-alt);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Detail cards rendered from the project data file. */
+.case-study-section-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.case-study-link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.case-study-link-list a {
+    text-decoration: none;
+}
+
+/* Responsive layout stacks the image under the text on smaller screens. */
+@media (max-width: 960px) {
+    .case-study-meta,
+    .case-study-layout {
+        grid-template-columns: 1fr;
+    }
+}

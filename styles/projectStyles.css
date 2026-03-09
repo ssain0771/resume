@@ -1,60 +1,76 @@
-/* Map two-column layout */
-.map-row {
-    display: flex;
-    gap: 12px;
+/* Project overview cards and supporting case-study details. */
+.project-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.detail-section-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* Two-column map layout: controls on the left, interactive map on the right. */
+.map-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
+    gap: 1rem;
     align-items: stretch;
-    height: 520px; /* map + panel height */
-    margin-top: 10px;
+}
+
+.map-panel,
+.map-canvas {
+    min-height: 32rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
 }
 
 .map-panel {
-    flex: 0 0 33%;
-    padding: 12px;
-    background: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
+    padding: 1.1rem;
     overflow: auto;
 }
 
-.map-canvas {
-    flex: 1;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden; /* keeps leaflet tiles inside rounded corners */
+.map-panel-title {
+    margin: 0 0 0.9rem;
+    font-size: 1.06rem;
 }
 
-/* Legend styling */
-.map-panel-title {
-    margin: 0 0 10px;
-    font-size: 1.15rem;
+/* Legend and filter controls inside the map sidebar. */
+.legend-stack {
+    display: grid;
+    gap: 0.75rem;
 }
 
 .legend-item {
-    margin: 8px 0;
+    padding: 0.7rem 0.8rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
 }
 
 .legend-label {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
     cursor: pointer;
-    user-select: none;
 }
 
 .legend-swatch {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.25);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .legend-line {
-    width: 22px;
+    width: 1.6rem;
     height: 0;
-    border-top-width: 3px;
-    border-top-style: solid;
-    border-radius: 2px;
+    border-top: 3px solid;
+    border-radius: 999px;
 }
 
 .swatch-parks {
@@ -70,66 +86,48 @@
     border-top-color: #183de6;
 }
 
-.legend-divider {
-    margin: 12px 0;
-    border: none;
-    border-top: 1px solid #ddd;
-}
-
-.legend-notes {
-    margin: 8px 0 0;
-}
-
-body.is-dark .map-panel,
-body.is-dark .map-canvas {
-    background: #1c1c1c;
-    border-color: #444;
-}
-
-body.is-dark .legend-divider {
-    border-top-color: #444;
-}
-
-body.is-dark .legend-swatch {
-    border-color: rgba(255, 255, 255, 0.35);
-}
-
-@media (max-width: 900px) {
-    .map-row {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .map-panel {
-        flex: 0 0 auto;
-    }
-
-    .map-canvas {
-        height: 420px;
-    }
+.legend-input,
+.legend-actions .btn {
+    width: 100%;
 }
 
 .legend-input {
-    width: 100%;
-    margin-top: 6px;
-    padding: 8px 10px;
-
-    border: 1px solid #ccc;
-    border-radius: 8px;
-
-    background: #ffffff;
-    color: inherit;
-
-    font: inherit;
-    line-height: 1.2;
+    margin-top: 0.55rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
 }
 
-.legend-input:focus-visible {
-    outline: 3px solid #0047ab;
-    outline-offset: 2px;
+.legend-actions {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
-body.is-dark .legend-input {
-    background: #1c1c1c;
-    border-color: #444;
+.legend-notes {
+    color: var(--muted);
+    margin: 0.85rem 0 0;
+}
+
+.legend-notes.small {
+    font-size: 0.92rem;
+}
+
+@media (max-width: 1020px) {
+    .project-meta-grid,
+    .detail-section-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Two-column map layout: controls on the left, interactive map on the right. */
+.map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .map-panel,
+    .map-canvas {
+        min-height: 24rem;
+    }
 }

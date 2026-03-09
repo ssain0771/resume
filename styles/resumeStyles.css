@@ -1,266 +1,307 @@
-/* 
-    Styles for resume page.
-    This file controls styles that are specific to the resume page.
+/*
+    Resume-page styles.
+    This file handles:
+    - the on-screen resume controls and cards
+    - the grouped-skill and entry layouts for browsing
+    - the dedicated print-only resume layout for PDF / paper output
 */
-.print-only {
-    display: none !important;
-}
 
-.screen-only {
-    display: inline !important;
-}
-
-@media print {
-    .print-only {
-        display: block !important;
-    }
-
-    .screen-only {
-        display: none !important;
-    }
-
-    /* Print-only name inside the <h1> should stay inline */
-    .page-title .print-only {
-        display: inline !important;
-    }
-}
-
-.section-header-row {
+/* Toolbar at the top of the screen version: title, selector, and print button. */
+.resume-toolbar {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 4px;
-    margin: 0.83em 0;
 }
 
-.section-header-row h2 {
-    border-bottom: none;
-    margin: 0;
-    padding-bottom: 0;
-}
-
-.exp-controls {
+.resume-toolbar-controls {
     display: flex;
-    gap: 10px;
-}
-
-.header-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
 }
 
-.resume-variant-label {
-    font-weight: 600;
+.resume-select-wrap {
+    display: grid;
+    gap: 0.35rem;
 }
 
-.resume-variant-select {
-    padding: 6px 8px;
-    border: 1px solid #999;
-    border-radius: 6px;
-    font: inherit;
+.resume-select-wrap label {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
-@media (max-width: 700px) {
-    .section-header-row {
-        flex-direction: column;
-        align-items: flex-start;
+.resume-select {
+    min-width: 15rem;
+    padding: 0.8rem 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+}
+
+/* Intro/profile block shown only on screen. */
+.resume-intro {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Shared contact-chip styling for the on-screen resume header/profile section. */
+.resume-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.resume-contact a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    text-decoration: none;
+}
+
+/* Shared grid layout for the screen-only skills and entry lists. */
+.resume-skill-groups,
+.resume-entry-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.resume-skill-group,
+.resume-entry {
+    padding: 1.1rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+}
+
+.resume-skill-group h3,
+.resume-entry h3 {
+    margin: 0 0 0.45rem;
+    font-size: 1.02rem;
+}
+
+.resume-entry-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.65rem;
+}
+
+.resume-entry-org {
+    color: var(--muted);
+    font-style: italic;
+}
+
+.resume-entry-period {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.resume-entry ul,
+.resume-skill-group ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.resume-entry li + li,
+.resume-skill-group li + li {
+    margin-top: 0.35rem;
+}
+
+/*
+    Print-resume wrapper.
+    Hidden on screen because it only exists to create a better PDF / paper version.
+*/
+.print-resume {
+    display: none;
+}
+
+/* Print layout typography and spacing. */
+.print-resume-header {
+    margin-bottom: 0.22in;
+}
+
+.print-resume-header h1 {
+    margin: 0 0 0.14in;
+    text-align: center;
+    font-size: 24pt;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+/* Contact line sits directly under the name and uses separators instead of pills/cards. */
+.print-resume-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, auto));
+    justify-content: center;
+    column-gap: 0.28in;
+    row-gap: 0.05in;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 10pt;
+}
+
+.print-resume-contact li {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.print-resume-contact a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Each printable section gets a compact heading with a divider underneath. */
+.print-resume-section {
+    margin-bottom: 0.16in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.print-resume-section h2 {
+    margin: 0 0 0.08in;
+    padding-bottom: 0.05in;
+    border-bottom: 2px solid #d4d4d4;
+    font-size: 12pt;
+    line-height: 1.2;
+}
+
+.print-resume-copy {
+    display: grid;
+    gap: 0.08in;
+}
+
+.print-resume-copy p {
+    margin: 0;
+}
+
+/* Skills are rendered as compact inline lines to save space and mirror a conventional resume. */
+.print-resume-skill-lines {
+    display: grid;
+    gap: 0.05in;
+}
+
+.print-skill-line {
+    margin: 0;
+}
+
+/* Shared list container for education and experience in the print layout. */
+.print-resume-list {
+    display: grid;
+    gap: 0.09in;
+}
+
+.print-resume-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+/* First row: title + organization on the left, dates on the right. */
+.print-resume-item-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.2in;
+    align-items: baseline;
+    margin-bottom: 0.04in;
+}
+
+.print-resume-item-title {
+    margin: 0;
+    font-size: 11pt;
+    line-height: 1.25;
+}
+
+.print-resume-item-org {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.print-resume-item-period {
+    white-space: nowrap;
+    font-size: 10.5pt;
+}
+
+.print-resume-item ul {
+    margin: 0;
+    padding-left: 1.15rem;
+}
+
+.print-resume-item li + li {
+    margin-top: 0.04in;
+}
+
+/* Small-screen adjustments keep the selector and controls from feeling cramped. */
+@media (max-width: 720px) {
+    .resume-toolbar-controls {
+        width: 100%;
+        align-items: stretch;
     }
 
-    .header-controls {
+    .resume-select-wrap,
+    .resume-select,
+    #printResume {
         width: 100%;
     }
 }
 
-#work-experience ul li,
-#education ul li {
-    margin-bottom: 6px;
-}
-
-.exp-summary {
-    cursor: pointer;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    list-style: none;
-}
-
-.exp-role {
-    font-weight: 700;
-}
-
-.exp-org {
-    margin: 0 0 6px;
-    font-style: italic;
-}
-
-.exp-period {
-    margin-left: auto;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.contact-row {
-    margin-top: 6px;
-}
-
-.contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-
-    /* Keep on a single line by default */
-    flex-wrap: nowrap;
-    gap: 0.10in;
-
-    /* Prevent mid-item breaks */
-    white-space: nowrap;
-}
-
-.contact-list li,
-.contact-list a {
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-}
-
-.contact-list li::after {
-    content: "•";
-    margin-left: 0.08in;
-}
-
-.contact-list li:last-child::after {
-    content: "";
-    margin: 0;
-}
-
-#printSkills {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-#printSkills li {
-    margin: 0 0 4px 0;
-}
-
-
+/*
+    Print rules:
+    - hide the interactive screen layout
+    - show the dedicated print layout
+    - remove decorative screen styling
+    - tighten spacing to keep the resume professional and compact
+*/
 @media print {
     @page {
         margin: 0.5in;
         size: letter;
     }
 
-    /* Remove the "card" look from base styles */
-    header,
-    main,
-    section,
-    .panel,
-    details.exp-card {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        background: transparent !important;
+    html,
+    body {
+        background: #ffffff !important;
     }
 
     body {
-        background: #fff !important;
-        color: #000 !important;
         font-size: 10.5pt;
-        line-height: 1.3;
+        line-height: 1.35;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
-    /* Hide non-resume chrome in print */
-    nav,
-    footer,
-    #themeToggle,
-    #backToTop,
-    #printResume,
-    .exp-controls,
-    .resume-variant-label,
-    .resume-variant-select {
+    /* Hide the entire screen browsing experience so only the clean print layout remains. */
+    .screen-only,
+    main.site-main > .site-shell > *:not(.print-resume) {
         display: none !important;
     }
 
-    .layout {
-        display: block;
-    }
-
-    header {
-        display: block !important;
-        text-align: center;
-
-        /* Prevent edge clipping of contact text */
-        padding-left: 0.06in !important;
-        padding-right: 0.06in !important;
-        box-sizing: border-box;
-    }
-
-    main {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .page-title {
-        text-align: center;
-        margin: 0 0 0.2in 0;
-    }
-
-    h2 {
-        font-size: 12pt;
-        margin: 0.14in 0 0.08in;
-    }
-
-    section {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        margin-bottom: 0.1in;
-    }
-
-    details.exp-card {
-        margin-bottom: 0.06in;
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
-
-    details.exp-card summary {
-        list-style: none;
-    }
-
-    /* Ensure details content prints even if browser doesn't respect <details> state */
-    details.exp-card > .exp-body {
+    .print-resume {
         display: block !important;
     }
 
-    .exp-details {
-        margin: 0.02in 0 0.08in;
-        padding-left: 0.22in;
+    /* Remove any leftover decorative spacing the shared screen layout would otherwise keep. */
+    .print-resume * {
+        box-shadow: none !important;
     }
 
-    /* Contact row print specifics */
-    .contact-row {
-        margin: 0 0 0.12in 0;
-    }
-
-    .contact-list {
-        /* Tiny compression to avoid edge clipping */
-        font-size: 9.6pt;
-        gap: 0.10in;
-    }
-
-    .contact-list a {
-        color: #000 !important;
-        text-decoration: none !important;
+    a,
+    a:visited {
+        color: inherit !important;
     }
 }

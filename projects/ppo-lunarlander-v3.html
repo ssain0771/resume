@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        HTML template for this page.
+        Shared styling and behaviors come from styles/baseStyles.css and scripts/baseScripts.js.
+        Page-specific structure is documented inline below.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Case Study | Simranjot Saini</title>
+    <meta name="description" content="Detailed project case study for Simranjot Saini.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="../styles/baseStyles.css">
+    <link rel="stylesheet" href="../styles/caseStudyStyles.css">
+</head>
+<body data-page="case-study" data-root="../" data-project-id="lander">
+<!-- Skip link improves keyboard navigation by allowing users to jump directly to the main content. -->
+<a class="skip-link" href="#mainContent">Skip to content</a>
+    <!-- Shared site header: brand, navigation, and theme toggle. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="../index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main page content for an individual portfolio case study. -->
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Case study intro pulled from the matching project record in data/projects.json. -->
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow">Portfolio / Case study</div>
+                    <h1 id="caseStudyPageTitle" class="page-title">Project title</h1>
+                    <p id="caseStudyPageLead" class="page-lead">Project summary</p>
+
+                    <div class="hero-actions">
+                        <a id="backToPortfolioLink" class="button-link" href="../portfolio.html">Back to portfolio</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Overview section: project summary, key metadata, and supporting image. -->
+            <section class="section">
+                <div class="section-card">
+                    <div class="case-study-layout">
+                        <div>
+                            <div class="section-heading-wrap">
+                                <div class="eyebrow">Overview</div>
+                                <h2 id="caseStudyOverviewTitle" class="section-heading">Project overview</h2>
+                                <p id="caseStudyOverviewText" class="section-description"></p>
+                            </div>
+
+                            <ul id="caseStudyMeta" class="case-study-meta stat-list"></ul>
+                        </div>
+
+                        <div>
+                            <img id="caseStudyImage" class="case-study-image" src="" alt="Project image">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detail cards: challenge, process, outcome, and any extra sections defined in the data file. -->
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Details</div>
+                        <h2 class="section-heading">How the project was approached</h2>
+                        <p class="section-description">&lt;note to self: expand these case studies with more project-specific process, constraints, and measurable impact.&gt;</p>
+                    </div>
+
+                    <div id="caseStudySectionGrid" class="case-study-section-grid"></div>
+
+                    <div id="caseStudyLinkList" class="case-study-link-list"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!-- Shared footer: kept intentionally minimal so it does not compete with page content. -->
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <!-- Shared behavior loads first, then page-specific behavior for the case study page. -->
+    <script src="../scripts/baseScripts.js" defer></script>
+    <script src="../scripts/caseStudyScripts.js" defer></script>
+</body>
+</html>

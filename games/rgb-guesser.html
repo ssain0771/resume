@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        RGB Guesser game page.
+        The layout is split into instructions, controls, and the colour grid the player clicks to answer.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RGB Guesser | Simranjot Saini</title>
+    <meta name="description" content="An RGB guessing game that asks the player to match a target RGB value to the correct colour swatch.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="../styles/baseStyles.css">
+    <link rel="stylesheet" href="../styles/gameStyles.css">
+</head>
+<body data-page="game" data-root="../">
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+    <!-- Shared site header populated by scripts/baseScripts.js. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="../index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Intro explains the rules and why the game is useful. -->
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow">Web games / RGB guesser</div>
+                    <h1 class="page-title">Match the RGB value to the correct colour.</h1>
+                    <p class="page-lead">Read the target RGB triplet, compare the swatches, and pick the colour that matches it. This is a quick way to get faster at mentally translating RGB values into visible colour.</p>
+
+                    <div class="hero-actions">
+                        <a class="button-link" href="../webgames.html">Back to Web Games</a>
+                        <button id="newRoundButton" class="btn btn-primary" type="button">New round</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-card">
+                    <div class="game-layout">
+                        <!-- Left column: controls, stats, and explanation. -->
+                        <div class="game-sidebar">
+                            <div class="section-heading-wrap">
+                                <div class="eyebrow">Controls</div>
+                                <h2 class="section-heading">Round setup</h2>
+                                <p class="section-description">Difficulty controls how many colour options appear in each round. More options make the match harder.</p>
+                            </div>
+
+                            <div class="control-panel">
+                                <label class="control-field" for="difficultyInput">
+                                    <span>Difficulty (number of options)</span>
+                                    <input id="difficultyInput" type="number" min="4" max="12" step="1" value="6">
+                                </label>
+
+                                <p id="difficultyExplanation" class="control-note">This round will show 6 colour options.</p>
+                            </div>
+
+                            <ul class="stat-list game-stat-list">
+                                <li class="meta-item">
+                                    <span class="meta-label">Score</span>
+                                    <span id="scoreValue">0</span>
+                                </li>
+                                <li class="meta-item">
+                                    <span class="meta-label">Streak</span>
+                                    <span id="streakValue">0</span>
+                                </li>
+                                <li class="meta-item">
+                                    <span class="meta-label">Rounds</span>
+                                    <span id="roundValue">0</span>
+                                </li>
+                            </ul>
+
+                            <article class="info-card">
+                                <h3>How it works</h3>
+                                <p>The displayed RGB value is the exact answer. One swatch matches it perfectly, and the rest are distractors chosen to look different enough that the round stays readable without giving the result away.</p>
+                            </article>
+                        </div>
+
+                        <!-- Right column: target value, feedback, and clickable swatch grid. -->
+                        <div id="gameMain" class="game-main">
+                            <div id="targetPanel" class="target-panel">
+                                <div class="section-heading-wrap target-heading-wrap">
+                                    <div class="eyebrow">Target</div>
+                                    <h2 class="section-heading">Read this RGB value</h2>
+                                    <p class="section-description">Click the swatch you think matches the target exactly.</p>
+                                </div>
+
+                                <div id="targetRgbValue" class="target-rgb" aria-live="polite">RGB(0, 0, 0)</div>
+                            </div>
+
+                            <div id="feedbackPanel" class="feedback-panel" aria-live="polite" tabindex="0">
+                                Pick a swatch to lock in your answer.
+                            </div>
+
+                            <div id="paletteGrid" class="palette-grid" role="list" aria-label="RGB guess options"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <!-- Shared behavior loads first; the game logic is isolated in its own script file. -->
+    <script src="../scripts/baseScripts.js" defer></script>
+    <script src="../scripts/rgbGuesserScripts.js" defer></script>
+</body>
+</html>

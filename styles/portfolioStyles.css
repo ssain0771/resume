@@ -1,213 +1,154 @@
-/* 
-    Styles for portfolio page.
-    This file controls styles that are specific to the portfolio page.
-    To save time, the initial styles were
-    generated using AI. These were then manually
-    reviewed, resulting in styles being added, removed,
-    and modified to suit my liking.
- */
+/* Action row under the featured grid; gives the show-more button clear separation from the cards. */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.35rem;
+}
 
-#project-container { /* Grid layout allows projects to wrap automatically based on screen width */
+/* Featured and archive project-card grids. */
+.featured-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
 }
 
-.projects { /* Individual project cards */
-    border: 1px solid #ccc;
-    padding: 12px;
-    background-color: #fafafa;
-    border-radius: 6px;
-    cursor: pointer;
+/* Reusable project card used in both the featured and full portfolio grids. */
+.project-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
 }
 
-.projects img { /* Ensures images fit inside cards */
+.project-card:hover,
+.project-card:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+.project-card-image {
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 6px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: calc(var(--radius-md) + 2px);
+    background: var(--surface-alt);
 }
 
-.project-summary {
-    margin: 8px 0 0 0;
-    font-size: 0.95rem;
-    color: #444;
-}
-
-/* Long details are stored in the card but NOT shown in the card */
-.projects .project-details {
-    display: none;
-}
-
-/* Selected + keyboard focus */
-.projects.is-selected {
-    outline: 2px solid #0047ab;
-    outline-offset: 2px;
-}
-
-.projects:focus-visible {
-    outline: 3px solid #0047ab;
-    outline-offset: 2px;
-}
-
-/* Dark mode overrides for cards */
-body.is-dark .projects {
-    background-color: #222;
-    border-color: #555;
-}
-
-body.is-dark .project-summary {
-    color: #cccccc;
-}
-
-#projectInfo {
-    scroll-margin-top: 16px;
-}
-
-body.is-dark #projectInfo {
-    border-color: #555;
-}
-
-.project-info-wrap {
-    overflow: auto; /* clears the float so the panel contains the image */
-}
-
-.project-info-image {
-    float: right;
-    width: 50%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-
-    margin: 0 0 12px 16px; /* space between image (right) and text (left) */
-}
-
-/* Responsive: stack image above text on small screens */
-@media (max-width: 700px) {
-    .project-info-image {
-        float: none;
-        width: 100%;
-        margin: 0 0 12px 0;
-    }
-}
-
-#portfolioFilters, #portfolioFilters * {
-    box-sizing: border-box;
-}
-
-#portfolioFilters {
+.project-card-content {
     display: grid;
-    grid-template-columns: max-content minmax(260px, 1fr) max-content;
-    grid-template-areas:
-        "label search clear"
-        ".     chips  .";
-    gap: 12px;
+    gap: 0.8rem;
+}
+
+.project-card h3 {
+    margin: 0;
+    font-size: 1.18rem;
+}
+
+.project-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.project-card-impact {
+    padding: 0.8rem 0.9rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    color: var(--text) !important;
+}
+
+.project-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-card-meta span {
+    display: inline-flex;
     align-items: center;
-
-    width: 100%;
-    margin-bottom: 14px;
-}
-
-#portfolioFilters label {
-    grid-area: label;
-}
-
-/* Combobox container must be allowed to shrink inside flex */
-.tag-combobox {
-    position: relative;
-    grid-area: search;
-    flex: 1 1 260px;
-    min-width: 0;
-}
-
-#clearTags {
-    grid-area: clear;
-}
-
-#tagSearch {
-    width: 100%;
-    max-width: 100%;
-    display: block;
-
-    padding: 6px 10px;
-    border: 1px solid #888;
-    border-radius: 6px;
-}
-
-/* Dropdown options panel */
-.tag-options {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    right: 0;
-
-    max-height: 220px;
-    overflow: auto;
-
-    border: 1px solid #888;
-    border-radius: 6px;
-    background: #ffffff;
-
-    display: none;
-    z-index: 1000;
-}
-
-.tag-options.is-open {
-    display: block;
-}
-
-.tag-option {
-    padding: 8px 10px;
-    cursor: pointer;
-}
-
-.tag-option:hover, .tag-option.is-active {
-    background: #eeeeee;
-}
-
-/* Active tag chips */
-#activeTags {
-    grid-area: chips;
-}
-
-.tag-chip {
-    border: 1px solid #888;
+    padding: 0.4rem 0.65rem;
     border-radius: 999px;
-    padding: 4px 10px;
-    background: #f2f2f2;
+    font-size: 0.88rem;
+    color: var(--muted);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+}
+
+/* The expandable archive stays hidden until the user presses the toggle button. */
+.all-projects-wrap[hidden] {
+    display: none !important;
+}
+
+.all-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Search and tag controls live below the archive grid. */
+.portfolio-filter-panel {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+}
+
+.portfolio-search-row {
+    display: grid;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-search-input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.tag-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
     cursor: pointer;
 }
 
-/* Dark mode overrides for filter UI */
-body.is-dark #tagSearch {
-    background: #1c1c1c;
-    border-color: #666;
-    color: #eee;
+.tag-button.is-active {
+    background: var(--accent-soft);
+    border-color: rgba(47, 111, 237, 0.22);
+    color: var(--accent-strong);
 }
 
-body.is-dark .tag-options {
-    background: #1c1c1c;
-    border-color: #666;
-    color: #eee;
+.no-results {
+    margin: 0;
+    color: var(--muted);
 }
 
-body.is-dark .tag-option:hover, body.is-dark .tag-option.is-active {
-    background: #333333;
-}
-
-body.is-dark .tag-chip {
-    background: #222;
-    border-color: #666;
-    color: #eee;
-}
-
-@media (max-width: 700px) {
-    #portfolioFilters {
+@media (max-width: 960px) {
+    .featured-project-grid,
+    .all-project-grid {
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "label"
-            "search"
-            "clear"
-            "chips";
     }
 }

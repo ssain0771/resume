@@ -1,11 +1,30 @@
 {
+    "page": {
+        "eyebrow": "Portfolio",
+        "title": "Project work with more context, process, and outcome.",
+        "description": "Featured projects stay at the top, with the rest of the portfolio available below through the expanded archive and filters.",
+        "featuredTitle": "Featured projects",
+        "allProjectsTitle": "All projects",
+        "showMore": "Show more projects",
+        "showLess": "Show fewer projects",
+        "searchLabel": "Search projects",
+        "searchPlaceholder": "Search by title, tool, or tag",
+        "tagTitle": "Browse by tag",
+        "emptyMessage": "No projects match the current search."
+    },
     "projects": [
         {
             "id": "solar",
+            "featured": true,
             "title": "Solar Farm GIS Project",
+            "slug": "solar-farm-gis-project",
+            "pageHref": "projects/solar-farm-gis-project.html",
             "image": "images/solar_farm.jpg",
-            "imageAlt": "Solar Farm GIS Project Screenshot",
-            "summary": "GIS suitability model to identify the best solar farm parcels on Saddle Lake IR #125.",
+            "imageAlt": "Solar Farm GIS Project map output",
+            "summary": "GIS suitability model to identify high-potential solar farm parcels on Saddle Lake IR #125.",
+            "impact": "Reduced a large search area to four candidate parcels with a documented suitability workflow that could be reviewed and compared. <Add stakeholder decision detail placeholder.>",
+            "role": "Spatial analysis, suitability modelling, cartographic output",
+            "tools": "ArcGIS Pro",
             "tags": [
                 "gis",
                 "site-suitability",
@@ -13,80 +32,42 @@
                 "cost-surface",
                 "arcgis"
             ],
-            "tools": "ArcGIS Pro",
-            "description": "Built a GIS suitability workflow to identify solar farm locations on Saddle Lake Indian Reserve #125. Process included DEM-derived slope/aspect screening (excluding slopes > 10\u00b0 and north-facing aspects), legal/environmental filtering using WHS, and a combined road + transmission access cost surface using distance accumulation.",
-            "result": "Produced a \u201ctruly potential land\u201d layer and a final map of four candidate parcels, evaluated by minimum access cost and Cost/MWh (generation estimated from area-based capacity assumptions)."
-        },
-        {
-            "id": "lander",
-            "title": "PPO LunarLander-v3",
-            "image": "images/lunar_lander.png",
-            "imageAlt": "PPO LunarLander-v3 Gameplay Screenshot",
-            "summary": "Reinforcement learning project: PPO with parallel environments, evaluation tracking, and model deployment.",
-            "tags": [
-                "reinforcement-learning",
-                "ppo",
-                "python",
-                "evaluation",
-                "deployment"
+            "overview": "This project evaluated where a solar farm could realistically be placed by combining terrain constraints, legal and environmental screening, and access-cost analysis.",
+            "challenge": "The core challenge was moving from a broad study area to a defendable short list of candidate sites, while making the tradeoffs visible enough for comparison.",
+            "process": [
+                "Derived slope and aspect from the DEM, excluding slopes greater than 10° and north-facing areas that would be less favourable for production.",
+                "Applied legal and environmental filtering using available WHS constraints to remove unsuitable land before ranking candidate space.",
+                "Built a combined road and transmission access cost surface using distance accumulation to estimate how difficult each location would be to service."
             ],
-            "tools": "Python, Gymnasium, Stable-Baselines3 (PPO), NumPy, Matplotlib, Hugging Face Hub",
-            "description": "Trained a Proximal Policy Optimization (PPO) agent on LunarLander-v3 using 16 parallel environments. Used evaluation callbacks to save the best checkpoint and tracked training performance over time.",
-            "result": "Best model saved automatically during training, evaluated over 100 episodes, plotted mean reward vs. timesteps, and packaged/uploaded the trained agent to the Hugging Face Hub. Evaluation performance: 302.83 \u00b1 17.47 mean reward (100 episodes).",
-            "link": {
-                "href": "https://huggingface.co/ssain0771/ppo-LunarLander-v3",
-                "text": "View on Hugging Face Hub"
-            }
-        },
-        {
-            "id": "wtw",
-            "title": "White Tiger Websites",
-            "image": "images/website.png",
-            "imageAlt": "White Tiger Websites Screenshot",
-            "summary": "Designed and built a responsive multi-page website with reusable layout components and interactive forms.",
-            "tags": [
-                "web",
-                "html",
-                "css",
-                "responsive",
-                "forms",
-                "bootstrap"
+            "outcome": "Produced a “truly potential land” layer and a final map of four candidate parcels evaluated by minimum access cost and estimated cost per MWh.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A site-suitability study focused on translating geospatial criteria into a ranked decision-support product rather than a simple descriptive map."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The workflow combined raster-based terrain screening with vector filtering and access modelling so the final result reflected both physical suitability and practical servicing considerations."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Instead of leaving the analysis as a loose overlay exercise, the project created a smaller set of candidate parcels that could support discussion, comparison, and next-step validation."
+                }
             ],
-            "tools": "HTML, CSS (responsive layout), Bootstrap (CDN), Forms",
-            "description": "Built a multi-page website for a fictional web development company with shared navigation/header/footer styling, a portfolio-style home page, a quotes page with pricing table + quote request form, and a feedback form page.",
-            "result": "A responsive site using CSS Grid + media queries for layout, reusable header/footer components, and interactive form behavior (e.g., showing/hiding additional inputs based on checkbox selections)."
-        },
-        {
-            "id": "patch",
-            "title": "Video Game Patch Data Impact Analysis",
-            "image": "images/game_patch.png",
-            "imageAlt": "Gameplay data analysis chart",
-            "summary": "Analyzed gameplay performance before and after a patch to quantify balance changes.",
-            "tags": [
-                "data-analysis",
-                "pandas",
-                "matplotlib",
-                "python",
-                "cleaning",
-                "visualization"
-            ],
-            "tools": "Python, Pandas, Matplotlib",
-            "description": "Collected, cleaned, and analyzed gameplay data to compare performance metrics pre- and post-patch. Built plots to highlight shifts in key indicators and support conclusions about balance impact.",
-            "result": "Delivered a concise analysis showing which metrics shifted most after the update and summarized implications for game balance."
+            "links": []
         },
         {
             "id": "parks-pathways",
+            "featured": true,
             "title": "Parks & Pathways Overview",
+            "slug": "parks-and-pathways-overview",
+            "pageHref": "projects/webMap.html",
             "image": "images/parks_pathways.png",
             "imageAlt": "Interactive map showing Calgary parks and pathways layers",
-            "summary": "Interactive Leaflet map exploring Calgary's green space network with toggleable layers for parks, pathways/trails, and the city boundary.",
+            "summary": "Interactive Leaflet map exploring Calgary’s green-space network with toggleable parks, trails, and boundary layers.",
+            "impact": "Turned a simple map into a more usable exploratory interface where viewers can compare layers, reset context, and inspect network relationships. <Add audience/use-case placeholder.>",
+            "role": "Web mapping, interface design, GIS communication",
             "tools": "Leaflet, Esri-Leaflet, ArcGIS FeatureServer, GeoJSON",
-            "description": "Built a responsive web map with a legend panel and layer toggles to compare how parks and trails connect across Calgary.",
-            "result": "Users can switch layers on/off and visually identify corridors where major park areas connect via pathways.",
-            "link": {
-                "href": "project.html",
-                "text": "Open project page"
-            },
             "tags": [
                 "web",
                 "web-mapping",
@@ -98,32 +79,255 @@
                 "javascript",
                 "html",
                 "css"
+            ],
+            "overview": "Built a responsive web map that helps users visually compare how Calgary parks and pathway corridors relate to one another across the city.",
+            "challenge": "The goal was to make geographic relationships easier to inspect without overwhelming the user with a heavy GIS-style interface.",
+            "process": [
+                "Loaded parks and trail layers from ArcGIS services and combined them with a local Calgary boundary dataset.",
+                "Added layer controls, reset behaviour, and simple filtering so the map could move beyond a static display.",
+                "Adjusted the interface to support both desktop and smaller screens while keeping the controls readable."
+            ],
+            "outcome": "Users can toggle layers, filter the visible data, and identify corridors where major park areas appear to connect through the pathway network.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A front-end web-mapping project designed to communicate spatial relationships clearly through an interactive browser-based map."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The map uses Leaflet for rendering, Esri-Leaflet for hosted data access, and a lightweight control panel for filtering and view management."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It demonstrates both GIS thinking and practical interface decisions: not just loading spatial data, but shaping how people explore it."
+                }
+            ],
+            "links": [
+                {
+                    "href": "projects/webMap.html",
+                    "text": "Open interactive case study"
+                }
             ]
         },
         {
-            "id": "tank-artillery",
-            "title": "Procedural Tank Artillery Game",
-            "image": "images/tank_game.png",
-            "imageAlt": "Plot of projectile trajectories over procedural terrain in a tank artillery game",
-            "summary": "Turn-based artillery game with procedurally generated terrain, projectile physics, and a simple computer opponent.",
-            "tools": "Python, NumPy, Matplotlib",
-            "description": "Implemented terrain generation with random sine parameters, discrete collision detection against the ground, and hit detection between tanks; visualized each turn's shots and terrain.",
-            "result": "Playable terminal game that plots each round and tracks tank health until a win/loss.",
+            "id": "web-games",
+            "featured": false,
+            "title": "Web Games Lab",
+            "slug": "web-games-lab",
+            "pageHref": "webgames.html",
+            "image": "images/webgames-hub.svg",
+            "imageAlt": "Illustrated preview card for the Web Games Lab page",
+            "summary": "Small browser-based games and interactive tools built to make colour reading, logic, and data intuition more hands-on.",
+            "impact": "Creates a place to turn technical ideas into short playable experiments instead of leaving them as static project descriptions. <Add more game-specific impact later.>",
+            "role": "Game design, front-end development, interactive learning",
+            "tools": "HTML, CSS, JavaScript",
             "tags": [
-                "Python",
-                "Game Dev",
-                "Physics",
-                "Simulation",
-                "Matplotlib",
-                "NumPy"
+                "web",
+                "javascript",
+                "games",
+                "interactive",
+                "learning"
+            ],
+            "overview": "A lightweight page for small browser-based experiments and mini-games that can grow over time without crowding the main portfolio.",
+            "challenge": "The goal is to keep these projects playful and approachable while still making them feel consistent with the rest of the site.",
+            "process": [
+                "Created a hidden landing page outside the main navigation so the games can live as a side branch of the portfolio rather than competing with the main site structure.",
+                "Set up a separate data file and renderer so new games can be added later by extending a list instead of rebuilding the page each time.",
+                "Built the first game as a standalone page so each game can have its own rules, styling, and interaction logic without turning one page into a tangle of conditionals."
+            ],
+            "outcome": "The portfolio now has a dedicated Web Games page and a first playable RGB guessing game, with room to expand later.",
+            "detailSections": [
+                {
+                    "title": "Why this section exists",
+                    "body": "It gives smaller experimental builds a clear home. That makes it easier to add short interactive pieces that support learning, visual thinking, or technical experimentation."
+                }
+            ],
+            "links": [
+                {
+                    "href": "webgames.html",
+                    "text": "Open Web Games Lab"
+                }
             ]
+        },
+        {
+            "id": "patch",
+            "featured": true,
+            "title": "Video Game Patch Data Impact Analysis",
+            "slug": "video-game-patch-data-impact-analysis",
+            "pageHref": "projects/video-game-patch-data-impact-analysis.html",
+            "image": "images/game_patch.png",
+            "imageAlt": "Gameplay data analysis chart",
+            "summary": "Compared gameplay metrics before and after a patch to quantify whether balance changes were meaningful.",
+            "impact": "Showed which performance indicators moved most after the update and created a concise evidence-based summary instead of relying on anecdotal impressions. <Add strongest metric placeholder.>",
+            "role": "Data cleaning, exploratory analysis, visualization",
+            "tools": "Python, Pandas, Matplotlib",
+            "tags": [
+                "data-analysis",
+                "pandas",
+                "matplotlib",
+                "python",
+                "cleaning",
+                "visualization"
+            ],
+            "overview": "This project treated a game patch like an applied analysis problem: gather comparable data, clean it, visualize it, and interpret whether the patch changed player outcomes in a meaningful way.",
+            "challenge": "Patch discussion often depends on community perception, but useful conclusions need structured comparisons and cleaner evidence.",
+            "process": [
+                "Collected and cleaned gameplay data so pre- and post-patch records could be compared consistently.",
+                "Built plots to show where key indicators shifted and which changes were large enough to deserve attention.",
+                "Summarized the findings in a short analysis focused on interpretation rather than just chart output."
+            ],
+            "outcome": "Delivered a concise analysis highlighting the metrics that moved most after the patch and the likely implications for balance.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A compact analytical case study showing how to move from raw event-style data to an interpretable before/after comparison."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The workflow focused on cleaning, aligning, plotting, and interpreting the data rather than building a large application around it."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It demonstrates practical analysis habits: define the question, prepare the data, visualize the signal, and explain the result clearly."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "lander",
+            "featured": false,
+            "title": "PPO LunarLander-v3",
+            "slug": "ppo-lunarlander-v3",
+            "pageHref": "projects/ppo-lunarlander-v3.html",
+            "image": "images/lunar_lander.png",
+            "imageAlt": "PPO LunarLander-v3 gameplay screenshot",
+            "summary": "Reinforcement learning project with PPO training, evaluation tracking, and model packaging.",
+            "impact": "Built and evaluated a trained agent that achieved 302.83 ± 17.47 mean reward across 100 episodes while packaging the work for reuse and sharing.",
+            "role": "Model training, evaluation, experiment tracking",
+            "tools": "Python, Gymnasium, Stable-Baselines3 (PPO), NumPy, Matplotlib, Hugging Face Hub",
+            "tags": [
+                "reinforcement-learning",
+                "ppo",
+                "python",
+                "evaluation",
+                "deployment"
+            ],
+            "overview": "Trained a PPO agent on LunarLander-v3 using parallel environments and evaluation callbacks to track progress and preserve the best-performing checkpoint.",
+            "challenge": "The main challenge was building a training workflow that did more than just run—it needed to preserve evaluation logic, surface performance trends, and finish with a shareable model package.",
+            "process": [
+                "Ran PPO training with 16 parallel environments to improve sample throughput.",
+                "Used evaluation callbacks to monitor performance and automatically save the best checkpoint during training.",
+                "Evaluated the final model across 100 episodes and packaged the trained agent for publication on Hugging Face Hub."
+            ],
+            "outcome": "Saved the best model automatically, plotted reward trends over time, and published a reusable trained agent.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A reinforcement learning workflow focused on training discipline, evaluation, and deployment rather than a one-off notebook result."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The work combined parallelized training, periodic evaluation, and final packaging so the project had a clean end-to-end path."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It shows reproducibility and experimentation habits that transfer well to other analytical and model-driven projects."
+                }
+            ],
+            "links": [
+                {
+                    "href": "https://huggingface.co/ssain0771/ppo-LunarLander-v3",
+                    "text": "View on Hugging Face Hub"
+                }
+            ]
+        },
+        {
+            "id": "wtw",
+            "featured": false,
+            "title": "White Tiger Websites",
+            "slug": "white-tiger-websites",
+            "pageHref": "projects/white-tiger-websites.html",
+            "image": "images/website.png",
+            "imageAlt": "White Tiger Websites screenshot",
+            "summary": "Responsive multi-page website with reusable layout components and interactive forms.",
+            "impact": "Demonstrated a complete small-site build with reusable layout patterns, responsive behavior, and form logic rather than isolated page mockups.",
+            "role": "Front-end development, responsive layout, form behavior",
+            "tools": "HTML, CSS, Bootstrap (CDN), Forms",
+            "tags": [
+                "web",
+                "html",
+                "css",
+                "responsive",
+                "forms",
+                "bootstrap"
+            ],
+            "overview": "Built a fictional agency website with multiple pages, shared layout components, a pricing/quotes page, and a separate feedback flow.",
+            "challenge": "The project needed to feel consistent across pages while still supporting page-specific content and interactions.",
+            "process": [
+                "Created a shared structure for navigation, page framing, and footer components across the site.",
+                "Used responsive layout techniques so the design adapted across screen sizes.",
+                "Added interactive form behavior, including conditionally displayed inputs, to make the pages feel more complete."
+            ],
+            "outcome": "Produced a cohesive site that combined reusable structure with responsive behavior and working user-input patterns.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A front-end web project focused on consistency, responsiveness, and the practical structure of a small multi-page site."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The build relied on reusable layout pieces, Bootstrap-assisted structure, and CSS/media-query refinement."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It shows the difference between building a single page and building a site that has to stay coherent across multiple user paths."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "tank-artillery",
+            "featured": false,
+            "title": "Procedural Tank Artillery Game",
+            "slug": "procedural-tank-artillery-game",
+            "pageHref": "projects/procedural-tank-artillery-game.html",
+            "image": "images/tank_game.png",
+            "imageAlt": "Projectile trajectories over procedural terrain in a tank artillery game",
+            "summary": "Turn-based artillery game with procedural terrain, projectile physics, and a simple computer opponent.",
+            "impact": "Combined math, physics, and simulation logic into a playable terminal game that visualized each turn and tracked state over time.",
+            "role": "Simulation logic, procedural generation, gameplay systems",
+            "tools": "Python, NumPy, Matplotlib",
+            "tags": [
+                "python",
+                "game-dev",
+                "physics",
+                "simulation",
+                "matplotlib",
+                "numpy"
+            ],
+            "overview": "Implemented a turn-based artillery game in Python where terrain is procedurally generated and each shot is simulated against the landscape.",
+            "challenge": "The core challenge was combining generation, collision checks, and game-state updates in a way that remained understandable and playable.",
+            "process": [
+                "Generated terrain using randomized sine-based parameters to produce different maps from round to round.",
+                "Simulated projectile paths and checked for collisions against the terrain profile.",
+                "Tracked tank health and turn outcomes, visualizing the state after each action."
+            ],
+            "outcome": "Created a complete playable loop with procedural terrain, plotted projectiles, and win/loss state tracking.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A programming and simulation exercise that turned mathematical ideas into a small but complete playable system."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The project combined procedural terrain creation, per-turn simulation, and terminal-driven game flow."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It shows comfort with implementing logic from scratch and translating technical rules into a working experience."
+                }
+            ],
+            "links": []
         }
-    ],
-    "page": {
-        "filterLabel": "Filter projects:",
-        "searchPlaceholder": "Search tags...",
-        "clearButton": "Clear",
-        "infoTitle": "Project Info",
-        "emptyMessage": "Click a project card to see details here."
-    }
+    ]
 }

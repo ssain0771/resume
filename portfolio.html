@@ -1,73 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="styles/baseStyles.css">
-        <link rel="stylesheet" href="styles/portfolioStyles.css">
-        <meta name="author" content="Jot">
-        <title>Portfolio</title>
-    </head>
-    <body data-page="portfolio">
-        <header>
-            <h1>Portfolio</h1>
-            <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark Mode</button>
-        </header>
+<head>
+    <!--
+        HTML template for this page.
+        Shared styling and behaviors come from styles/baseStyles.css and scripts/baseScripts.js.
+        Page-specific structure is documented inline below.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Simranjot Saini</title>
+    <meta name="description" content="Featured projects and case studies from Simranjot Saini across GIS, web mapping, data analysis, and automation.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="styles/baseStyles.css">
+    <link rel="stylesheet" href="styles/portfolioStyles.css">
+</head>
+<body data-page="portfolio" data-root="">
+<!-- Skip link improves keyboard navigation by allowing users to jump directly to the main content. -->
+<a class="skip-link" href="#mainContent">Skip to content</a>
+    <!-- Shared site header: brand, navigation, and theme toggle. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
 
-        <div class="layout">
-            <nav>
-                <p id="navLabelNavigate">Navigate to:</p>
-                <ul id="globalNavList"></ul>
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
 
-                <p id="navLabelJump">Jump to:</p>
-                <ul id="pageJumpList"></ul>
-            </nav>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-            <main>
-                <section id="projectFilters">
-                    <h2>Project Filters</h2>
-                    <div id="portfolioFilters">
-                        <label for="tagSearch"><strong id="filterProjectsLabel">Filter projects:</strong></label>
+    <!-- Main page content for the portfolio landing page. -->
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Intro section: explains what the portfolio contains. -->
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow" id="portfolioEyebrow">Portfolio</div>
+                    <h1 id="portfolioTitle" class="page-title">Project work with more context, process, and outcome.</h1>
+                    <p id="portfolioDescription" class="page-lead">The featured projects stay visible at the top. Use the button to expand the full archive, then browse by search or tag below the project grid.</p>
+                </div>
+            </section>
 
-                        <div class="tag-combobox">
-                            <input id="tagSearch" type="text" placeholder="Search tags..." autocomplete="off" role="combobox" aria-expanded="false" aria-controls="tagOptions" aria-autocomplete="list">
-                            <div id="tagOptions" class="tag-options" role="listbox"></div>
+            <section class="section">
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Highlights</div>
+                        <h2 class="section-heading">Featured projects</h2>
+                        <p class="section-description">Highlighted projects stay visible first so the page leads with the strongest and most representative work.</p>
+                    </div>
+
+                    <div id="featuredProjectGrid" class="featured-project-grid"></div>
+
+                    <div class="hero-actions">
+                        <button id="toggleProjects" class="btn btn-primary" type="button" aria-expanded="false" aria-controls="allProjectsWrap">Show more projects</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="allProjectsWrap" class="section all-projects-wrap" hidden>
+                <div class="section-card">
+                    <div class="section-heading-wrap">
+                        <div class="eyebrow">Archive</div>
+                        <h2 id="allProjectsTitle" class="section-heading">All projects</h2>
+                        <p class="section-description">Additional projects stay tucked away by default so the page stays focused while still keeping the full archive available.</p>
+                    </div>
+
+                    <div id="allProjectGrid" class="all-project-grid"></div>
+                    <p id="noResults" class="no-results" hidden>No projects match the current search.</p>
+
+                    <div class="portfolio-filter-panel">
+                        <div class="section-heading-wrap">
+                            <div class="eyebrow">Browse</div>
+                            <h3 class="section-heading">Search and tag filters</h3>
+                            <p class="section-description">Use search and tags to narrow the expanded project list.</p>
                         </div>
 
-                        <button id="clearTags" class="btn" type="button">Clear</button>
-                        <div id="activeTags" aria-label="Active filters"></div>
+                        <div class="portfolio-search-row">
+                            <label class="visually-hidden" for="projectSearch">Search projects</label>
+                            <input id="projectSearch" class="portfolio-search-input" type="search" placeholder="Search by title, tool, or tag">
+                        </div>
+
+                        <div class="section-heading-wrap">
+                            <h3 class="section-heading">Browse by tag</h3>
+                        </div>
+
+                        <div id="tagList" class="tag-list" aria-label="Project tags"></div>
                     </div>
-                </section>
-
-                <section id="projects">
-                    <h2>Projects</h2>
-                    <div id="project-container"></div>
-
-                    <template id="projectCardTemplate">
-                        <article class="projects" tabindex="0" role="button" aria-selected="false" aria-expanded="false" aria-controls="projectInfoBody" data-tags="">
-                            <h3 class="project-title"></h3>
-                            <img class="project-thumb" src="" alt="" loading="lazy">
-                            <p class="project-summary"></p>
-                            <div class="project-details"></div>
-                        </article>
-                    </template>
-                </section>
-
-                <section id="projectInfo" aria-live="polite">
-                    <h2 id="projectInfoTitle">Project Info</h2>
-                    <div id="projectInfoBody">
-                        <p id="projectInfoEmpty">Click a project card to see details here.</p>
-                    </div>
-                </section>
-            </main>
+                </div>
+            </section>
         </div>
+    </main>
 
-        <footer>
-            <p id="footerAuthor">Author: Simranjot (Jot) Saini</p>
-        </footer>
+<!-- Shared footer: kept intentionally minimal so it does not compete with page content. -->
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
 
-        <button id="backToTop" type="button" aria-hidden="true">Back to top</button>
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
 
-        <script src="scripts/baseScripts.js" defer></script>
-        <script src="scripts/portfolioScripts.js" defer></script>
-    </body>
+    <!-- Shared behavior loads first, then page-specific behavior for the portfolio page. -->
+    <script src="scripts/baseScripts.js" defer></script>
+    <script src="scripts/portfolioScripts.js" defer></script>
+</body>
 </html>

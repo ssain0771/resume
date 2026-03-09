@@ -1,0 +1,77 @@
+/*
+    Styles specific to the Web Games landing page.
+    The goal is to present game cards in a clear, expandable layout that can hold more entries later.
+*/
+
+.webgames-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.game-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface-alt);
+}
+
+.game-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.game-card-body {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.game-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.game-card h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+}
+
+.game-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.game-card-note {
+    padding: 0.85rem 0.95rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text) !important;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: var(--secondary-soft);
+    color: var(--secondary);
+    border: 1px solid rgba(15, 118, 110, 0.18);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+@media (max-width: 960px) {
+    .webgames-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,57 +1,60 @@
 /*
-   base scripts
-   Shared interactions for all pages:
-   1) Dark mode toggle (persistent via localStorage)
-   2) Back-to-top button (appears after scrolling)
-   3) Shared site chrome (nav/jump links/footer labels) from JSON
+    Shared site behavior used on every page.
+    Responsibilities: load site-wide content (nav/footer labels), handle theme switching, and manage the back-to-top button.
 */
 
 let siteConfig = null;
 
-(function loadSiteChrome() {
-    const pageKey = document.body.dataset.page;
+/* Resolve the correct relative path for nested pages such as /projects/*. */
+function getRootPath() {
+    return document.body.dataset.root || "";
+}
 
-    fetch('data/site.json')
-        .then((res) => res.json())
+/* Load shared chrome content from data/site.json so navigation and footer text stay consistent across pages. */
+(function loadSiteChrome() {
+    const navList = document.querySelector("#globalNavList");
+    const footerAuthor = document.querySelector("#footerAuthor");
+    const backToTop = document.querySelector("#backToTop");
+    const brandName = document.querySelector("#brandName");
+    const brandTagline = document.querySelector("#brandTagline");
+
+    fetch(`${getRootPath()}data/site.json`)
+        .then((response) => response.json())
         .then((data) => {
             siteConfig = data;
 
-            const navLabelNavigate = document.querySelector('#navLabelNavigate');
-            const navLabelJump = document.querySelector('#navLabelJump');
-            const navList = document.querySelector('#globalNavList');
-            const jumpList = document.querySelector('#pageJumpList');
-            const footerAuthor = document.querySelector('#footerAuthor');
-            const backToTop = document.querySelector('#backToTop');
-
-            if (navLabelNavigate) {
-                navLabelNavigate.textContent = data.navigationLabel || 'Navigate to:';
+            if (brandName) {
+                brandName.textContent = data.siteTitle || brandName.textContent;
             }
 
-            if (navLabelJump) {
-                navLabelJump.textContent = data.jumpLabel || 'Jump to:';
+            if (brandTagline) {
+                brandTagline.textContent = data.tagline || brandTagline.textContent;
             }
 
             if (navList) {
-                navList.innerHTML = '';
-                (data.navLinks || []).forEach((link) => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = link.href || '#';
-                    a.textContent = link.text || '';
-                    li.appendChild(a);
-                    navList.appendChild(li);
-                });
-            }
+                navList.innerHTML = "";
+                const currentPath = window.location.pathname.split("/").pop() || "index.html";
+                const pageKey = document.body.dataset.page || "";
 
-            if (jumpList) {
-                jumpList.innerHTML = '';
-                (data.jumpLinks && pageKey ? data.jumpLinks[pageKey] : []).forEach((link) => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = link.href || '#';
-                    a.textContent = link.text || '';
-                    li.appendChild(a);
-                    jumpList.appendChild(li);
+                (data.navLinks || []).forEach((link) => {
+                    const item = document.createElement("li");
+                    const anchor = document.createElement("a");
+                    const resolvedHref = `${getRootPath()}${link.href || ""}`;
+
+                    anchor.href = resolvedHref || "#";
+                    anchor.textContent = link.text || "";
+                    const linkFile = (link.href || "").split("/").pop();
+                    const shouldHighlight =
+                        linkFile === currentPath ||
+                        ((pageKey === "case-study" || pageKey === "webgames" || pageKey === "game") && linkFile === "portfolio.html");
+
+                    if (shouldHighlight) {
+                        anchor.classList.add("is-current");
+                        anchor.setAttribute("aria-current", "page");
+                    }
+
+                    item.appendChild(anchor);
+                    navList.appendChild(item);
                 });
             }
 
@@ -63,81 +66,81 @@ let siteConfig = null;
                 backToTop.textContent = data.backToTop || backToTop.textContent;
             }
 
-            const toggleBtn = document.querySelector('#themeToggle');
-            if (toggleBtn) {
-                const isDark = document.body.classList.contains('is-dark');
-                toggleBtn.textContent = isDark
-                    ? (data.themeToggle && data.themeToggle.dark) || 'Light mode'
-                    : (data.themeToggle && data.themeToggle.light) || 'Dark mode';
-            }
+            renderThemeButton();
         })
-        .catch((err) => console.error('Failed to load site.json', err));
+        .catch((error) => {
+            console.error("Failed to load site configuration.", error);
+            renderThemeButton();
+        });
 })();
 
-(function setupDarkMode() {
-    const toggleBtn = document.querySelector('#themeToggle');
-    if (!toggleBtn) {
+/* Apply the saved theme, then wire up the theme-toggle button. */
+(function setupTheme() {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("is-dark");
+    } else if (savedTheme === "light") {
+        document.body.classList.remove("is-dark");
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("is-dark");
+    }
+
+    const toggle = document.querySelector("#themeToggle");
+    if (!toggle) {
         return;
     }
 
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'dark') {
-        document.body.classList.add('is-dark');
-    }
-    if (savedTheme === 'light') {
-        document.body.classList.remove('is-dark');
-    }
-
-    function renderThemeButton() {
-        const isDark = document.body.classList.contains('is-dark');
-
-        toggleBtn.setAttribute('aria-pressed', String(isDark));
-
-        const lightLabel = (siteConfig && siteConfig.themeToggle && siteConfig.themeToggle.light) || 'Dark mode';
-        const darkLabel = (siteConfig && siteConfig.themeToggle && siteConfig.themeToggle.dark) || 'Light mode';
-        toggleBtn.textContent = isDark ? darkLabel : lightLabel;
-    }
-
-    renderThemeButton();
-
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('is-dark');
-
-        const isDark = document.body.classList.contains('is-dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("is-dark");
+        localStorage.setItem("theme", document.body.classList.contains("is-dark") ? "dark" : "light");
         renderThemeButton();
     });
+
+    renderThemeButton();
 })();
 
-(function setupBackToTop() {
-    const btn = document.querySelector('#backToTop');
-    if (!btn) {
+/* Update the theme button label so it always matches the current state. */
+function renderThemeButton() {
+    const toggle = document.querySelector("#themeToggle");
+    if (!toggle) {
         return;
     }
 
-    const reduceMotion =
-        window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDark = document.body.classList.contains("is-dark");
+    const lightLabel = (siteConfig && siteConfig.themeToggle && siteConfig.themeToggle.light) || "Dark mode";
+    const darkLabel = (siteConfig && siteConfig.themeToggle && siteConfig.themeToggle.dark) || "Light mode";
 
-    function setVisible(visible) {
-        btn.classList.toggle('is-visible', visible);
-        btn.setAttribute('aria-hidden', String(!visible));
+    toggle.textContent = isDark ? darkLabel : lightLabel;
+    toggle.setAttribute("aria-pressed", String(isDark));
+}
+
+/* Reveal a back-to-top button after the user scrolls far enough down the page. */
+(function setupBackToTop() {
+    const button = document.querySelector("#backToTop");
+    if (!button) {
+        return;
     }
+
+    const prefersReducedMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function onScroll() {
-        const y = window.scrollY || document.documentElement.scrollTop;
-        setVisible(y > 100);
+        const offset = window.scrollY || document.documentElement.scrollTop || 0;
+        const isVisible = offset > 240;
+
+        button.classList.toggle("is-visible", isVisible);
+        button.setAttribute("aria-hidden", String(!isVisible));
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    btn.addEventListener('click', () => {
+    button.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
-            behavior: reduceMotion ? 'auto' : 'smooth'
+            behavior: prefersReducedMotion ? "auto" : "smooth"
         });
     });
 })();

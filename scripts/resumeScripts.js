@@ -1,402 +1,113 @@
 /*
-    resume scripts
-    - Data: data/resume.json (education + experience variants)
-    - Print-only extras: data/index.json (name, bio, grouped skills, links)
+    Resume page behavior.
+    Responsibilities:
+    - load shared profile/contact content from data/index.json
+    - load resume variants from data/resume.json
+    - render the selected variant for the on-screen layout
+    - render a separate print-friendly resume structure for PDF / paper export
 */
 
-(() => {
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
-
-    // Cache: full skills from index.json + resume variants, so print skills can follow the selected variant
-    let indexPrintSkillsGrouped = [];
-    let resumeVariantsCache = null;
-    let currentVariantKey = "full";
-
-    // ---------- Print-only content from index.json ----------
-    function extractNameFromIndexTitle(titleText) {
-        const raw = String(titleText || "").trim();
-        const m = raw.match(/I'm\s+([^,(]+)(?:\s*\(|,|\.|$)/i);
-        return m ? m[1].trim() : "";
+/* Resolve the correct root path if this page is ever reused from a nested folder. */
+function getResumeDataPath(fileName) {
+    if (typeof getRootPath === "function") {
+        return `${getRootPath()}data/${fileName}`;
     }
 
-    function renderGroupedSkills(groups, targetUl) {
-        if (!targetUl) return;
-        targetUl.innerHTML = "";
-
-        (groups || []).forEach((group) => {
-            const label = String(group.label || "").trim();
-            const items = Array.isArray(group.items) ? group.items : [];
-
-            const li = document.createElement("li");
-            // Compact print-friendly format: "Programming: Python, JavaScript, SQL"
-            const strong = document.createElement("strong");
-            strong.textContent = label ? `${label}: ` : "";
-
-            li.appendChild(strong);
-            li.appendChild(document.createTextNode(items.join(", ")));
-            targetUl.appendChild(li);
-        });
-    }
-
-    // Decide which grouped skills to print based on active variant:
-    // - Prefer resume.json variant.printSkillsGrouped if present
-    // - Otherwise fall back to the "full" grouped skills from index.json
-    function renderPrintSkillsForVariant(variantKey, variants) {
-        const target = $("#printSkills");
-        if (!target) return;
-
-        const v = variants && variantKey ? variants[variantKey] : null;
-        const groups =
-            (v && (v.printSkillsGrouped || v.skillsGrouped)) ||
-            indexPrintSkillsGrouped ||
-            [];
-
-        renderGroupedSkills(groups, target);
-    }
-
-    function fillPrintOnlyFromIndexJson() {
-        return fetch("data/index.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const rawTitle = String(data.title || "").trim();
-                const resolvedName = extractNameFromIndexTitle(rawTitle);
-
-                const printName = $("#printName");
-                if (printName) printName.textContent = resolvedName || "";
-
-                const titleLine = $("#printTitleLine");
-                const bio1 = $("#printBio1");
-                const bio2 = $("#printBio2");
-
-                if (titleLine) titleLine.textContent = rawTitle || "";
-                if (bio1) bio1.textContent = data.bio?.[0] || "";
-                if (bio2) bio2.textContent = data.bio?.[1] || "";
-
-                // Cache the "full" grouped skills from index.json
-                indexPrintSkillsGrouped = data.skills?.grouped || [];
-
-                // Render print skills:
-                // - if resume variants are already loaded, prefer the active variant's printSkillsGrouped
-                // - otherwise render the full index skills for now (will be replaced when resume.json loads)
-                if (resumeVariantsCache) {
-                    renderPrintSkillsForVariant(currentVariantKey, resumeVariantsCache);
-                } else {
-                    renderGroupedSkills(indexPrintSkillsGrouped, $("#printSkills"));
-                }
-
-                // Contact links
-                fillPrintContact(data.links || []);
-
-                // Optional: only change the browser tab title while printing
-                const originalTitle = document.title;
-                window.addEventListener("beforeprint", () => {
-                    if (resolvedName) document.title = `${resolvedName} — Resume`;
-                });
-                window.addEventListener("afterprint", () => {
-                    document.title = originalTitle;
-                });
-
-                return { resolvedName };
-            })
-            .catch((err) => {
-                console.error("Failed to load data/index.json for print-only content", err);
-                return { resolvedName: "" };
-            });
-    }
-
-    // ---------- Rendering resume variants from resume.json ----------
-    function clearAndRenderExperience(experience) {
-        const list = $("#experienceList");
-        const tpl = $("#experienceItemTemplate");
-        if (!list || !tpl) return;
-
-        list.innerHTML = "";
-
-        (experience || []).forEach((job) => {
-            const node = tpl.content.cloneNode(true);
-
-            node.querySelector(".exp-role").textContent = job.role || "";
-            node.querySelector(".exp-org").textContent = job.organization ? ` — ${job.organization}` : "";
-            node.querySelector(".exp-period").textContent = job.period || "";
-
-            const ul = node.querySelector(".exp-details");
-            ul.innerHTML = "";
-            (job.details || []).forEach((detail) => {
-                const li = document.createElement("li");
-                li.textContent = detail;
-                ul.appendChild(li);
-            });
-
-            list.appendChild(node);
-        });
-    }
-
-    function clearAndRenderEducation(education) {
-        const list = $("#educationList");
-        const tpl = $("#educationItemTemplate");
-        if (!list || !tpl) return;
-
-        list.innerHTML = "";
-
-        (education || []).forEach((item) => {
-            const node = tpl.content.cloneNode(true);
-
-            const programEl = node.querySelector(".edu-program");
-            const instEl = node.querySelector(".edu-inst");
-            const yearEl = node.querySelector(".edu-year");
-            const ul = node.querySelector(".edu-details");
-            const body = node.querySelector(".exp-body");
-
-            if (programEl) programEl.textContent = item.program || "";
-            if (instEl) instEl.textContent = item.institution ? ` — ${item.institution}` : "";
-            if (yearEl) yearEl.textContent = item.year || "";
-
-            const details = Array.isArray(item.details) ? item.details : [];
-            if (ul) {
-                ul.innerHTML = "";
-                details.forEach((d) => {
-                    const li = document.createElement("li");
-                    li.textContent = d;
-                    ul.appendChild(li);
-                });
-            }
-
-            // Hide body if no detail bullets
-            if (body && details.length === 0) body.style.display = "none";
-
-            list.appendChild(node);
-        });
-    }
-
-    // ---------- Preferences + expand/collapse ----------
-    function openKey(variant, section) {
-        return `resumeOpenState:${variant}:${section}`;
-    }
-
-    function getSectionCards(section) {
-        if (section === "education") return $$("#educationList details.exp-card");
-        if (section === "experience") return $$("#experienceList details.exp-card");
-        return [];
-    }
-
-    function setSectionOpen(section, isOpen) {
-        getSectionCards(section).forEach((d) => (d.open = isOpen));
-    }
-
-    function applySavedPreference(variant, section) {
-        const pref = localStorage.getItem(openKey(variant, section));
-        if (pref === "all") setSectionOpen(section, true);
-        if (pref === "collapsed") setSectionOpen(section, false);
-    }
-
-    function trackSectionTogglePreference(section, variantSelect) {
-        const container = section === "education" ? $("#educationList") : $("#experienceList");
-        if (!container) return;
-
-        container.addEventListener(
-            "toggle",
-            () => {
-                const variant = variantSelect ? variantSelect.value : "full";
-                const cards = getSectionCards(section);
-                if (cards.length === 0) return;
-
-                const allOpen = cards.every((c) => c.open);
-                const allClosed = cards.every((c) => !c.open);
-
-                if (allOpen) localStorage.setItem(openKey(variant, section), "all");
-                if (allClosed) localStorage.setItem(openKey(variant, section), "collapsed");
-            },
-            true
-        );
-    }
-
-    // ---------- Variant handling ----------
-    function setVariantInUrl(variant) {
-        const url = new URL(window.location.href);
-        url.searchParams.set("variant", variant);
-        window.history.replaceState({}, "", `${url.pathname}${url.search}`);
-    }
-
-    function syncVariantSelectOptions(selectEl, keys) {
-        if (!selectEl) return;
-        const labelMap = {
-            full: "Full",
-            analyst: "Data Analyst",
-            developer: "Developer",
-            geospatial: "Geospatial",
-            science: "Science",
-        };
-
-        const current = selectEl.value;
-        selectEl.innerHTML = "";
-        keys.forEach((k) => {
-            const opt = document.createElement("option");
-            opt.value = k;
-            opt.textContent = labelMap[k] || k;
-            selectEl.appendChild(opt);
-        });
-        if (keys.includes(current)) selectEl.value = current;
-    }
-
-    // ---------- Main ----------
-    function initResumeVariants() {
-        const variantSelect = $("#resumeVariant");
-
-        // Education controls
-        const expandEdu = $("#expandAllEdu");
-        const collapseEdu = $("#collapseAllEdu");
-
-        // Experience controls
-        const expandExp = $("#expandAllExp");
-        const collapseExp = $("#collapseAllExp");
-
-        const printBtn = $("#printResume");
-
-        // Hook up section controls
-        if (expandEdu) {
-            expandEdu.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "full";
-                setSectionOpen("education", true);
-                localStorage.setItem(openKey(v, "education"), "all");
-            });
-        }
-
-        if (collapseEdu) {
-            collapseEdu.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "full";
-                setSectionOpen("education", false);
-                localStorage.setItem(openKey(v, "education"), "collapsed");
-            });
-        }
-
-        if (expandExp) {
-            expandExp.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "full";
-                setSectionOpen("experience", true);
-                localStorage.setItem(openKey(v, "experience"), "all");
-            });
-        }
-
-        if (collapseExp) {
-            collapseExp.addEventListener("click", () => {
-                const v = variantSelect ? variantSelect.value : "full";
-                setSectionOpen("experience", false);
-                localStorage.setItem(openKey(v, "experience"), "collapsed");
-            });
-        }
-
-        // Track toggles for both sections
-        trackSectionTogglePreference("education", variantSelect);
-        trackSectionTogglePreference("experience", variantSelect);
-
-        // Print expands everything + restores previous states
-        let prePrintStates = [];
-        const allCards = () => $$("#educationList details.exp-card, #experienceList details.exp-card");
-
-        if (printBtn) {
-            printBtn.addEventListener("click", () => {
-                allCards().forEach((d) => (d.open = true));
-                window.print();
-            });
-        }
-
-        window.addEventListener("beforeprint", () => {
-            const cards = allCards();
-            prePrintStates = cards.map((c) => c.open);
-            cards.forEach((c) => (c.open = true));
-        });
-
-        window.addEventListener("afterprint", () => {
-            const cards = allCards();
-            if (prePrintStates.length === cards.length) {
-                cards.forEach((c, i) => (c.open = prePrintStates[i]));
-            }
-        });
-
-        // Load resume.json variants
-        return fetch("data/resume.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const variants = data.variants || {};
-                const keys = Object.keys(variants);
-                if (keys.length === 0) return;
-
-                // cache for print skills
-                resumeVariantsCache = variants;
-
-                syncVariantSelectOptions(variantSelect, keys);
-
-                const defaultVariant =
-                    data.defaultVariant && variants[data.defaultVariant]
-                        ? data.defaultVariant
-                        : (keys.includes("full") ? "full" : keys[0]);
-
-                const urlVariant = new URLSearchParams(window.location.search).get("variant");
-                const savedVariant = localStorage.getItem("resumeVariant");
-
-                const chosen =
-                    [urlVariant, savedVariant, defaultVariant].find((v) => v && variants[v]) || defaultVariant;
-
-                const renderVariant = (variantKey) => {
-                    const v = variants[variantKey];
-                    currentVariantKey = variantKey;
-
-                    clearAndRenderEducation(v.education || []);
-                    clearAndRenderExperience(v.experience || []);
-
-                    // Print-only skills should follow the selected variant
-                    renderPrintSkillsForVariant(variantKey, variants);
-
-                    // Apply saved prefs to BOTH sections
-                    applySavedPreference(variantKey, "education");
-                    applySavedPreference(variantKey, "experience");
-                };
-
-                if (variantSelect) variantSelect.value = chosen;
-                localStorage.setItem("resumeVariant", chosen);
-                setVariantInUrl(chosen);
-                renderVariant(chosen);
-
-                if (variantSelect) {
-                    variantSelect.addEventListener("change", () => {
-                        const next = variantSelect.value;
-                        localStorage.setItem("resumeVariant", next);
-                        setVariantInUrl(next);
-                        renderVariant(next);
-                    });
-                }
-            })
-            .catch((err) => console.error("Failed to load data/resume.json", err));
-    }
-
-    // boot
-    fillPrintOnlyFromIndexJson();
-    initResumeVariants();
-})();
-
+    return `data/${fileName}`;
+}
+
+/* Basic HTML escaping keeps injected text safe when we build markup from JSON. */
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+/* Convert contact links into a cleaner display string for the resume. */
 function prettyContactText(link) {
     const text = String(link.text || "").trim();
     const href = String(link.href || "").trim();
 
-    // If text is already descriptive (contains @, digits, or a dot/slug), keep it.
-    const looksDescriptive =
-        /@/.test(text) || /\d/.test(text) || /\.com|\.ca|\.io|\.org|\/in\//i.test(text);
-    if (text && looksDescriptive) return text;
-
-    // Otherwise derive from href
-    if (href.startsWith("mailto:")) return href.replace(/^mailto:/i, "");
-    if (href.startsWith("tel:")) return href.replace(/^tel:/i, "");
+    if (/^mailto:/i.test(href)) return href.replace(/^mailto:/i, "");
+    if (/^tel:/i.test(href)) {
+        const digits = href.replace(/^tel:/i, "").replace(/\D/g, "");
+        const normalized = digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits;
+        if (normalized.length === 10) {
+            return `+1 (${normalized.slice(0, 3)}) ${normalized.slice(3, 6)}-${normalized.slice(6)}`;
+        }
+        return href.replace(/^tel:/i, "");
+    }
     if (/^https?:\/\//i.test(href)) return href.replace(/^https?:\/\//i, "").replace(/\/$/, "");
-
     return text || href;
 }
 
-function fillPrintContact(links) {
-    const contactUl = document.getElementById("printContact");
-    if (!contactUl) return;
 
-    contactUl.innerHTML = "";
+/*
+    Print contact text can be shorter than the on-screen chips.
+    Email and phone keep their full human-readable values, while profile links use compact domains.
+*/
+function prettyPrintContactText(link) {
+    const href = String(link.href || "").trim();
+
+    if (/^mailto:/i.test(href) || /^tel:/i.test(href)) {
+        return prettyContactText(link);
+    }
+
+    if (/linkedin\.com/i.test(href)) {
+        return href.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/$/, "");
+    }
+
+    if (/github\.com/i.test(href)) {
+        return href.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/$/, "");
+    }
+
+    return prettyContactText(link);
+}
+
+/* Render the compact contact line used by the print-only resume header. */
+function renderPrintContactList(target, links) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
+    (links || []).forEach((link) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+
+        a.href = link.href || "#";
+        a.textContent = prettyPrintContactText(link);
+
+        if (link.target) a.target = link.target;
+        if (link.rel) a.rel = link.rel;
+
+        li.appendChild(a);
+        target.appendChild(li);
+    });
+}
+
+/* Build a simple bullet-list string from an array of details. */
+function renderDetailList(details) {
+    const items = Array.isArray(details) ? details : [];
+    if (!items.length) {
+        return "";
+    }
+
+    return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+/* Render one list of contact links to a <ul>. */
+function renderContactList(target, links) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
     (links || []).forEach((link) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
@@ -404,11 +115,238 @@ function fillPrintContact(links) {
         a.href = link.href || "#";
         a.textContent = prettyContactText(link);
 
-        // For print + general accessibility
         if (link.target) a.target = link.target;
         if (link.rel) a.rel = link.rel;
 
         li.appendChild(a);
-        contactUl.appendChild(li);
+        target.appendChild(li);
     });
 }
+
+/* Render the grouped skill cards used by the screen layout. */
+function renderScreenSkillGroups(target, groups) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
+    (groups || []).forEach((group) => {
+        const article = document.createElement("article");
+        article.className = "resume-skill-group";
+        article.innerHTML = `
+            <h3>${escapeHtml(group.label || "")}</h3>
+            <ul>${(group.items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        `;
+        target.appendChild(article);
+    });
+}
+
+/* Render education / experience cards for the screen layout. */
+function renderScreenEntryList(target, entries) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
+    (entries || []).forEach((entry) => {
+        const article = document.createElement("article");
+        article.className = "resume-entry";
+        article.innerHTML = `
+            <div class="resume-entry-header">
+                <div>
+                    <h3>${escapeHtml(entry.program || entry.role || "")}</h3>
+                    <div class="resume-entry-org">${escapeHtml(entry.institution || entry.organization || "")}</div>
+                </div>
+                <div class="resume-entry-period">${escapeHtml(entry.year || entry.period || "")}</div>
+            </div>
+            ${renderDetailList(entry.details)}
+        `;
+        target.appendChild(article);
+    });
+}
+
+/* Render compact inline skill lines for the print layout. */
+function renderPrintSkills(target, groups) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
+    (groups || []).forEach((group) => {
+        const line = document.createElement("p");
+        line.className = "print-skill-line";
+        line.innerHTML = `<strong>${escapeHtml(group.label || "")}:</strong> ${escapeHtml((group.items || []).join(", "))}`;
+        target.appendChild(line);
+    });
+}
+
+/* Render education / experience rows for the print layout. */
+function renderPrintEntries(target, entries) {
+    if (!target) {
+        return;
+    }
+
+    target.innerHTML = "";
+
+    (entries || []).forEach((entry) => {
+        const article = document.createElement("article");
+        article.className = "print-resume-item";
+
+        const primary = escapeHtml(entry.program || entry.role || "");
+        const organization = escapeHtml(entry.institution || entry.organization || "");
+        const period = escapeHtml(entry.year || entry.period || "");
+
+        article.innerHTML = `
+            <div class="print-resume-item-row">
+                <h3 class="print-resume-item-title">
+                    <strong>${primary}</strong>${organization ? ` <span class="print-resume-item-org">&mdash; ${organization}</span>` : ""}
+                </h3>
+                <div class="print-resume-item-period">${period}</div>
+            </div>
+            ${renderDetailList(entry.details)}
+        `;
+
+        target.appendChild(article);
+    });
+}
+
+/* Main initializer for the resume page. */
+(function initResume() {
+    const variantSelect = document.querySelector("#resumeVariant");
+    const printButton = document.querySelector("#printResume");
+
+    let indexContent = null;
+    let resumeContent = null;
+
+    if (printButton) {
+        printButton.addEventListener("click", () => window.print());
+    }
+
+    /* Render the shared intro/profile content used by all resume variants. */
+    function renderProfile() {
+        if (!indexContent) {
+            return;
+        }
+
+        const title = document.querySelector("#resumeIntroTitle");
+        const paragraphs = document.querySelector("#resumeIntroCopy");
+        const contact = document.querySelector("#resumeContact");
+        const printName = document.querySelector("#printResumeName");
+        const printProfile = document.querySelector("#printResumeProfile");
+        const printContact = document.querySelector("#printResumeContact");
+
+        if (title) {
+            title.textContent = indexContent.heroTitle || indexContent.name || "";
+        }
+
+        if (paragraphs) {
+            paragraphs.innerHTML = "";
+            (indexContent.about || []).slice(0, 2).forEach((paragraph) => {
+                const p = document.createElement("p");
+                p.textContent = paragraph;
+                paragraphs.appendChild(p);
+            });
+        }
+
+        renderContactList(contact, indexContent.links || []);
+
+        /*
+            The print header uses all core contact links, but renders them in a tighter two-column grid.
+            This keeps the phone number available without forcing the longer social links onto one crowded line.
+        */
+        renderPrintContactList(printContact, indexContent.links || []);
+
+        if (printName) {
+            printName.textContent = indexContent.name || "Simranjot Saini";
+        }
+
+        if (printProfile) {
+            printProfile.innerHTML = "";
+            (indexContent.about || []).slice(0, 2).forEach((paragraph) => {
+                const p = document.createElement("p");
+                p.textContent = paragraph;
+                printProfile.appendChild(p);
+            });
+        }
+    }
+
+    /* Render the selected resume variant into both the screen and print layouts. */
+    function renderVariant(variantKey) {
+        if (!resumeContent || !resumeContent.variants || !resumeContent.variants[variantKey]) {
+            return;
+        }
+
+        const variant = resumeContent.variants[variantKey];
+        const labels = resumeContent.variantLabels || {};
+        const groups = variant.printSkillsGrouped || indexContent?.skills?.grouped || [];
+
+        const pageTitle = document.querySelector("#resumePageTitle");
+        const pageLead = document.querySelector("#resumePageLead");
+        const educationList = document.querySelector("#educationList");
+        const skillsList = document.querySelector("#skillsList");
+        const experienceList = document.querySelector("#experienceList");
+        const printSkills = document.querySelector("#printResumeSkills");
+        const printExperience = document.querySelector("#printResumeExperience");
+        const printEducation = document.querySelector("#printResumeEducation");
+
+        if (pageTitle) {
+            pageTitle.textContent = `${labels[variantKey] || variantKey} resume`;
+        }
+
+        if (pageLead) {
+            pageLead.textContent = "Structured for screen and print, with grouped skills and content tailored to the selected resume version.";
+        }
+
+        renderScreenSkillGroups(skillsList, groups);
+        renderPrintSkills(printSkills, groups);
+        renderScreenEntryList(educationList, variant.education || []);
+        renderPrintEntries(printEducation, variant.education || []);
+        renderScreenEntryList(experienceList, variant.experience || []);
+        renderPrintEntries(printExperience, variant.experience || []);
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("variant", variantKey);
+        window.history.replaceState({}, "", `${url.pathname}${url.search}`);
+        localStorage.setItem("resumeVariant", variantKey);
+    }
+
+    Promise.all([
+        fetch(getResumeDataPath("index.json")).then((response) => response.json()),
+        fetch(getResumeDataPath("resume.json")).then((response) => response.json())
+    ])
+        .then(([indexJson, resumeJson]) => {
+            indexContent = indexJson;
+            resumeContent = resumeJson;
+
+            renderProfile();
+
+            const labels = resumeContent.variantLabels || {};
+            const keys = Object.keys(resumeContent.variants || {});
+
+            if (variantSelect) {
+                variantSelect.innerHTML = "";
+                keys.forEach((key) => {
+                    const option = document.createElement("option");
+                    option.value = key;
+                    option.textContent = labels[key] || key;
+                    variantSelect.appendChild(option);
+                });
+            }
+
+            const queryVariant = new URLSearchParams(window.location.search).get("variant");
+            const savedVariant = localStorage.getItem("resumeVariant");
+            const defaultVariant = resumeContent.defaultVariant || keys[0] || "full";
+            const chosen = [queryVariant, savedVariant, defaultVariant].find((variantKey) => keys.includes(variantKey)) || defaultVariant;
+
+            if (variantSelect) {
+                variantSelect.value = chosen;
+                variantSelect.addEventListener("change", () => renderVariant(variantSelect.value));
+            }
+
+            renderVariant(chosen);
+        })
+        .catch((error) => console.error("Failed to initialize resume page.", error));
+})();

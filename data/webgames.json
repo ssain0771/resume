@@ -1,0 +1,24 @@
+{
+    "page": {
+        "eyebrow": "Portfolio / Web games",
+        "title": "Small interactive builds that make technical ideas more hands-on.",
+        "description": "This page is a home for browser-based experiments and mini-games. It stays outside the main navigation so it can grow over time without cluttering the core portfolio."
+    },
+    "games": [
+        {
+            "id": "rgb-guesser",
+            "title": "RGB Guesser",
+            "pageHref": "games/rgb-guesser.html",
+            "image": "images/rgb-guesser-preview.svg",
+            "imageAlt": "Preview illustration for the RGB Guesser web game",
+            "summary": "You are shown a target RGB value and have to choose the matching colour from a small set of swatches.",
+            "learningGoal": "Useful for getting faster at reading RGB values and mentally translating them into visible colour.",
+            "status": "Playable",
+            "tools": [
+                "HTML",
+                "CSS",
+                "JavaScript"
+            ]
+        }
+    ]
+}

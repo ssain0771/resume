@@ -1,89 +1,137 @@
-/* 
-    Styles for index/home page.
-    This file controls styles that are specific to the home page.
-    To save time, the initial styles were
-    generated using AI. These were then manually
-    reviewed, resulting in styles being added, removed,
-    and modified to suit my liking.
- */
-
-/* Individual skills: 3 columns */
-#skillsIndividual {
-    column-count: 3;
-    column-gap: 24px;
-}
-
-/* Grouped skills: 2 columns */
-#skillsGrouped {
-    column-count: 2;
-    column-gap: 24px;
-}
-
-/* Optional: make list items behave nicely in columns */
-#skillsIndividual li,
-#skillsGrouped li {
-    break-inside: avoid;
-    margin-bottom: 3px;
-}
-
-.about-layout { /* Flexbox layout for About section (text left, image right) */
+/* Home page actions below the main intro text. */
+.hero-actions {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
 }
 
-.about-text { /* Allows text to take remaining width */
-    flex: 1;
+/* Profile sidebar: image, icon links, and short contact details. */
+.profile-card {
+    display: grid;
+    gap: 1rem;
 }
 
-.about-layout img { /* Prevents image from shrinking, rounds corners */
-    flex-shrink: 0;
-    border-radius: 20px;
-    width: 250px;
+.profile-image-wrap {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface-alt);
 }
 
-header p { /* Subtitle styling */
-    text-align: center;
+.profile-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.contact-icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     margin: 0;
-    color: #0047ab;
+    padding: 0;
+    list-style: none;
 }
 
-body.is-dark header p {
-    color: #9ed3f1;
-}
-
-#skillsGroupToggle {
-    margin: 10px 0 0 0;
-}
-
-.section-header-row {
-    display: flex;
+.contact-icon-link {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
 }
 
-.section-header-row h2 {
+.contact-icon-link:hover,
+.contact-icon-link:focus-visible {
+    color: var(--accent-strong);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.contact-icon-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+.contact-detail-list {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+}
+
+/* About-section copy block. */
+.about-copy {
+    display: grid;
+    gap: 1rem;
+}
+
+.about-copy p {
     margin: 0;
 }
 
-/* Skills header row: keep the underline full width */
-#skills .section-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 4px;
+/* Selected-work preview cards on the home page. */
+.featured-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
 }
 
-/* Remove the default h2 underline inside this row
-   (otherwise you get a short underline under just the text) */
-#skills .section-header-row h2 {
-    border-bottom: none;
-    padding-bottom: 0;
+.featured-preview-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.featured-preview-card:hover,
+.featured-preview-card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+/* Force a consistent preview image size so mixed source images still align cleanly. */
+.featured-preview-image {
+    width: 100%;
+    height: 13.5rem;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    background: var(--surface);
+}
+
+.featured-preview-card h3 {
     margin: 0;
+    font-size: 1.1rem;
+}
+
+.featured-preview-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* Stack the selected-work cards on smaller screens and slightly reduce image height. */
+@media (max-width: 960px) {
+    .featured-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-preview-image {
+        height: 12.5rem;
+    }
 }
