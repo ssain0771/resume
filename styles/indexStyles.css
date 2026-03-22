@@ -56,9 +56,12 @@
 }
 
 .contact-icon-link svg {
+    display: block;
+    flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
     fill: currentColor;
+    overflow: visible;
 }
 
 .contact-detail-list {

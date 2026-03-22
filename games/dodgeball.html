@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Dodgeball game page.
+        Two-player keyboard game: throw balls at your opponent and dodge theirs.
+        Controls and rules are explained in the sidebar. The canvas holds all game visuals.
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dodgeball | Simranjot Saini</title>
+    <meta name="description" content="A two-player browser game where you throw balls at your opponent and dodge theirs. First to lose all health loses.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="../styles/baseStyles.css">
+    <link rel="stylesheet" href="../styles/gameStyles.css">
+</head>
+<body data-page="game" data-root="../">
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+    <!-- Shared site header populated by scripts/baseScripts.js. -->
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="../index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+            <!-- Intro with title and a link back to the games hub. -->
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow">Web games / Dodgeball</div>
+                    <h1 class="page-title">Throw. Dodge. Survive.</h1>
+                    <p class="page-lead">A simplified browser version of the first game I ever built — originally written in Lua with drawn characters. Throw balls at your opponent and dodge theirs. First player to lose all three health points loses.</p>
+
+                    <div class="hero-actions">
+                        <a class="button-link" href="../webgames.html">Back to Web Games</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-card">
+                    <div class="game-layout">
+                        <!-- Left column: controls and rules reference. -->
+                        <div class="game-sidebar">
+                            <div class="section-heading-wrap">
+                                <div class="eyebrow">Controls</div>
+                                <h2 class="section-heading">How to play</h2>
+                                <p class="section-description">Both players share the keyboard. Throw to attack, dash to dodge quickly in your movement direction.</p>
+                            </div>
+
+                            <div class="control-panel">
+                                <label class="control-field" for="gameModeSelect">
+                                    <span>Game mode</span>
+                                    <select id="gameModeSelect">
+                                        <option value="2p">2 Player</option>
+                                        <option value="ai">vs AI</option>
+                                    </select>
+                                </label>
+                                <div id="aiDifficultyWrap" hidden>
+                                    <label class="control-field" for="aiDifficultySelect">
+                                        <span>AI difficulty</span>
+                                        <select id="aiDifficultySelect">
+                                            <option value="easy">Easy</option>
+                                            <option value="medium" selected>Medium</option>
+                                            <option value="hard">Hard</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <article class="info-card">
+                                <h3>Player 1 — Blue (left)</h3>
+                                <ul class="stat-list">
+                                    <li class="meta-item">
+                                        <span class="meta-label">Move</span>
+                                        <span>W / S</span>
+                                    </li>
+                                    <li class="meta-item">
+                                        <span class="meta-label">Throw</span>
+                                        <span>D</span>
+                                    </li>
+                                    <li class="meta-item">
+                                        <span class="meta-label">Dash</span>
+                                        <span>A</span>
+                                    </li>
+                                </ul>
+                            </article>
+
+                            <article class="info-card">
+                                <h3>Player 2 — Red (right)</h3>
+                                <ul class="stat-list">
+                                    <li class="meta-item">
+                                        <span class="meta-label">Move</span>
+                                        <span>↑ / ↓</span>
+                                    </li>
+                                    <li class="meta-item">
+                                        <span class="meta-label">Throw</span>
+                                        <span>←</span>
+                                    </li>
+                                    <li class="meta-item">
+                                        <span class="meta-label">Dash</span>
+                                        <span>→</span>
+                                    </li>
+                                </ul>
+                            </article>
+
+                            <article class="info-card">
+                                <h3>Rules</h3>
+                                <p>Each player starts with 3 health points. A ball that hits the opponent removes one. Balls bounce off the top and bottom walls, but disappear if they reach either side edge. Throw and dash both have a short cooldown shown in the HUD. Press Space or click the canvas to restart after a round ends.</p>
+                            </article>
+                        </div>
+
+                        <!-- Right column: the game canvas. -->
+                        <div class="game-main">
+                            <div class="dodgeball-wrap">
+                                <canvas id="dodgeballCanvas" aria-label="Dodgeball game arena"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <!-- Shared behavior loads first; game logic is isolated in its own script. -->
+    <script src="../scripts/baseScripts.js" defer></script>
+    <script src="../scripts/dodgeballScripts.js" defer></script>
+</body>
+</html>

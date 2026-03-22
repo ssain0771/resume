@@ -1,0 +1,25 @@
+<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="120" fill="#f8fafc" rx="8"/>
+    <!-- Center dashed line -->
+    <line x1="100" y1="4" x2="100" y2="116" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="8,6"/>
+    <!-- P1 paddle (blue) -->
+    <rect x="22" y="32" width="12" height="56" rx="4" fill="#3b82f6"/>
+    <!-- P2 paddle (red) -->
+    <rect x="166" y="32" width="12" height="56" rx="4" fill="#ef4444"/>
+    <!-- Ball (in flight toward P2, with trail) -->
+    <circle cx="105" cy="60" r="3" fill="#f59e0b" opacity="0.2"/>
+    <circle cx="116" cy="60" r="5" fill="#f59e0b" opacity="0.45"/>
+    <circle cx="130" cy="58" r="9" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+    <!-- P1 label -->
+    <text x="42" y="17" font-size="11" font-weight="bold" fill="#3b82f6" font-family="system-ui,sans-serif">P1</text>
+    <!-- P2 label -->
+    <text x="148" y="17" font-size="11" font-weight="bold" fill="#ef4444" font-family="system-ui,sans-serif">P2</text>
+    <!-- P1 health pips (3/3) -->
+    <circle cx="62" cy="13" r="4" fill="#22c55e"/>
+    <circle cx="73" cy="13" r="4" fill="#22c55e"/>
+    <circle cx="84" cy="13" r="4" fill="#22c55e"/>
+    <!-- P2 health pips (2/3 — one lost) -->
+    <circle cx="116" cy="13" r="4" fill="#22c55e"/>
+    <circle cx="127" cy="13" r="4" fill="#22c55e"/>
+    <circle cx="138" cy="13" r="4" fill="#e2e8f0"/>
+</svg>

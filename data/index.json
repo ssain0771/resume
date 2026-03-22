@@ -43,11 +43,6 @@
             "label": "Open LinkedIn profile",
             "target": "_blank",
             "rel": "noopener noreferrer"
-        },
-        {
-            "href": "tel:+14036060493",
-            "text": "Phone",
-            "label": "Call +1 403 606 0493"
         }
     ],
     "contactDetails": [

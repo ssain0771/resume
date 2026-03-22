@@ -34,7 +34,7 @@
     function getDifficulty() {
         const raw = Number(difficultyInput && difficultyInput.value);
         if (!Number.isFinite(raw)) return 6;
-        return Math.min(12, Math.max(4, Math.round(raw)));
+        return Math.min(25, Math.max(4, Math.round(raw)));
     }
 
     /* Convert an RGB object into a stable string key used to remove duplicate colours. */
@@ -135,7 +135,8 @@
     function getGridColumnCount(difficulty) {
         if (difficulty <= 4) return 2;
         if (difficulty <= 9) return 3;
-        return 4;
+        if (difficulty <= 16) return 4;
+        return 5;
     }
 
     /* Build one clickable swatch button in the answer grid. */

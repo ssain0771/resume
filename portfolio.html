@@ -54,48 +54,27 @@
 
             <section class="section">
                 <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Highlights</div>
-                        <h2 class="section-heading">Featured projects</h2>
-                        <p class="section-description">Highlighted projects stay visible first so the page leads with the strongest and most representative work.</p>
-                    </div>
-
-                    <div id="featuredProjectGrid" class="featured-project-grid"></div>
-
-                    <div class="hero-actions">
-                        <button id="toggleProjects" class="btn btn-primary" type="button" aria-expanded="false" aria-controls="allProjectsWrap">Show more projects</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="allProjectsWrap" class="section all-projects-wrap" hidden>
-                <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Archive</div>
-                        <h2 id="allProjectsTitle" class="section-heading">All projects</h2>
-                        <p class="section-description">Additional projects stay tucked away by default so the page stays focused while still keeping the full archive available.</p>
-                    </div>
-
-                    <div id="allProjectGrid" class="all-project-grid"></div>
-                    <p id="noResults" class="no-results" hidden>No projects match the current search.</p>
-
-                    <div class="portfolio-filter-panel">
+                    <div class="portfolio-section-top">
                         <div class="section-heading-wrap">
-                            <div class="eyebrow">Browse</div>
-                            <h3 class="section-heading">Search and tag filters</h3>
-                            <p class="section-description">Use search and tags to narrow the expanded project list.</p>
+                            <div class="eyebrow">Projects</div>
+                            <h2 id="projectSectionHeading" class="section-heading">Featured projects</h2>
                         </div>
+                        <button id="toggleFilters" class="btn" type="button" aria-expanded="false" aria-controls="filterPanel">Search &amp; filter &#9662;</button>
+                    </div>
 
+                    <div id="filterPanel" class="portfolio-filter-panel" hidden>
                         <div class="portfolio-search-row">
                             <label class="visually-hidden" for="projectSearch">Search projects</label>
                             <input id="projectSearch" class="portfolio-search-input" type="search" placeholder="Search by title, tool, or tag">
                         </div>
-
-                        <div class="section-heading-wrap">
-                            <h3 class="section-heading">Browse by tag</h3>
-                        </div>
-
                         <div id="tagList" class="tag-list" aria-label="Project tags"></div>
+                    </div>
+
+                    <div id="projectGrid" class="project-grid"></div>
+                    <p id="noResults" class="no-results" hidden>No projects match the current search.</p>
+
+                    <div class="hero-actions">
+                        <button id="toggleProjects" class="btn btn-primary" type="button" aria-expanded="false">Show more projects</button>
                     </div>
                 </div>
             </section>

@@ -291,6 +291,8 @@ function renderPrintEntries(target, entries) {
         const printSkills = document.querySelector("#printResumeSkills");
         const printExperience = document.querySelector("#printResumeExperience");
         const printEducation = document.querySelector("#printResumeEducation");
+        const printProfile = document.querySelector("#printResumeProfile");
+        const printLayout = document.querySelector("#printResumeLayout");
 
         if (pageTitle) {
             pageTitle.textContent = `${labels[variantKey] || variantKey} resume`;
@@ -306,6 +308,26 @@ function renderPrintEntries(target, entries) {
         renderPrintEntries(printEducation, variant.education || []);
         renderScreenEntryList(experienceList, variant.experience || []);
         renderPrintEntries(printExperience, variant.experience || []);
+
+        /* For non-full variants, swap in the condensed single-paragraph print profile. */
+        if (printProfile && variant.printProfile) {
+            printProfile.innerHTML = "";
+            const p = document.createElement("p");
+            p.textContent = variant.printProfile;
+            printProfile.appendChild(p);
+        } else if (printProfile && !variant.printProfile && indexContent) {
+            printProfile.innerHTML = "";
+            (indexContent.about || []).slice(0, 2).forEach((paragraph) => {
+                const p = document.createElement("p");
+                p.textContent = paragraph;
+                printProfile.appendChild(p);
+            });
+        }
+
+        /* Compact print spacing for one-page variants; full variant gets standard spacing. */
+        if (printLayout) {
+            printLayout.classList.toggle("print-resume--compact", !!variant.printProfile);
+        }
 
         const url = new URL(window.location.href);
         url.searchParams.set("variant", variantKey);

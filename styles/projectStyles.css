@@ -1,3 +1,23 @@
+/* Hide the fixed back-to-top button on the map page — it fights with Leaflet's z-index stack. */
+[data-page="project"] #backToTop {
+    display: none !important;
+}
+
+/* Shared case-study layout classes (also used by caseStudyStyles.css on other pages). */
+.case-study-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.case-study-block {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.case-study-block p {
+    margin: 0;
+}
+
 /* Project overview cards and supporting case-study details. */
 .project-meta-grid {
     display: grid;
@@ -83,7 +103,17 @@
 }
 
 .line-boundary {
-    border-top-color: #183de6;
+    border-top-color: #e07b39;
+}
+
+/* Dark mode: brighter legend colors to match the re-styled map layers. */
+.is-dark .swatch-parks {
+    background: rgba(91, 184, 255, 0.3);
+    border-color: rgba(91, 184, 255, 0.9);
+}
+
+.is-dark .line-boundary {
+    border-top-color: #ffaa6e;
 }
 
 .legend-input,

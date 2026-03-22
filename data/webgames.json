@@ -6,6 +6,22 @@
     },
     "games": [
         {
+            "id": "dodgeball",
+            "title": "Dodgeball",
+            "pageHref": "games/dodgeball.html",
+            "image": "images/dodgeball-preview.svg",
+            "imageAlt": "Preview showing two paddles and a ball in flight across a divided arena",
+            "summary": "A two-player game on one keyboard. Throw balls at your opponent and dodge the ones they throw back. First to lose all health loses.",
+            "learningGoal": "A simplified browser version of the first game I ever programmed, originally built in Lua with drawn characters and animations.",
+            "status": "Playable",
+            "tools": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Canvas API"
+            ]
+        },
+        {
             "id": "rgb-guesser",
             "title": "RGB Guesser",
             "pageHref": "games/rgb-guesser.html",

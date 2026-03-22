@@ -2,12 +2,8 @@
     fetch(`${typeof getRootPath === "function" ? getRootPath() : ""}data/project.json`)
         .then((response) => response.json())
         .then((data) => {
-            const breadcrumb = document.querySelector("#projectBreadcrumb");
-            const heroTitle = document.querySelector("#projectHeroTitle");
-            const heroLead = document.querySelector("#projectHeroLead");
-            const overviewTitle = document.querySelector("#overviewTitle");
             const overviewText = document.querySelector("#overviewText");
-            const metaList = document.querySelector("#projectMetaList");
+            const toolsChips = document.querySelector("#toolsChips");
             const detailGrid = document.querySelector("#detailSectionGrid");
             const mapPanelTitle = document.querySelector("#mapPanelTitle");
             const parksLabel = document.querySelector("#parksLabel");
@@ -18,12 +14,7 @@
             const filterNamedTrailsLabel = document.querySelector("#filterNamedTrailsLabel");
             const filterMajorParksLabel = document.querySelector("#filterMajorParksLabel");
             const resetViewBtn = document.querySelector("#resetViewBtn");
-            const backLink = document.querySelector("#backToPortfolioLink");
 
-            if (breadcrumb) breadcrumb.textContent = data.breadcrumb || breadcrumb.textContent;
-            if (heroTitle) heroTitle.textContent = data.heroTitle || heroTitle.textContent;
-            if (heroLead) heroLead.textContent = data.heroLead || heroLead.textContent;
-            if (overviewTitle) overviewTitle.textContent = data.overviewTitle || overviewTitle.textContent;
             if (overviewText) overviewText.textContent = data.overviewText || "";
             if (mapPanelTitle) mapPanelTitle.textContent = data.mapPanelTitle || mapPanelTitle.textContent;
             if (parksLabel) parksLabel.textContent = (data.layers && data.layers.parks) || parksLabel.textContent;
@@ -34,18 +25,16 @@
             if (filterNamedTrailsLabel) filterNamedTrailsLabel.textContent = data.filterNamedTrailsLabel || filterNamedTrailsLabel.textContent;
             if (filterMajorParksLabel) filterMajorParksLabel.textContent = data.filterMajorParksLabel || filterMajorParksLabel.textContent;
             if (resetViewBtn) resetViewBtn.textContent = data.resetViewLabel || resetViewBtn.textContent;
-            if (backLink) backLink.textContent = data.backLabel || backLink.textContent;
 
-            if (metaList) {
-                metaList.innerHTML = "";
-                (data.meta || []).forEach((item) => {
-                    const li = document.createElement("li");
-                    li.className = "meta-item";
-                    li.innerHTML = `
-                        <span class="meta-label">${item.label || ""}</span>
-                        <span>${item.value || ""}</span>
-                    `;
-                    metaList.appendChild(li);
+            if (toolsChips) {
+                toolsChips.innerHTML = "";
+                const toolsMeta = (data.meta || []).find((item) => item.label === "Tools");
+                const toolList = (toolsMeta ? toolsMeta.value : "").split(",").map((t) => t.trim()).filter(Boolean);
+                toolList.forEach((tool) => {
+                    const span = document.createElement("span");
+                    span.className = "chip";
+                    span.textContent = tool;
+                    toolsChips.appendChild(span);
                 });
             }
 
@@ -102,7 +91,10 @@
         attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
     });
 
-    /* Swap map tiles when the site theme changes so the map matches light/dark mode. */
+    /*
+        Swap map tiles and re-style data layers when the site theme changes.
+        Dark basemaps need brighter layer colors to maintain contrast.
+    */
     function applyBasemapForTheme() {
         const isDark = document.body.classList.contains("is-dark");
 
@@ -113,13 +105,34 @@
             if (map.hasLayer(darkTiles)) map.removeLayer(darkTiles);
             if (!map.hasLayer(lightTiles)) lightTiles.addTo(map);
         }
+
+        const parksColor = isDark ? "#5bb8ff" : "#2a7fff";
+        if (parks) {
+            parks.setStyle({
+                color: parksColor,
+                weight: 1,
+                fillColor: parksColor,
+                fillOpacity: isDark ? 0.28 : 0.2
+            });
+        }
+
+        if (boundaryLayer) {
+            boundaryLayer.setStyle({
+                color: isDark ? "#ffaa6e" : "#e07b39",
+                weight: 2,
+                fill: false
+            });
+        }
     }
+
+    let defaultBounds = null;
+    let parks = null;
+    let trails = null;
+    let boundaryLayer = null;
 
     applyBasemapForTheme();
     const observer = new MutationObserver(applyBasemapForTheme);
     observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-
-    let defaultBounds = null;
 
     /* Escape popup text before injecting it into HTML. */
     function escapeHtml(value) {
@@ -153,7 +166,7 @@
         return number * 1000000;
     }
 
-    const parks = L.esri.featureLayer({
+    parks = L.esri.featureLayer({
         url: config.parksUrl,
         pane: "pane-parks",
         style: () => ({
@@ -170,7 +183,7 @@
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
-    const trails = L.esri.featureLayer({
+    trails = L.esri.featureLayer({
         url: config.trailsUrl,
         pane: "pane-trails",
         style: () => ({
@@ -186,19 +199,19 @@
         return `<strong>${escapeHtml(name)}</strong>`;
     });
 
-    let boundaryLayer = null;
-
     fetch(config.boundaryGeoJsonUrl)
         .then((response) => response.json())
         .then((geojson) => {
             boundaryLayer = L.geoJSON(geojson, {
                 pane: "pane-boundary",
                 style: {
-                    color: "#183de6",
+                    color: "#e07b39",
                     weight: 2,
                     fill: false
                 }
             }).addTo(map);
+
+            applyBasemapForTheme();
 
             const bounds = boundaryLayer.getBounds();
             if (bounds && bounds.isValid()) {

@@ -1,4 +1,4 @@
-/* Action row under the featured grid; gives the show-more button clear separation from the cards. */
+/* Action row under the project grid; gives the show-more button clear separation from the cards. */
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
@@ -6,14 +6,100 @@
     margin-top: 1.35rem;
 }
 
-/* Featured and archive project-card grids. */
-.featured-project-grid {
+/* Header row: section heading on the left, search-and-filter toggle on the right. */
+.portfolio-section-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Collapsible filter panel that sits between the section header and the project grid. */
+.portfolio-filter-panel {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+}
+
+.portfolio-search-row {
+    display: grid;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+
+.portfolio-search-input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.tag-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.tag-button.is-active {
+    background: var(--accent-soft);
+    border-color: rgba(47, 111, 237, 0.22);
+    color: var(--accent-strong);
+}
+
+/*
+    Single project grid.
+    Default: 3-column featured view.
+    .is-expanded: 2-column full-archive view.
+*/
+.project-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
 }
 
-/* Reusable project card used in both the featured and full portfolio grids. */
+
+/* Clickable tag chips inside project cards. */
+.card-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+}
+
+.card-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+}
+
+.card-tag.is-active {
+    background: var(--accent-soft);
+    border-color: rgba(47, 111, 237, 0.22);
+    color: var(--accent-strong);
+}
+
+/* Reusable project card used in both grid modes. */
 .project-card {
     display: grid;
     gap: 1rem;
@@ -57,88 +143,10 @@
     color: var(--muted);
 }
 
-.project-card-impact {
-    padding: 0.8rem 0.9rem;
-    border-radius: var(--radius-md);
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    color: var(--text) !important;
-}
-
 .project-card-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-}
-
-.project-card-meta span {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.88rem;
-    color: var(--muted);
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-}
-
-/* The expandable archive stays hidden until the user presses the toggle button. */
-.all-projects-wrap[hidden] {
-    display: none !important;
-}
-
-.all-project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-/* Search and tag controls live below the archive grid. */
-.portfolio-filter-panel {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-}
-
-.portfolio-search-row {
-    display: grid;
-    gap: 0.85rem;
-    margin-bottom: 1rem;
-}
-
-.portfolio-search-input {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    border-radius: 16px;
-    border: 1px solid var(--border-strong);
-    background: var(--surface);
-    color: var(--text);
-}
-
-.tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-}
-
-.tag-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.55rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--muted);
-    cursor: pointer;
-}
-
-.tag-button.is-active {
-    background: var(--accent-soft);
-    border-color: rgba(47, 111, 237, 0.22);
-    color: var(--accent-strong);
 }
 
 .no-results {
@@ -147,8 +155,12 @@
 }
 
 @media (max-width: 960px) {
-    .featured-project-grid,
-    .all-project-grid {
+    .project-grid,
+    .project-grid.is-expanded {
         grid-template-columns: 1fr;
+    }
+
+    .portfolio-section-top {
+        flex-wrap: wrap;
     }
 }

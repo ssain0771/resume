@@ -1,17 +1,18 @@
 /*
     Portfolio page behavior.
-    Responsibilities: load project data, render featured cards, render the expandable archive, and filter archive cards by search text or tag.
+    Responsibilities: load project data, render the project grid, handle expand/collapse,
+    and filter projects by search text or tag.
 */
 
 (function initPortfolio() {
-    const featuredGrid = document.querySelector("#featuredProjectGrid");
-    const allGrid = document.querySelector("#allProjectGrid");
-    const allWrap = document.querySelector("#allProjectsWrap");
-    const toggleButton = document.querySelector("#toggleProjects");
+    const projectGrid = document.querySelector("#projectGrid");
+    const projectSectionHeading = document.querySelector("#projectSectionHeading");
+    const toggleProjects = document.querySelector("#toggleProjects");
+    const toggleFilters = document.querySelector("#toggleFilters");
+    const filterPanel = document.querySelector("#filterPanel");
     const searchInput = document.querySelector("#projectSearch");
     const tagList = document.querySelector("#tagList");
     const noResults = document.querySelector("#noResults");
-    const allProjectsTitle = document.querySelector("#allProjectsTitle");
     const introEyebrow = document.querySelector("#portfolioEyebrow");
     const introTitle = document.querySelector("#portfolioTitle");
     const introDescription = document.querySelector("#portfolioDescription");
@@ -19,6 +20,8 @@
     let projects = [];
     let activeTag = "";
     let searchTerm = "";
+    let isExpanded = false;
+    let pageStrings = {};
 
     /* Return true when a project matches the active search term and selected tag. */
     function matchesFilter(project) {
@@ -34,36 +37,43 @@
         return tagMatch && searchMatch;
     }
 
-    /* Build one clickable project card for either the featured grid or the full archive. */
+    /* Build one clickable project card. */
     function makeProjectCard(project) {
         const article = document.createElement("a");
         article.className = "project-card";
         article.href = project.pageHref || "#";
         article.setAttribute("data-project-id", project.id || "");
 
+        const tagsHtml = (project.tags || []).slice(0, 4)
+            .map((tag) => `<span class="card-tag${tag === activeTag ? " is-active" : ""}" data-tag="${tag}">${tag}</span>`)
+            .join("");
+
         article.innerHTML = `
             <img class="project-card-image" src="${project.image || ""}" alt="${project.imageAlt || project.title || "Project image"}" loading="lazy">
             <div class="project-card-content">
-                <div class="project-card-meta">
-                    ${(project.tags || []).slice(0, 3).map((tag) => `<span>${tag}</span>`).join("")}
-                </div>
+                <div class="project-card-meta">${tagsHtml}</div>
                 <h3>${project.title || ""}</h3>
                 <p>${project.summary || ""}</p>
-                <p class="project-card-impact"><strong>Impact:</strong> ${project.impact || "<impact placeholder>"}</p>
-                <div class="chip-row">
-                    <span class="chip">${project.role || "Project role"}</span>
-                </div>
             </div>
         `;
+
+        article.querySelectorAll(".card-tag").forEach((span) => {
+            span.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const tag = span.dataset.tag;
+                activeTag = activeTag === tag ? "" : tag;
+                renderTags();
+                renderProjects();
+            });
+        });
 
         return article;
     }
 
     /* Render the clickable tag filters based on all tags found in the project data. */
     function renderTags() {
-        if (!tagList) {
-            return;
-        }
+        if (!tagList) return;
 
         const tagSet = new Set();
         projects.forEach((project) => {
@@ -71,94 +81,94 @@
         });
 
         tagList.innerHTML = "";
-
         Array.from(tagSet).sort().forEach((tag) => {
             const button = document.createElement("button");
             button.type = "button";
             button.className = "tag-button";
             button.textContent = tag;
-            if (tag === activeTag) {
-                button.classList.add("is-active");
-            }
-
+            if (tag === activeTag) button.classList.add("is-active");
             button.addEventListener("click", () => {
                 activeTag = activeTag === tag ? "" : tag;
                 renderTags();
-                renderAllProjects();
+                renderProjects();
             });
-
             tagList.appendChild(button);
         });
     }
 
-    /* Show only featured projects in the top grid. */
-    function renderFeaturedProjects() {
-        if (!featuredGrid) {
-            return;
-        }
+    /*
+        Render the project grid.
+        Featured mode: 3-column, featured projects only.
+        Expanded mode: 2-column, all projects.
+        Filters apply in both modes.
+    */
+    function renderProjects() {
+        if (!projectGrid) return;
 
-        featuredGrid.innerHTML = "";
-        projects
-            .filter((project) => project.featured)
-            .forEach((project) => featuredGrid.appendChild(makeProjectCard(project)));
+        const source = isExpanded ? projects : projects.filter((p) => p.featured);
+        const filtered = source.filter(matchesFilter);
+
+        projectGrid.innerHTML = "";
+        filtered.forEach((project) => projectGrid.appendChild(makeProjectCard(project)));
+
+        if (noResults) noResults.hidden = filtered.length > 0;
     }
 
-    /* Render the archive grid using the current active filters. */
-    function renderAllProjects() {
-        if (!allGrid) {
-            return;
-        }
-
-        allGrid.innerHTML = "";
-        const filtered = projects.filter(matchesFilter);
-
-        filtered.forEach((project) => {
-            allGrid.appendChild(makeProjectCard(project));
+    /* Toggle the collapsible filter panel. */
+    if (toggleFilters && filterPanel) {
+        toggleFilters.addEventListener("click", () => {
+            const isOpen = !filterPanel.hasAttribute("hidden");
+            if (isOpen) {
+                filterPanel.setAttribute("hidden", "");
+                toggleFilters.setAttribute("aria-expanded", "false");
+            } else {
+                filterPanel.removeAttribute("hidden");
+                toggleFilters.setAttribute("aria-expanded", "true");
+            }
         });
+    }
 
-        if (noResults) {
-            noResults.hidden = filtered.length > 0;
-        }
+    /* Toggle between featured (3-col) and all-projects (2-col) mode. */
+    if (toggleProjects) {
+        toggleProjects.addEventListener("click", () => {
+            isExpanded = !isExpanded;
+            renderProjects();
+
+            if (projectSectionHeading) {
+                projectSectionHeading.textContent = isExpanded
+                    ? (pageStrings.allProjectsTitle || "All projects")
+                    : "Featured projects";
+            }
+
+            toggleProjects.textContent = isExpanded
+                ? (pageStrings.showLess || "Show fewer projects")
+                : (pageStrings.showMore || "Show more projects");
+            toggleProjects.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+        });
     }
 
     fetch("data/projects.json")
         .then((response) => response.json())
         .then((data) => {
-            const page = data.page || {};
+            pageStrings = data.page || {};
             projects = data.projects || [];
 
-            if (introEyebrow) introEyebrow.textContent = page.eyebrow || introEyebrow.textContent;
-            if (introTitle) introTitle.textContent = page.title || introTitle.textContent;
-            if (introDescription) introDescription.textContent = page.description || introDescription.textContent;
-            if (allProjectsTitle) allProjectsTitle.textContent = page.allProjectsTitle || allProjectsTitle.textContent;
-            if (toggleButton) toggleButton.textContent = page.showMore || toggleButton.textContent;
+            if (introEyebrow) introEyebrow.textContent = pageStrings.eyebrow || introEyebrow.textContent;
+            if (introTitle) introTitle.textContent = pageStrings.title || introTitle.textContent;
+            if (introDescription) introDescription.textContent = pageStrings.description || introDescription.textContent;
+            if (toggleProjects) toggleProjects.textContent = pageStrings.showMore || toggleProjects.textContent;
+            if (noResults) noResults.textContent = pageStrings.emptyMessage || noResults.textContent;
+
             if (searchInput) {
-                searchInput.placeholder = page.searchPlaceholder || searchInput.placeholder;
+                searchInput.placeholder = pageStrings.searchPlaceholder || searchInput.placeholder;
                 searchInput.addEventListener("input", () => {
                     searchTerm = String(searchInput.value || "").trim().toLowerCase();
-                    renderAllProjects();
+                    renderProjects();
                 });
             }
-            if (noResults) noResults.textContent = page.emptyMessage || noResults.textContent;
 
-            renderFeaturedProjects();
             renderTags();
-            renderAllProjects();
-
-            if (toggleButton && allWrap) {
-                toggleButton.addEventListener("click", () => {
-                    const isHidden = allWrap.hasAttribute("hidden");
-                    if (isHidden) {
-                        allWrap.removeAttribute("hidden");
-                        toggleButton.textContent = page.showLess || "Show fewer projects";
-                        toggleButton.setAttribute("aria-expanded", "true");
-                    } else {
-                        allWrap.setAttribute("hidden", "");
-                        toggleButton.textContent = page.showMore || "Show more projects";
-                        toggleButton.setAttribute("aria-expanded", "false");
-                    }
-                });
-            }
+            renderProjects();
         })
         .catch((error) => console.error("Failed to load portfolio content.", error));
 })();

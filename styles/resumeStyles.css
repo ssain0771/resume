@@ -143,11 +143,10 @@
 
 /* Contact line sits directly under the name and uses separators instead of pills/cards. */
 .print-resume-contact {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, auto));
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
-    column-gap: 0.28in;
-    row-gap: 0.05in;
+    gap: 0.28in;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -168,7 +167,7 @@
 
 /* Each printable section gets a compact heading with a divider underneath. */
 .print-resume-section {
-    margin-bottom: 0.16in;
+    margin-bottom: 0.22in;
     break-inside: avoid;
     page-break-inside: avoid;
 }
@@ -222,8 +221,9 @@
 
 .print-resume-item-title {
     margin: 0;
-    font-size: 11pt;
-    line-height: 1.25;
+    font-size: inherit;
+    font-weight: normal;
+    line-height: 1.35;
 }
 
 .print-resume-item-org {
@@ -243,6 +243,50 @@
 
 .print-resume-item li + li {
     margin-top: 0.04in;
+}
+
+/*
+    Compact print layout for one-page variants (all except full).
+    Tightens margins and gaps to keep all content within a single letter page.
+*/
+.print-resume--compact.print-resume {
+    /* Only relevant when actually printing, but set here so the class is defined. */
+}
+
+@media print {
+    .print-resume--compact .print-resume-header {
+        margin-bottom: 0.14in;
+    }
+
+    .print-resume--compact .print-resume-header h1 {
+        margin-bottom: 0.09in;
+        font-size: 22pt;
+    }
+
+    .print-resume--compact .print-resume-section {
+        margin-bottom: 0.15in;
+    }
+
+    .print-resume--compact .print-resume-section h2 {
+        margin-bottom: 0.05in;
+        padding-bottom: 0.04in;
+    }
+
+    .print-resume--compact .print-resume-list {
+        gap: 0.07in;
+    }
+
+    .print-resume--compact .print-resume-item li + li {
+        margin-top: 0.03in;
+    }
+
+    .print-resume--compact .print-resume-skill-lines {
+        gap: 0.04in;
+    }
+
+    .print-resume--compact .print-resume-copy {
+        gap: 0.06in;
+    }
 }
 
 /* Small-screen adjustments keep the selector and controls from feeling cramped. */

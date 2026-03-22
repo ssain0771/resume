@@ -138,6 +138,7 @@
             ]
         },
         "analyst": {
+            "printProfile": "Spatial Data Science student at Mount Royal University with a background in physics and chemistry, focused on Python, SQL, and data analysis workflows that support clear, decision-ready outputs. My work combines structured data cleaning, comparative analysis, and concise reporting to turn complex datasets into findings that are easy to act on.",
             "printSkillsGrouped": [
                 {
                     "label": "Programming",
@@ -226,6 +227,7 @@
             ]
         },
         "geospatial": {
+            "printProfile": "Spatial Data Science student at Mount Royal University with hands-on GIS experience in ArcGIS Pro, QGIS, and Google Earth Engine. Physics and chemistry background supports rigorous spatial analysis, and I have applied these skills to stream-restoration mapping and environmental reporting with real stakeholder impact.",
             "printSkillsGrouped": [
                 {
                     "label": "GIS",
@@ -316,6 +318,7 @@
             ]
         },
         "science": {
+            "printProfile": "General Science graduate (Physics, Chemistry) from Mount Royal University with hands-on lab experience in titration, spectroscopy, and synthesis, and strong technical writing and error analysis skills. Currently completing a Spatial Data Science certificate with a 3.9 GPA, applying the same careful, evidence-based approach to data and reporting.",
             "printSkillsGrouped": [
                 {
                     "label": "Lab / Science",
@@ -401,6 +404,7 @@
             ]
         },
         "developer": {
+            "printProfile": "Spatial Data Science student at Mount Royal University building data workflows and tools in Python, JavaScript, and SQL. Quantitative science background supports systematic problem solving, and I enjoy taking complex processes and turning them into structured, reproducible, and well-documented code.",
             "printSkillsGrouped": [
                 {
                     "label": "Languages",
@@ -418,7 +422,7 @@
                     "items": [
                         "REST APIs",
                         "Frontend fundamentals",
-                        "Node.js (if true)"
+                        "Node.js"
                     ]
                 },
                 {
@@ -434,8 +438,7 @@
                     "items": [
                         "GitHub",
                         "Git",
-                        "Jupyter",
-                        "Docker (if true)"
+                        "Jupyter"
                     ]
                 }
             ],
