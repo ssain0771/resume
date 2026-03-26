@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
     <!--
-        Web Games landing page.
-        This page sits outside the main navigation on purpose: it acts like a portfolio side branch for smaller interactive experiments.
+        Reinforcement Learning Hub.
+        Sits outside the main navigation as a portfolio side branch for RL models published to Hugging Face.
     -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Games | Simranjot Saini</title>
-    <meta name="description" content="Browser-based games and interactive experiments from Simranjot Saini.">
+    <title>RL Models | Simranjot Saini</title>
+    <meta name="description" content="Trained reinforcement learning agents published to Hugging Face Hub by Simranjot Saini.">
     <meta name="author" content="Simranjot Saini">
     <link rel="stylesheet" href="styles/baseStyles.css">
     <link rel="stylesheet" href="styles/webgamesStyles.css">
+    <style>
+        .rl-env-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+    </style>
 </head>
-<body data-page="webgames" data-root="">
+<body data-page="rl-hub" data-root="">
 <a class="skip-link" href="#mainContent">Skip to content</a>
 
     <!-- Shared site header populated by scripts/baseScripts.js. -->
@@ -41,12 +47,12 @@
 
     <main id="mainContent" class="site-main">
         <div class="site-shell">
-            <!-- Intro card explains what the Web Games section is for. -->
+            <!-- Intro card explains what this section is for. -->
             <section class="page-hero section">
                 <div class="hero-card">
-                    <div id="webgamesEyebrow" class="eyebrow">Portfolio / Web games</div>
-                    <h1 id="webgamesTitle" class="page-title">Small interactive builds that make technical ideas more hands-on.</h1>
-                    <p id="webgamesDescription" class="page-lead">This page is a home for browser-based experiments and mini-games. It stays outside the main navigation so it can grow over time without cluttering the core portfolio.</p>
+                    <div id="rlhubEyebrow" class="eyebrow">Portfolio / RL Models</div>
+                    <h1 id="rlhubTitle" class="page-title">Trained reinforcement learning agents across algorithm families and environments.</h1>
+                    <p id="rlhubDescription" class="page-lead">Seven agents built through the Hugging Face Deep RL Course, covering tabular Q-learning, policy gradients, DQN, PPO, and Unity ML-Agents.</p>
 
                     <div class="hero-actions">
                         <a class="button-link" href="portfolio.html">Back to portfolio</a>
@@ -54,16 +60,16 @@
                 </div>
             </section>
 
-            <!-- This grid is populated from data/webgames.json so more games can be added later without rewriting the page. -->
+            <!-- Grid populated from data/rlhub.json. -->
             <section class="section">
                 <div class="section-card">
                     <div class="section-heading-wrap">
-                        <div class="eyebrow">Playable builds</div>
-                        <h2 class="section-heading">Current games and experiments</h2>
-                        <p class="section-description">Each game is self-contained and playable in the browser. More will be added over time.</p>
+                        <div class="eyebrow">Hugging Face Hub</div>
+                        <h2 class="section-heading">Published models</h2>
+                        <p class="section-description">Each agent was trained, evaluated, and published to the Hugging Face Hub as part of the Deep RL Course.</p>
                     </div>
 
-                    <div id="webgamesGrid" class="webgames-grid"></div>
+                    <div id="rlhubGrid" class="webgames-grid"></div>
                 </div>
             </section>
         </div>
@@ -81,6 +87,6 @@
 
     <!-- Shared site behavior loads first; page-specific rendering happens second. -->
     <script src="scripts/baseScripts.js" defer></script>
-    <script src="scripts/webgamesScripts.js" defer></script>
+    <script src="scripts/rlhubScripts.js" defer></script>
 </body>
 </html>

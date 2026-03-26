@@ -78,6 +78,7 @@
 .card-tag {
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
     padding: 0.4rem 0.65rem;
     border-radius: 999px;
     font-size: 0.88rem;
@@ -136,6 +137,9 @@
 .project-card h3 {
     margin: 0;
     font-size: 1.18rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .project-card p {
@@ -145,9 +149,22 @@
 
 .project-card-meta {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 0.5rem;
+    scrollbar-width: none;
+    cursor: grab;
 }
+
+.project-card-meta.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.project-card-meta::-webkit-scrollbar {
+    display: none;
+}
+
 
 .no-results {
     margin: 0;

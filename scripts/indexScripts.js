@@ -38,6 +38,33 @@ function getLinkType(href) {
     return "email";
 }
 
+/* Enable mouse-drag scrolling on an overflow-x element. */
+function addDragScroll(el) {
+    if (!el) return;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let hasDragged = false;
+
+    el.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        isDown = true;
+        hasDragged = false;
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+        el.classList.add("is-dragging");
+    });
+    el.addEventListener("mouseleave", () => { isDown = false; el.classList.remove("is-dragging"); });
+    el.addEventListener("mouseup", () => { isDown = false; el.classList.remove("is-dragging"); });
+    el.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        const walk = e.pageX - el.offsetLeft - startX;
+        if (Math.abs(walk) > 4) { hasDragged = true; e.preventDefault(); }
+        el.scrollLeft = scrollLeft - walk;
+    });
+    el.addEventListener("click", (e) => { if (hasDragged) e.stopPropagation(); }, true);
+}
+
 /* Fetch and render the home-page content blocks. */
 (function loadIndexPage() {
     fetch("data/index.json")
@@ -46,6 +73,7 @@ function getLinkType(href) {
             const tagline = document.querySelector("#heroTagline");
             const title = document.querySelector("#heroTitle");
             const lead = document.querySelector("#heroLead");
+            const bio = document.querySelector("#heroBio");
             const location = document.querySelector("#heroLocation");
             const availability = document.querySelector("#heroAvailability");
             const aboutCopy = document.querySelector("#aboutCopy");
@@ -61,8 +89,15 @@ function getLinkType(href) {
             if (tagline) tagline.textContent = data.tagline || "";
             if (title) title.textContent = data.heroTitle || data.name || "";
             if (lead) lead.textContent = data.heroLead || "";
+            if (bio) bio.textContent = data.heroBio || "";
             if (location) location.textContent = data.location || "";
-            if (availability) availability.textContent = data.availability || "";
+            if (availability) {
+                if (Array.isArray(data.availability)) {
+                    availability.innerHTML = data.availability.join("<br>");
+                } else {
+                    availability.textContent = data.availability || "";
+                }
+            }
             if (image && data.aboutImage) {
                 image.src = data.aboutImage.src || image.src;
                 image.alt = data.aboutImage.alt || image.alt;
@@ -153,6 +188,7 @@ function getLinkType(href) {
                     <h3>${project.title || ""}</h3>
                     <p>${project.summary || ""}</p>
                 `;
+                addDragScroll(article.querySelector(".chip-row"));
                 preview.appendChild(article);
             });
         })

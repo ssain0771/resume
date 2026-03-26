@@ -21,8 +21,8 @@
             "pageHref": "projects/solar-farm-gis-project.html",
             "image": "images/solar_farm.jpg",
             "imageAlt": "Solar Farm GIS Project map output",
-            "summary": "GIS suitability model to identify high-potential solar farm parcels on Saddle Lake IR #125.",
-            "impact": "Reduced a large search area to four candidate parcels with a documented suitability workflow that could be reviewed and compared. <Add stakeholder decision detail placeholder.>",
+            "summary": "Five-part GIS coursework project identifying candidate solar farm sites on Saddle Lake IR #125 through layered feasibility analysis and cost-per-MWh comparison.",
+            "impact": "Reduced the full reserve area to four candidate parcels with quantified capacity, annual generation, and infrastructure access cost. Parcel 1 ranked most economical (CostPerMWh 0.196); Parcel 2 offered the largest potential output at 71.9 ha and ~485,000 MWh per year.",
             "role": "Spatial analysis, suitability modelling, cartographic output",
             "tools": "ArcGIS Pro",
             "tags": [
@@ -32,26 +32,26 @@
                 "cost-surface",
                 "arcgis"
             ],
-            "overview": "This project evaluated where a solar farm could realistically be placed by combining terrain constraints, legal and environmental screening, and access-cost analysis.",
-            "challenge": "The core challenge was moving from a broad study area to a defendable short list of candidate sites, while making the tradeoffs visible enough for comparison.",
+            "overview": "A five-part coursework project (GEOG 2551/2553) applying layered GIS suitability analysis to Saddle Lake Indian Reserve #125, approximately 130 km northeast of Edmonton. Each assignment built on the last, culminating in a ranked shortlist of four candidate solar farm sites.",
+            "challenge": "The core challenge was moving from a broad study area to a defendable shortlist of candidate sites while keeping the tradeoffs between legal, economic, and technical constraints visible and comparable.",
             "process": [
-                "Derived slope and aspect from the DEM, excluding slopes greater than 10° and north-facing areas that would be less favourable for production.",
-                "Applied legal and environmental filtering using available WHS constraints to remove unsuitable land before ranking candidate space.",
-                "Built a combined road and transmission access cost surface using distance accumulation to estimate how difficult each location would be to service."
+                "Preprocessed environmental constraint layers (Wildlife Habitat Sensitivity Risk, roads, lakes, streams) and a DEM-derived slope and aspect surface to define exclusion zones and suitable terrain.",
+                "Built a combined road and transmission line access cost surface using distance accumulation to estimate infrastructure cost at every cell in the study area.",
+                "Intersected legal, economic, and technical feasibility layers to produce a 'Truly Potential Land' layer, then drew four candidate parcels and calculated installed capacity, annual generation, and CostPerMWh for each."
             ],
-            "outcome": "Produced a “truly potential land” layer and a final map of four candidate parcels evaluated by minimum access cost and estimated cost per MWh.",
+            "outcome": "Four candidate parcels with quantified attributes: Parcel 1 was the most economical site (CostPerMWh 0.196, access cost ~$54,000); Parcel 2 offered the highest output (71.9 ha, ~485,000 MWh/year) at moderate cost.",
             "detailSections": [
                 {
                     "title": "What this project was",
-                    "body": "A site-suitability study focused on translating geospatial criteria into a ranked decision-support product rather than a simple descriptive map."
+                    "body": "A five-part GIS coursework project applying sequential suitability analysis to a real study area - translating environmental, economic, and terrain constraints into a ranked set of candidate solar sites."
                 },
                 {
                     "title": "How it was done",
-                    "body": "The workflow combined raster-based terrain screening with vector filtering and access modelling so the final result reflected both physical suitability and practical servicing considerations."
+                    "body": "Each assignment contributed a layer to the final result: constraint mapping, terrain derivatives, infrastructure cost surfaces, feasibility intersection, and candidate site creation with CostPerMWh comparison."
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "Instead of leaving the analysis as a loose overlay exercise, the project created a smaller set of candidate parcels that could support discussion, comparison, and next-step validation."
+                    "body": "The workflow produced a shortlist that could support a real planning discussion - showing how location relative to roads and transmission lines dominated site economics once all constraints were combined."
                 }
             ],
             "links": []
@@ -64,8 +64,8 @@
             "pageHref": "projects/webMap.html",
             "image": "images/parks_pathways.png",
             "imageAlt": "Interactive map showing Calgary parks and pathways layers",
-            "summary": "Interactive Leaflet map exploring Calgary’s green-space network with toggleable parks, trails, and boundary layers.",
-            "impact": "Turned a simple map into a more usable exploratory interface where viewers can compare layers, reset context, and inspect network relationships. <Add audience/use-case placeholder.>",
+            "summary": "Interactive Leaflet map exploring Calgary's green-space network with toggleable parks, trails, and boundary layers.",
+            "impact": "Turned a course assignment web map into a more useful exploratory interface - going beyond the minimum requirements to add layer controls, filtering, and reset behavior that let viewers compare Calgary's green-space network on their own terms.",
             "role": "Web mapping, interface design, GIS communication",
             "tools": "Leaflet, Esri-Leaflet, ArcGIS FeatureServer, GeoJSON",
             "tags": [
@@ -118,7 +118,7 @@
             "image": "images/webgames-hub.svg",
             "imageAlt": "Illustrated preview card for the Web Games Lab page",
             "summary": "Small browser-based games and interactive tools built to make colour reading, logic, and data intuition more hands-on.",
-            "impact": "Creates a place to turn technical ideas into short playable experiments instead of leaving them as static project descriptions. <Add more game-specific impact later.>",
+            "impact": "Creates a dedicated home for browser-based experiments that would otherwise sit as loose files with no context. Current builds include a two-player Dodgeball game rebuilt from the first game ever programmed (originally in Lua) and an RGB Guesser for building colour-reading intuition.",
             "role": "Game design, front-end development, interactive learning",
             "tools": "HTML, CSS, JavaScript",
             "tags": [
@@ -154,13 +154,13 @@
         {
             "id": "patch",
             "featured": true,
-            "title": "Video Game Patch Data Impact Analysis",
+            "title": "Video Game Patch Analysis",
             "slug": "video-game-patch-data-impact-analysis",
             "pageHref": "projects/video-game-patch-data-impact-analysis.html",
             "image": "images/game_patch.png",
             "imageAlt": "Gameplay data analysis chart",
-            "summary": "Compared gameplay metrics before and after a patch to quantify whether balance changes were meaningful.",
-            "impact": "Showed which performance indicators moved most after the update and created a concise evidence-based summary instead of relying on anecdotal impressions. <Add strongest metric placeholder.>",
+            "summary": "Analyzed Valorant patch 11.08 to quantify whether balance changes shifted agent pick rates and win rates across ranked brackets and professional play.",
+            "impact": "Identified the sentinel role had dropped below a 20% pick rate - a threshold argued to represent roughly one sentinel per team on average given four roles and five players - and built a structured before/after comparison to support the interpretation rather than relying on community perception.",
             "role": "Data cleaning, exploratory analysis, visualization",
             "tools": "Python, Pandas, Matplotlib",
             "tags": [
@@ -171,75 +171,77 @@
                 "cleaning",
                 "visualization"
             ],
-            "overview": "This project treated a game patch like an applied analysis problem: gather comparable data, clean it, visualize it, and interpret whether the patch changed player outcomes in a meaningful way.",
-            "challenge": "Patch discussion often depends on community perception, but useful conclusions need structured comparisons and cleaner evidence.",
+            "overview": "Treated Valorant patch 11.08 as a structured analysis problem: collect pre- and post-patch agent and role balance data, clean it, compare it across ranked brackets and pro play, and interpret whether the patch actually changed the game's balance in a meaningful way.",
+            "challenge": "Patch discussion in the Valorant community is typically driven by perception rather than evidence. The goal was to build a before/after comparison that could test whether role viability was genuinely shifting.",
             "process": [
-                "Collected and cleaned gameplay data so pre- and post-patch records could be compared consistently.",
-                "Built plots to show where key indicators shifted and which changes were large enough to deserve attention.",
-                "Summarized the findings in a short analysis focused on interpretation rather than just chart output."
+                "Collected and cleaned agent pick rate and win rate data across ranked brackets and professional play for pre- and post-patch periods.",
+                "Analyzed balance at the role level - duelist, initiator, controller, sentinel - to surface patterns not visible in per-agent numbers alone.",
+                "Built visualizations showing where key indicators shifted and framed the sentinel class drop below 20% pick rate as a measurable balance signal, using team composition logic as a reference point."
             ],
-            "outcome": "Delivered a concise analysis highlighting the metrics that moved most after the patch and the likely implications for balance.",
+            "outcome": "Produced a structured analysis showing the sentinel class had dropped below the 20% pick rate threshold post-patch, with supporting evidence across ranked and professional contexts.",
             "detailSections": [
                 {
                     "title": "What this project was",
-                    "body": "A compact analytical case study showing how to move from raw event-style data to an interpretable before/after comparison."
+                    "body": "A data analysis project applying structured before/after comparison to Valorant patch 11.08, focused on agent and role balance across competitive play tiers."
                 },
                 {
                     "title": "How it was done",
-                    "body": "The workflow focused on cleaning, aligning, plotting, and interpreting the data rather than building a large application around it."
+                    "body": "Pick rate and win rate data were collected, cleaned, and analyzed by agent and role across ranked brackets and pro play, with results visualized to surface patterns not obvious from community discussion alone."
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "It demonstrates practical analysis habits: define the question, prepare the data, visualize the signal, and explain the result clearly."
+                    "body": "It demonstrates practical analysis habits: define the question, structure the data, visualize the signal, and explain the result with a clear and defensible reference point rather than relying on anecdote."
                 }
             ],
             "links": []
         },
         {
-            "id": "lander",
+            "id": "rl-hub",
             "featured": false,
-            "title": "PPO LunarLander-v3",
-            "slug": "ppo-lunarlander-v3",
-            "pageHref": "projects/ppo-lunarlander-v3.html",
+            "title": "Reinforcement Learning Lab",
+            "slug": "reinforcement-learning-lab",
+            "pageHref": "rl-hub.html",
             "image": "images/lunar_lander.png",
-            "imageAlt": "PPO LunarLander-v3 gameplay screenshot",
-            "summary": "Reinforcement learning project with PPO training, evaluation tracking, and model packaging.",
-            "impact": "Built and evaluated a trained agent that achieved 302.83 ± 17.47 mean reward across 100 episodes while packaging the work for reuse and sharing.",
-            "role": "Model training, evaluation, experiment tracking",
-            "tools": "Python, Gymnasium, Stable-Baselines3 (PPO), NumPy, Matplotlib, Hugging Face Hub",
+            "imageAlt": "LunarLander-v3 agent landing sequence",
+            "summary": "Seven trained RL agents from the Hugging Face Deep RL Course, covering tabular Q-learning, REINFORCE, DQN, PPO, and Unity ML-Agents across classic control, Atari, and continuous environments.",
+            "impact": "Completed the full Hugging Face Deep RL Course with trained and evaluated agents across five algorithm families, each published to the Hub for reuse and review.",
+            "role": "Model training, evaluation, experiment tracking, Hugging Face Hub publishing",
+            "tools": "Python, Stable-Baselines3, Gymnasium, Unity ML-Agents, NumPy, Matplotlib, Hugging Face Hub",
             "tags": [
                 "reinforcement-learning",
                 "ppo",
+                "dqn",
                 "python",
                 "evaluation",
                 "deployment"
             ],
-            "overview": "Trained a PPO agent on LunarLander-v3 using parallel environments and evaluation callbacks to track progress and preserve the best-performing checkpoint.",
-            "challenge": "The main challenge was building a training workflow that did more than just run—it needed to preserve evaluation logic, surface performance trends, and finish with a shareable model package.",
+            "overview": "A collection of trained reinforcement learning agents published to the Hugging Face Hub, built through the Hugging Face Deep RL Course. The course progressed from tabular Q-learning through policy gradients (REINFORCE), deep Q-networks (DQN), PPO with parallel environments, and Unity ML-Agents.",
+            "challenge": "Each agent required its own training configuration, environment setup, and evaluation workflow. The goal was to produce trained, evaluated, and packaged agents rather than one-off notebooks.",
             "process": [
-                "Ran PPO training with 16 parallel environments to improve sample throughput.",
-                "Used evaluation callbacks to monitor performance and automatically save the best checkpoint during training.",
-                "Evaluated the final model across 100 episodes and packaged the trained agent for publication on Hugging Face Hub."
+                "Trained tabular Q-learning agents on FrozenLake-v1 (no-slip) and Taxi-v3 using explicit Q-tables in small discrete environments.",
+                "Applied REINFORCE (policy gradient) to CartPole-v1 and PixelCopter, learning to sample and update policies directly from episode returns.",
+                "Trained a DQN agent on SpaceInvadersNoFrameskip-v4 and a PPO agent on LunarLander-v3 (302.83 mean reward) using parallel environments and evaluation callbacks.",
+                "Trained a Huggy agent using Unity ML-Agents PPO in a custom continuous-action environment."
             ],
-            "outcome": "Saved the best model automatically, plotted reward trends over time, and published a reusable trained agent.",
+            "outcome": "Seven trained agents across five algorithm families, each evaluated and published to Hugging Face Hub.",
             "detailSections": [
                 {
                     "title": "What this project was",
-                    "body": "A reinforcement learning workflow focused on training discipline, evaluation, and deployment rather than a one-off notebook result."
+                    "body": "A structured progression through the Hugging Face Deep RL Course - from tabular methods to deep networks to continuous control - with each agent trained, evaluated, and published."
                 },
                 {
                     "title": "How it was done",
-                    "body": "The work combined parallelized training, periodic evaluation, and final packaging so the project had a clean end-to-end path."
+                    "body": "Each agent used the appropriate library and training loop for its algorithm family: Q-tables for tabular methods, PyTorch policy networks for REINFORCE, Stable-Baselines3 for PPO and DQN, and Unity ML-Agents for Huggy."
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "It shows reproducibility and experimentation habits that transfer well to other analytical and model-driven projects."
+                    "body": "It demonstrates breadth across RL algorithm families and the discipline to follow a structured training and evaluation workflow from start to finish."
                 }
             ],
             "links": [
                 {
-                    "href": "https://huggingface.co/ssain0771/ppo-LunarLander-v3",
-                    "text": "View on Hugging Face Hub"
+                    "href": "rl-hub.html",
+                    "text": "View all models"
                 }
             ]
         },

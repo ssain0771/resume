@@ -1,0 +1,72 @@
+{
+    "page": {
+        "eyebrow": "Portfolio / RL Models",
+        "title": "Trained reinforcement learning agents across algorithm families and environments.",
+        "description": "Seven agents built through the Hugging Face Deep RL Course, covering tabular Q-learning, policy gradients, DQN, PPO, and Unity ML-Agents."
+    },
+    "models": [
+        {
+            "id": "ppo-lunarlander",
+            "title": "PPO · LunarLander-v3",
+            "algorithm": "PPO",
+            "environment": "Box2D continuous control",
+            "summary": "Trained with 16 parallel environments and evaluation callbacks to preserve the best checkpoint. Mean reward: 302.83 ± 17.47 across 100 episodes.",
+            "note": "Uses parallel rollout collection and periodic evaluation - closer to how production RL training is structured than a single-environment loop.",
+            "hfHref": "https://huggingface.co/ssain0771/ppo-LunarLander-v3"
+        },
+        {
+            "id": "dqn-spaceinvaders",
+            "title": "DQN · SpaceInvaders",
+            "algorithm": "DQN",
+            "environment": "Atari SpaceInvadersNoFrameskip-v4",
+            "summary": "Deep Q-network trained on raw pixel frames from Atari SpaceInvaders, with frame stacking and standard Atari preprocessing.",
+            "note": "Shows how value-based deep RL handles high-dimensional pixel inputs without explicit feature engineering.",
+            "hfHref": "https://huggingface.co/ssain0771/dqn-SpaceInvadersNoFrameskip-v4"
+        },
+        {
+            "id": "huggy",
+            "title": "Huggy · Unity ML-Agents",
+            "algorithm": "PPO (Unity ML-Agents)",
+            "environment": "Huggy - custom continuous control",
+            "summary": "PPO agent trained in a Unity environment where the agent learns to run toward a thrown stick using the ML-Agents toolkit.",
+            "note": "Demonstrates how RL extends beyond standard Gym environments into custom simulation setups with continuous action spaces.",
+            "hfHref": "https://huggingface.co/ssain0771/Huggy"
+        },
+        {
+            "id": "reinforce-pixelcopter",
+            "title": "REINFORCE · PixelCopter",
+            "algorithm": "REINFORCE",
+            "environment": "PixelCopter-v0",
+            "summary": "Policy gradient agent trained on PixelCopter, a continuous state environment where the agent controls altitude to pass through gaps.",
+            "note": "REINFORCE learns directly from full episode returns - a clean implementation of the core policy gradient idea before adding baselines or actor-critic structure.",
+            "hfHref": "https://huggingface.co/ssain0771/Reinforce-PixelCopter"
+        },
+        {
+            "id": "reinforce-cartpole",
+            "title": "REINFORCE · CartPole-v1",
+            "algorithm": "REINFORCE",
+            "environment": "CartPole-v1",
+            "summary": "Policy gradient agent trained to balance a pole on a cart. A clean baseline for verifying a REINFORCE implementation before moving to harder environments.",
+            "note": "CartPole's fast convergence makes it useful as a sanity check - if the policy gradient loop is wrong, it will fail visibly here.",
+            "hfHref": "https://huggingface.co/ssain0771/Reinforce-CartPole-v1"
+        },
+        {
+            "id": "q-taxi",
+            "title": "Q-Learning · Taxi-v3",
+            "algorithm": "Q-Learning (tabular)",
+            "environment": "Taxi-v3",
+            "summary": "Tabular Q-learning agent trained on the Taxi environment: pick up a passenger and drop them at the correct location in a 5x5 grid.",
+            "note": "Tabular Q-learning stores the full Q-table explicitly, which is tractable for small discrete environments like Taxi but breaks down as state space grows.",
+            "hfHref": "https://huggingface.co/ssain0771/q-Taxi-v3"
+        },
+        {
+            "id": "q-frozenlake",
+            "title": "Q-Learning · FrozenLake",
+            "algorithm": "Q-Learning (tabular)",
+            "environment": "FrozenLake-v1 (4x4, no slip)",
+            "summary": "Tabular Q-learning agent trained on the deterministic (no-slip) version of FrozenLake - navigate from start to goal without falling in a hole.",
+            "note": "The no-slip variant removes environment stochasticity, making it a cleaner case for learning Q-values from a fixed transition model.",
+            "hfHref": "https://huggingface.co/ssain0771/q-FrozenLake-v1-4x4-noSlippery"
+        }
+    ]
+}

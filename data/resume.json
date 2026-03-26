@@ -36,8 +36,9 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Used GIS to quantify stream-restoration impacts for reporting and decision support.",
-                        "Collaborated with stakeholders to define analysis needs and communicate results."
+                        "Classified satellite and drone imagery using a pixel-based supervised learning model (Random Trees) to map land cover at Elk Creek, an active stream restoration site in Alberta.",
+                        "Built 2023-2025 change detection analysis to quantify vegetation recovery, including shrub expansion and restoration fence impact, with accuracy assessed through confusion matrices.",
+                        "Produced figures and a stacked 3D land classification map for two poster presentations targeting general and technical stakeholder audiences."
                     ]
                 },
                 {
@@ -203,7 +204,9 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Performed GIS-based quantification to support restoration reporting and decisions."
+                        "Processed and stacked satellite and drone imagery in Python to prepare multi-source raster data for supervised land classification.",
+                        "Built change detection outputs comparing 2023 and 2025 land cover; evaluated model accuracy using confusion matrices.",
+                        "Delivered findings through poster visualizations targeting both technical and general stakeholder audiences."
                     ]
                 },
                 {
@@ -294,8 +297,9 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Used GIS to quantify restoration impacts and produce map-ready reporting outputs.",
-                        "Communicated spatial findings to support stakeholder decisions."
+                        "Classified Planet satellite and FCC drone imagery using a pixel-based Random Trees model to map vegetation land cover at Elk Creek.",
+                        "Performed change detection between 2023 and 2025 to quantify restoration-driven vegetation recovery, comparing outcomes inside and outside the restoration fence.",
+                        "Produced a stacked 3D land classification map and change detection figures for stakeholder-facing poster presentations."
                     ]
                 },
                 {
@@ -390,7 +394,9 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Supported evidence-based reporting by quantifying restoration outcomes with spatial analysis."
+                        "Applied a supervised Random Trees model to classify land cover from satellite and drone imagery, with performance assessed using confusion matrices and class-level accuracy metrics.",
+                        "Used systematic change detection to document vegetation recovery between 2023 and 2025, comparing outcomes inside and outside the restoration fence.",
+                        "Contributed to poster presentations on stream restoration outcomes for FCC and academic audiences."
                     ]
                 },
                 {
@@ -469,8 +475,9 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Built repeatable data processing workflows in Python to support analysis and reporting.",
-                        "Produced stakeholder-ready outputs and documented assumptions to ensure reproducibility."
+                        "Wrote Python scripts to stack and align orthophoto and satellite raster data for supervised land classification.",
+                        "Built classification and change detection pipelines producing accuracy metrics, quantified land cover shifts, and visualization-ready outputs.",
+                        "Packaged analysis results into a stacked 3D land classification map and poster-quality figures for two separate presentations."
                     ]
                 },
                 {

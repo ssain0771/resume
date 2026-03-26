@@ -1,3 +1,10 @@
+.hero-bio {
+    margin: 0.85rem 0 0;
+    font-size: clamp(1.02rem, 1.2vw, 1.12rem);
+    color: var(--muted);
+    max-width: 62ch;
+}
+
 /* Home page actions below the main intro text. */
 .hero-actions {
     display: flex;
@@ -118,9 +125,32 @@
     background: var(--surface);
 }
 
+.featured-preview-card .chip-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.featured-preview-card .chip-row::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-preview-card .chip-row.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.featured-preview-card .chip {
+    flex-shrink: 0;
+}
+
 .featured-preview-card h3 {
     margin: 0;
     font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .featured-preview-card p {

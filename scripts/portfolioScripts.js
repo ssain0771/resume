@@ -37,6 +37,49 @@
         return tagMatch && searchMatch;
     }
 
+    /* Enable mouse-drag scrolling on an overflow-x element. */
+    function addDragScroll(el) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let hasDragged = false;
+
+        el.addEventListener("mousedown", (e) => {
+            e.preventDefault(); /* stop browser from initiating native link drag */
+            isDown = true;
+            hasDragged = false;
+            startX = e.pageX - el.offsetLeft;
+            scrollLeft = el.scrollLeft;
+            el.classList.add("is-dragging");
+        });
+
+        el.addEventListener("mouseleave", () => {
+            isDown = false;
+            el.classList.remove("is-dragging");
+        });
+
+        el.addEventListener("mouseup", () => {
+            isDown = false;
+            el.classList.remove("is-dragging");
+        });
+
+        el.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            const x = e.pageX - el.offsetLeft;
+            const walk = x - startX;
+            if (Math.abs(walk) > 4) {
+                hasDragged = true;
+                e.preventDefault();
+            }
+            el.scrollLeft = scrollLeft - walk;
+        });
+
+        /* Swallow clicks that were actually drags so tags don't activate mid-scroll. */
+        el.addEventListener("click", (e) => {
+            if (hasDragged) e.stopPropagation();
+        }, true);
+    }
+
     /* Build one clickable project card. */
     function makeProjectCard(project) {
         const article = document.createElement("a");
@@ -56,6 +99,8 @@
                 <p>${project.summary || ""}</p>
             </div>
         `;
+
+        addDragScroll(article.querySelector(".project-card-meta"));
 
         article.querySelectorAll(".card-tag").forEach((span) => {
             span.addEventListener("click", (e) => {
@@ -105,7 +150,9 @@
     function renderProjects() {
         if (!projectGrid) return;
 
-        const source = isExpanded ? projects : projects.filter((p) => p.featured);
+        const source = isExpanded
+            ? [...projects].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+            : projects.filter((p) => p.featured);
         const filtered = source.filter(matchesFilter);
 
         projectGrid.innerHTML = "";
