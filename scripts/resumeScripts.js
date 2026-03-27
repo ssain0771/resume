@@ -220,9 +220,28 @@ function renderPrintEntries(target, entries) {
 
     let indexContent = null;
     let resumeContent = null;
+    let privateContent = null;
 
     if (printButton) {
         printButton.addEventListener("click", () => window.print());
+    }
+
+    /* Build the contact list used in the print layout, applying private overrides if available. */
+    function buildPrintContacts(publicLinks) {
+        if (!privateContent) return publicLinks;
+
+        const contacts = [];
+        if (privateContent.phone) {
+            contacts.push({ href: privateContent.phone, text: "Phone" });
+        }
+        (publicLinks || []).forEach((link) => {
+            if (/^mailto:/i.test(link.href) && privateContent.printEmail) {
+                contacts.push({ href: privateContent.printEmail, text: "Email" });
+            } else {
+                contacts.push(link);
+            }
+        });
+        return contacts;
     }
 
     /* Render the shared intro/profile content used by all resume variants. */
@@ -257,7 +276,11 @@ function renderPrintEntries(target, entries) {
             The print header uses all core contact links, but renders them in a tighter two-column grid.
             This keeps the phone number available without forcing the longer social links onto one crowded line.
         */
-        renderPrintContactList(printContact, indexContent.links || []);
+        const printContactLinks = buildPrintContacts(indexContent.links || []);
+        renderPrintContactList(printContact, printContactLinks);
+        if (printContact) {
+            printContact.classList.toggle("print-resume-contact--tight", printContactLinks.length > 3);
+        }
 
         if (printName) {
             printName.textContent = indexContent.name || "Simranjot Saini";
@@ -351,11 +374,13 @@ function renderPrintEntries(target, entries) {
 
     Promise.all([
         fetch(getResumeDataPath("index.json")).then((response) => response.json()),
-        fetch(getResumeDataPath("resume.json")).then((response) => response.json())
+        fetch(getResumeDataPath("resume.json")).then((response) => response.json()),
+        fetch(getResumeDataPath("private.json")).then((response) => response.json()).catch(() => null)
     ])
-        .then(([indexJson, resumeJson]) => {
+        .then(([indexJson, resumeJson, privateJson]) => {
             indexContent = indexJson;
             resumeContent = resumeJson;
+            privateContent = privateJson;
 
             renderProfile();
 

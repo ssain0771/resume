@@ -1,13 +1,13 @@
 {
     "tagline": "Spatial Data Science | Workflow Automation | Sciences",
     "name": "Simranjot Saini",
-    "heroTitle": "Spatial data science student with a background in physics and chemistry.",
+    "heroTitle": "Spatial Data Scientist with a background in physics and chemistry.",
     "heroLead": "I work across GIS, automation, and scientific problem solving to turn messy information into maps, analyses, and tools that are easier to trust and act on. Currently completing a Spatial Data Science certificate at Mount Royal University, with hands-on project work in environmental reporting, web mapping, and data visualization.",
     "heroBio": "I like tricky problems that take some patience to work through, reading, and finding new things to learn on my own - which is usually how areas like reinforcement learning or game development end up in the mix alongside the core GIS work.",
     "location": "Calgary, Alberta",
     "availability": ["Part-time through April 2026", "Full-time from May 2026"],
     "about": [
-        "I am a Spatial Data Science student in Calgary with a background in physics and chemistry, and I am especially interested in work that sits between geospatial analysis, applied data work, and workflow automation.",
+        "I am a Spatial Data Scientist in Calgary with a background in physics and chemistry, and I am especially interested in work that sits between geospatial analysis, applied data work, and workflow automation.",
         "My projects typically combine GIS, Python, SQL, and web-based communication. I enjoy taking a workflow that is repetitive, hard to explain, or spread across too many steps and turning it into something more structured, reproducible, and useful.",
         "Recent work includes GIS-based analysis for environmental reporting and academic research, web mapping, and data visualization. The projects here are documented as case studies that cover not just what was built, but the context, decisions, and outcomes behind each one."
     ],

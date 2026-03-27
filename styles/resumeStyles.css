@@ -153,6 +153,10 @@
     font-size: 10pt;
 }
 
+.print-resume-contact--tight {
+    gap: 0.15in;
+}
+
 .print-resume-contact li {
     display: inline-flex;
     justify-content: center;
