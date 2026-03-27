@@ -293,6 +293,10 @@ function renderPrintEntries(target, entries) {
         const printEducation = document.querySelector("#printResumeEducation");
         const printProfile = document.querySelector("#printResumeProfile");
         const printLayout = document.querySelector("#printResumeLayout");
+        const printProjects = document.querySelector("#printResumeProjects");
+        const printProjectsSection = document.querySelector("#printProjectsSection");
+        const projectsList = document.querySelector("#projectsList");
+        const projectsSection = document.querySelector("#projectsSection");
 
         if (pageTitle) {
             pageTitle.textContent = `${labels[variantKey] || variantKey} resume`;
@@ -308,6 +312,16 @@ function renderPrintEntries(target, entries) {
         renderPrintEntries(printEducation, variant.education || []);
         renderScreenEntryList(experienceList, variant.experience || []);
         renderPrintEntries(printExperience, variant.experience || []);
+
+        const projects = variant.printProjects || [];
+        renderScreenEntryList(projectsList, projects);
+        renderPrintEntries(printProjects, projects);
+        if (printProjectsSection) {
+            printProjectsSection.style.display = projects.length ? "" : "none";
+        }
+        if (projectsSection) {
+            projectsSection.style.display = projects.length ? "" : "none";
+        }
 
         /* For non-full variants, swap in the condensed single-paragraph print profile. */
         if (printProfile && variant.printProfile) {

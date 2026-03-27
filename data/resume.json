@@ -9,14 +9,34 @@
     },
     "variants": {
         "full": {
+            "printProfile": "Spatial Data Science student at Mount Royal University with a background in physics and chemistry, building GIS workflows, data analyses, and web tools in Python, SQL, and JavaScript. Experienced in satellite imagery classification, environmental data analysis, and producing stakeholder-ready outputs across scientific and technical domains.",
+            "printProjects": [
+                {
+                    "role": "Solar Farm GIS Analysis",
+                    "organization": "ArcGIS Pro",
+                    "period": "2025",
+                    "details": ["Suitability analysis ranking four candidate solar farm sites by capacity, annual generation, and infrastructure access cost."]
+                },
+                {
+                    "role": "Competitive Game Patch Analysis",
+                    "organization": "Python · Pandas · Matplotlib",
+                    "period": "2025",
+                    "details": ["Before/after comparison quantifying balance patch impact on agent and role pick rates across ranked and professional play."]
+                },
+                {
+                    "role": "Calgary Parks & Pathways Web Map",
+                    "organization": "Leaflet · JavaScript",
+                    "period": "2025",
+                    "details": ["Interactive web map with toggleable layers and spatial filtering for Calgary's green-space and pathway network."]
+                }
+            ],
             "education": [
                 {
                     "year": "2019 - 2025",
                     "program": "Bachelor of Science in General Science (Physics, Chemistry)",
                     "institution": "Mount Royal University",
                     "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.0 GPA."
+                        "Graduated with a 3.4 GPA."
                     ]
                 },
                 {
@@ -24,9 +44,7 @@
                     "program": "Spatial Data Science Certificate",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Certificate program focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.9."
+                        "Ongoing, expected completion April 2026. Current GPA: 3.9."
                     ]
                 }
             ],
@@ -36,9 +54,8 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Classified satellite and drone imagery using a pixel-based supervised learning model (Random Trees) to map land cover at Elk Creek, an active stream restoration site in Alberta.",
-                        "Built 2023-2025 change detection analysis to quantify vegetation recovery, including shrub expansion and restoration fence impact, with accuracy assessed through confusion matrices.",
-                        "Produced figures and a stacked 3D land classification map for two poster presentations targeting general and technical stakeholder audiences."
+                        "Classified satellite and drone imagery using a Random Trees model to map land cover at Elk Creek, an active stream restoration site.",
+                        "Built 2023–2025 change detection to quantify vegetation recovery; assessed accuracy using confusion matrices."
                     ]
                 },
                 {
@@ -47,12 +64,11 @@
                     "period": "Jan 2024 - Apr 2024",
                     "details": [
                         "Processed and tabulated lab results into clean templates to support contamination analysis.",
-                        "Compared new results with historical datasets and guidelines to identify exceedances.",
-                        "Wrote clear stakeholder-ready summaries with recommended next steps."
+                        "Compared results with historical datasets and guidelines to identify exceedances."
                     ]
                 },
                 {
-                    "role": "Realtor Assistant",
+                    "role": "Realtor Assistant (Part time)",
                     "organization": "Independent/Family Business",
                     "period": "2018 - 2026",
                     "details": [
@@ -140,6 +156,20 @@
         },
         "analyst": {
             "printProfile": "Spatial Data Science student at Mount Royal University with a background in physics and chemistry, focused on Python, SQL, and data analysis workflows that support clear, decision-ready outputs. My work combines structured data cleaning, comparative analysis, and concise reporting to turn complex datasets into findings that are easy to act on.",
+            "printProjects": [
+                {
+                    "role": "Competitive Game Patch Analysis",
+                    "organization": "Python · Pandas · Matplotlib",
+                    "period": "2025",
+                    "details": ["Before/after analysis quantifying balance patch impact on agent pick rates and role viability across ranked and professional play."]
+                },
+                {
+                    "role": "Solar Farm GIS Analysis",
+                    "organization": "ArcGIS Pro",
+                    "period": "2025",
+                    "details": ["Layered suitability analysis ranking four candidate solar farm sites by installed capacity, generation potential, and access cost."]
+                }
+            ],
             "printSkillsGrouped": [
                 {
                     "label": "Programming",
@@ -183,9 +213,7 @@
                     "program": "Spatial Data Science Certificate",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Focused on spatial analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.9."
+                        "Ongoing, expected completion April 2026. Current GPA: 3.9."
                     ]
                 },
                 {
@@ -193,8 +221,7 @@
                     "program": "Bachelor of Science in General Science (Physics, Chemistry)",
                     "institution": "Mount Royal University",
                     "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.0 GPA."
+                        "Graduated with a 3.4 GPA."
                     ]
                 }
             ],
@@ -205,8 +232,7 @@
                     "period": "Jan 2026 - Present",
                     "details": [
                         "Processed and stacked satellite and drone imagery in Python to prepare multi-source raster data for supervised land classification.",
-                        "Built change detection outputs comparing 2023 and 2025 land cover; evaluated model accuracy using confusion matrices.",
-                        "Delivered findings through poster visualizations targeting both technical and general stakeholder audiences."
+                        "Built change detection outputs comparing 2023 and 2025 land cover; evaluated model accuracy using confusion matrices."
                     ]
                 },
                 {
@@ -215,8 +241,7 @@
                     "period": "Jan 2024 - Apr 2024",
                     "details": [
                         "Cleaned, structured, and tabulated laboratory datasets for contamination assessment.",
-                        "Compared results against historical data and provincial/federal thresholds to flag exceedances.",
-                        "Produced concise summary reports translating technical findings into actionable recommendations."
+                        "Compared results against historical data and provincial/federal thresholds to flag exceedances."
                     ]
                 },
                 {
@@ -231,6 +256,20 @@
         },
         "geospatial": {
             "printProfile": "Spatial Data Science student at Mount Royal University with hands-on GIS experience in ArcGIS Pro, QGIS, and Google Earth Engine. Physics and chemistry background supports rigorous spatial analysis, and I have applied these skills to stream-restoration mapping and environmental reporting with real stakeholder impact.",
+            "printProjects": [
+                {
+                    "role": "Solar Farm GIS Analysis",
+                    "organization": "ArcGIS Pro",
+                    "period": "2025",
+                    "details": ["Layered suitability analysis on Saddle Lake IR #125 combining terrain, legal, and cost surfaces to rank four candidate solar farm sites by capacity and cost-per-MWh."]
+                },
+                {
+                    "role": "Calgary Parks & Pathways Web Map",
+                    "organization": "Leaflet · JavaScript · Esri-Leaflet",
+                    "period": "2025",
+                    "details": ["Interactive map with toggleable park and trail layers and spatial filtering for exploring Calgary's green-space network."]
+                }
+            ],
             "printSkillsGrouped": [
                 {
                     "label": "GIS",
@@ -276,9 +315,7 @@
                     "program": "Spatial Data Science Certificate",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.9."
+                        "Ongoing, expected completion April 2026. Current GPA: 3.9."
                     ]
                 },
                 {
@@ -286,8 +323,7 @@
                     "program": "Bachelor of Science in General Science (Physics, Chemistry)",
                     "institution": "Mount Royal University",
                     "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.0 GPA."
+                        "Graduated with a 3.4 GPA."
                     ]
                 }
             ],
@@ -297,9 +333,8 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Classified Planet satellite and FCC drone imagery using a pixel-based Random Trees model to map vegetation land cover at Elk Creek.",
-                        "Performed change detection between 2023 and 2025 to quantify restoration-driven vegetation recovery, comparing outcomes inside and outside the restoration fence.",
-                        "Produced a stacked 3D land classification map and change detection figures for stakeholder-facing poster presentations."
+                        "Classified Planet satellite and drone imagery using a Random Trees model to map vegetation land cover at Elk Creek restoration site.",
+                        "Performed 2023–2025 change detection to quantify restoration-driven vegetation recovery inside and outside the fence."
                     ]
                 },
                 {
@@ -312,7 +347,7 @@
                     ]
                 },
                 {
-                    "role": "Realtor Assistant",
+                    "role": "Realtor Assistant (Part time)",
                     "organization": "Independent/Family Business",
                     "period": "2018 - 2026",
                     "details": [
@@ -323,6 +358,20 @@
         },
         "science": {
             "printProfile": "General Science graduate (Physics, Chemistry) from Mount Royal University with hands-on lab experience in titration, spectroscopy, and synthesis, and strong technical writing and error analysis skills. Currently completing a Spatial Data Science certificate with a 3.9 GPA, applying the same careful, evidence-based approach to data and reporting.",
+            "printProjects": [
+                {
+                    "role": "Procedural Tank Artillery Game",
+                    "organization": "Python · NumPy · Matplotlib",
+                    "period": "2025",
+                    "details": ["Applied projectile physics and procedural terrain generation to build a turn-based artillery simulation with per-turn state visualization."]
+                },
+                {
+                    "role": "Competitive Game Patch Analysis",
+                    "organization": "Python · Pandas · Matplotlib",
+                    "period": "2025",
+                    "details": ["Systematic before/after analysis of balance patch changes using clearly defined pick rate and role viability metrics."]
+                }
+            ],
             "printSkillsGrouped": [
                 {
                     "label": "Lab / Science",
@@ -363,8 +412,7 @@
                     "program": "Bachelor of Science in General Science (Physics, Chemistry)",
                     "institution": "Mount Royal University",
                     "details": [
-                        "General Science degree with a concentration in physics and chemistry.",
-                        "Graduated with a 3.0 GPA."
+                        "Graduated with a 3.4 GPA."
                     ]
                 },
                 {
@@ -372,9 +420,7 @@
                     "program": "Spatial Data Science Certificate",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Focused on spatial data analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.9."
+                        "Ongoing, expected completion April 2026. Current GPA: 3.9."
                     ]
                 }
             ],
@@ -385,8 +431,7 @@
                     "period": "Jan 2024 - Apr 2024",
                     "details": [
                         "Processed laboratory results and ensured data quality for environmental contamination assessments.",
-                        "Interpreted findings against regulatory guidance to support remediation recommendations.",
-                        "Authored technical summaries with clear methods, observations, and conclusions."
+                        "Interpreted findings against regulatory guidance to support remediation recommendations."
                     ]
                 },
                 {
@@ -394,9 +439,8 @@
                     "organization": "Freshwater Conservation Canada",
                     "period": "Jan 2026 - Present",
                     "details": [
-                        "Applied a supervised Random Trees model to classify land cover from satellite and drone imagery, with performance assessed using confusion matrices and class-level accuracy metrics.",
-                        "Used systematic change detection to document vegetation recovery between 2023 and 2025, comparing outcomes inside and outside the restoration fence.",
-                        "Contributed to poster presentations on stream restoration outcomes for FCC and academic audiences."
+                        "Applied a supervised Random Trees model to classify land cover from satellite and drone imagery; assessed accuracy using confusion matrices.",
+                        "Used systematic change detection to document vegetation recovery between 2023 and 2025, comparing outcomes inside and outside the restoration fence."
                     ]
                 },
                 {
@@ -411,6 +455,20 @@
         },
         "developer": {
             "printProfile": "Spatial Data Science student at Mount Royal University building data workflows and tools in Python, JavaScript, and SQL. Quantitative science background supports systematic problem solving, and I enjoy taking complex processes and turning them into structured, reproducible, and well-documented code.",
+            "printProjects": [
+                {
+                    "role": "Calgary Parks & Pathways Web Map",
+                    "organization": "JavaScript · Leaflet · Esri-Leaflet",
+                    "period": "2025",
+                    "details": ["Interactive map with layer controls, real-time filtering, and reset behavior to explore Calgary's parks and pathway network in the browser."]
+                },
+                {
+                    "role": "Procedural Tank Artillery Game",
+                    "organization": "Python · NumPy · Matplotlib",
+                    "period": "2025",
+                    "details": ["Turn-based artillery game with procedural terrain generation, physics-based projectile simulation, and per-turn visualization built from scratch."]
+                }
+            ],
             "printSkillsGrouped": [
                 {
                     "label": "Languages",
@@ -454,9 +512,7 @@
                     "program": "Spatial Data Science Certificate",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Ongoing, expected completion in April 2026.",
-                        "Focused on data science, spatial analysis, GIS, and geospatial technologies.",
-                        "Current GPA: 3.9."
+                        "Ongoing, expected completion April 2026. Current GPA: 3.9."
                     ]
                 },
                 {
@@ -464,8 +520,7 @@
                     "program": "Bachelor of Science in General Science (Physics, Chemistry)",
                     "institution": "Mount Royal University",
                     "details": [
-                        "Quantitative background with strong problem-solving and technical communication.",
-                        "Graduated with a 3.0 GPA."
+                        "Graduated with a 3.4 GPA."
                     ]
                 }
             ],
@@ -476,8 +531,7 @@
                     "period": "Jan 2026 - Present",
                     "details": [
                         "Wrote Python scripts to stack and align orthophoto and satellite raster data for supervised land classification.",
-                        "Built classification and change detection pipelines producing accuracy metrics, quantified land cover shifts, and visualization-ready outputs.",
-                        "Packaged analysis results into a stacked 3D land classification map and poster-quality figures for two separate presentations."
+                        "Built classification and change detection pipelines producing accuracy metrics, land cover shifts, and visualization-ready outputs."
                     ]
                 },
                 {
