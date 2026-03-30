@@ -27,9 +27,7 @@
             "tools": "ArcGIS Pro",
             "tags": [
                 "gis",
-                "site-suitability",
                 "spatial-analysis",
-                "cost-surface",
                 "arcgis"
             ],
             "overview": "A five-part coursework project (GEOG 2551/2553) applying layered GIS suitability analysis to Saddle Lake Indian Reserve #125, approximately 130 km northeast of Edmonton. Each assignment built on the last, culminating in a ranked shortlist of four candidate solar farm sites.",
@@ -58,7 +56,7 @@
         },
         {
             "id": "parks-pathways",
-            "featured": true,
+            "featured": false,
             "title": "Parks & Pathways Overview",
             "slug": "parks-and-pathways-overview",
             "pageHref": "projects/webMap.html",
@@ -69,16 +67,14 @@
             "role": "Web mapping, interface design, GIS communication",
             "tools": "Leaflet, Esri-Leaflet, ArcGIS FeatureServer, GeoJSON",
             "tags": [
-                "web",
-                "web-mapping",
                 "gis",
+                "web-mapping",
+                "web",
                 "leaflet",
-                "esri-leaflet",
-                "arcgis",
-                "geojson",
                 "javascript",
                 "html",
-                "css"
+                "css",
+                "geojson"
             ],
             "overview": "Built a responsive web map that helps users visually compare how Calgary parks and pathway corridors relate to one another across the city.",
             "challenge": "The goal was to make geographic relationships easier to inspect without overwhelming the user with a heavy GIS-style interface.",
@@ -126,7 +122,6 @@
                 "javascript",
                 "html",
                 "css",
-                "games",
                 "game-dev",
                 "interactive"
             ],
@@ -153,7 +148,7 @@
         },
         {
             "id": "patch",
-            "featured": true,
+            "featured": false,
             "title": "Video Game Patch Analysis",
             "slug": "video-game-patch-data-impact-analysis",
             "pageHref": "projects/video-game-patch-data-impact-analysis.html",
@@ -165,10 +160,9 @@
             "tools": "Python, Pandas, Matplotlib",
             "tags": [
                 "data-analysis",
+                "python",
                 "pandas",
                 "matplotlib",
-                "python",
-                "cleaning",
                 "visualization"
             ],
             "overview": "Treated Valorant patch 11.08 as a structured analysis problem: collect pre- and post-patch agent and role balance data, clean it, compare it across ranked brackets and pro play, and interpret whether the patch actually changed the game's balance in a meaningful way.",
@@ -208,12 +202,9 @@
             "role": "Model training, evaluation, experiment tracking, Hugging Face Hub publishing",
             "tools": "Python, Stable-Baselines3, Gymnasium, Unity ML-Agents, NumPy, Matplotlib, Hugging Face Hub",
             "tags": [
+                "machine-learning",
                 "reinforcement-learning",
-                "ppo",
-                "dqn",
-                "python",
-                "evaluation",
-                "deployment"
+                "python"
             ],
             "overview": "A collection of trained reinforcement learning agents published to the Hugging Face Hub, built through the Hugging Face Deep RL Course. The course progressed from tabular Q-learning through policy gradients (REINFORCE), deep Q-networks (DQN), PPO with parallel environments, and Unity ML-Agents.",
             "challenge": "Each agent required its own training configuration, environment setup, and evaluation workflow. The goal was to produce trained, evaluated, and packaged agents rather than one-off notebooks.",
@@ -260,10 +251,7 @@
             "tags": [
                 "web",
                 "html",
-                "css",
-                "responsive",
-                "forms",
-                "bootstrap"
+                "css"
             ],
             "overview": "Built a fictional agency website with multiple pages, shared layout components, a pricing/quotes page, and a separate feedback flow.",
             "challenge": "The project needed to feel consistent across pages while still supporting page-specific content and interactions.",
@@ -290,6 +278,186 @@
             "links": []
         },
         {
+            "id": "calgary-housing",
+            "featured": true,
+            "title": "Calgary Housing Affordability Dashboard",
+            "slug": "calgary-housing-affordability-dashboard",
+            "pageHref": "projects/calgary-housing-affordability-dashboard.html",
+            "image": "images/calgary_housing.png",
+            "imageAlt": "Choropleth map of Calgary communities colour-coded by housing affordability",
+            "summary": "Interactive choropleth dashboard mapping Calgary housing assessment values by community, with a budget slider that updates affordability shading in real time.",
+            "impact": "Turned a 40 MB raw assessment dataset into an explorable map where any budget threshold immediately recolours the city's communities - making affordability geography visible at a glance rather than buried in a spreadsheet.",
+            "role": "Data processing, geospatial visualization, Dash application development",
+            "tools": "Python, Dash, Plotly, pandas, GeoJSON",
+            "tags": [
+                "gis",
+                "data-analysis",
+                "python",
+                "plotly",
+                "pandas",
+                "geojson",
+                "visualization",
+                "web"
+            ],
+            "overview": "Built an interactive choropleth map joining 2024 Calgary housing assessment data with community boundary GeoJSON. A budget slider lets users set a threshold; communities with mean assessed values within budget appear teal, over-budget communities appear red.",
+            "challenge": "The raw assessment file contained over 200,000 individual property records. The challenge was aggregating them by community at load time and binding the result to geographic boundaries fast enough for the interactive slider to feel responsive.",
+            "process": [
+                "Loaded and aggregated the 40 MB housing assessment CSV by community name using pandas, computing median assessed values per community.",
+                "Joined the aggregated statistics to a Calgary community boundary GeoJSON file to create a single map-ready dataset.",
+                "Built a Dash layout with a Plotly choropleth map and a budget range slider; used a callback to re-colour communities each time the slider moves."
+            ],
+            "outcome": "A working interactive dashboard that lets users visually explore which Calgary communities fall within a given budget, with real 2024 assessment data driving the colour mapping.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A geospatial data application combining property assessment records with community boundary data to make housing affordability geography explorable through a browser-based interface."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "pandas handled the aggregation and join; Dash and Plotly Express rendered the map and wired the slider callback; GeoJSON provided the community boundary geometry."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It demonstrates how data engineering and geospatial visualization can be combined into a tool that answers a practical question - not just a static chart, but something a user can actually explore."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "land-cover",
+            "featured": true,
+            "title": "Stream Health & Land Cover Classification",
+            "slug": "stream-health-land-cover-classification",
+            "pageHref": "projects/stream-health-land-cover-classification.html",
+            "image": "images/fcc_poster_detailed.png",
+            "imageAlt": "Detailed project poster for the Elk Creek stream health land cover classification study",
+            "summary": "Multi-temporal land cover classification for a stream-health study using machine-learning pixel classification on satellite imagery, with accuracy assessment and documented cartographic outputs.",
+            "impact": "Produced a validated land cover map comparing 2023 and 2025 conditions across the Elk Creek study area, supported by confusion matrices and a detailed project poster communicating the methodology and findings.",
+            "role": "Remote sensing, ML classification, accuracy assessment, GIS analysis",
+            "tools": "ArcGIS Pro, Python, Planet satellite imagery, DEM, Orthoimagery",
+            "tags": [
+                "gis",
+                "remote-sensing",
+                "arcgis",
+                "machine-learning",
+                "spatial-analysis",
+                "python",
+                "change-detection"
+            ],
+            "overview": "Classified land cover across two time periods (2023 and 2025) using machine-learning pixel classification in ArcGIS Pro, integrating Planet satellite imagery stacks, a digital elevation model, and orthoimagery for the Elk Creek study area. Accuracy was validated with confusion matrices against independent validation point sets.",
+            "challenge": "The study area required integrating multiple data sources - multispectral satellite stacks, a DEM, orthoimagery, and precipitation data - and aligning them spatially before classification. Ensuring the classifier generalised across both time periods without retraining from scratch added additional complexity.",
+            "process": [
+                "Assembled and co-registered Planet satellite imagery stacks, DEM derivatives, and orthoimagery for 2023 and 2025 acquisition dates.",
+                "Trained a machine-learning pixel classifier in ArcGIS Pro using labelled training samples and evaluated accuracy with confusion matrices and validation point sets.",
+                "Compared 2023 and 2025 classified rasters to detect land cover change, and documented the methodology, accuracy results, and findings in a detailed project poster."
+            ],
+            "outcome": "Validated land cover classifications for both time periods with documented accuracy, a change-detection layer highlighting areas of cover transition, and a project poster communicating the full methodology and results.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "An applied remote sensing project using machine-learning classification to map land cover change across two years in support of a stream-health assessment."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "ArcGIS Pro's classification tools processed the satellite stacks and trained the pixel classifier; Python scripts handled precipitation data analysis; accuracy was assessed through confusion matrices against independent validation points."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It demonstrates end-to-end remote sensing workflow - from raw imagery ingestion through classification, validation, and communication - applied to a real environmental monitoring context."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "olympic-analysis",
+            "featured": false,
+            "title": "Olympic Games Data Analysis",
+            "slug": "olympic-games-data-analysis",
+            "pageHref": "projects/olympic-games-data-analysis.html",
+            "image": "images/olympics_poster.png",
+            "imageAlt": "Olympic Games data analysis poster with medal statistics visualizations",
+            "summary": "Comprehensive analysis of Olympic Games athlete and country performance using a SQLite database, with custom Gold/Silver/Bronze visualizations built in Python.",
+            "impact": "Produced a full suite of publication-quality figures covering athlete results, country medal aggregations, and podium finish patterns - with a consistent visual identity built around the Olympic medal colour palette.",
+            "role": "Data analysis, SQL querying, visualization design",
+            "tools": "Python, SQLite, pandas, NumPy, Matplotlib, Seaborn",
+            "tags": [
+                "data-analysis",
+                "python",
+                "sql",
+                "pandas",
+                "matplotlib",
+                "seaborn",
+                "numpy",
+                "visualization"
+            ],
+            "overview": "Queried an Olympic Games SQLite database to analyse athlete performance, country medal totals, and podium finish distributions. Custom colour palettes matching the Gold, Silver, and Bronze medal hierarchy were applied across all visualizations for visual consistency.",
+            "challenge": "The database contained overlapping athlete and country relationships across many editions of the Games. Structuring queries to answer multi-level questions - per-athlete, per-country, per-edition - without duplicating records required careful SQL design.",
+            "process": [
+                "Wrote targeted SQL queries across the Olympic database to extract athlete results, country medal counts, and podium distributions.",
+                "Used pandas to reshape and aggregate query outputs into analysis-ready frames, then visualized each dimension with Matplotlib and Seaborn.",
+                "Defined a custom Gold/Silver/Bronze colour palette and applied it consistently across all figures for a cohesive publication-ready output set."
+            ],
+            "outcome": "A complete set of visualizations covering athlete-level results, country rankings, and podium patterns, with a consistent visual identity aligned to Olympic medal conventions.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A data analysis project exploring Olympic Games performance data through SQL queries and Python visualization, with a focus on multi-level aggregation and visual consistency."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "SQL handled the querying and filtering; pandas managed the aggregation and reshaping; Matplotlib and Seaborn produced the final figures using a purpose-built medal colour palette."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It shows how SQL and Python visualization work together - and how consistent design choices (the medal palette) can turn a set of separate charts into a coherent analytical story."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "data-etl",
+            "featured": false,
+            "title": "Multi-format Data Extraction Pipeline",
+            "slug": "multi-format-data-extraction-pipeline",
+            "pageHref": "projects/multi-format-data-extraction-pipeline.html",
+            "image": "images/data_pipeline.png",
+            "imageAlt": "Flowchart showing CSV, JSON, and PDF sources merging into a unified dataset",
+            "summary": "ETL pipeline that extracts tabular data from CSV, JSON, and PDF sources, cleans and validates each format, then merges them into a single unified dataset.",
+            "impact": "Automated the extraction of urban growth statistics from three incompatible source formats - including a PDF report with embedded tables - into one clean, analysis-ready CSV with error detection at each stage.",
+            "role": "Data engineering, ETL design, data cleaning and validation",
+            "tools": "Python, pandas, pdfplumber",
+            "tags": [
+                "data-analysis",
+                "python",
+                "pandas",
+                "etl",
+                "automation"
+            ],
+            "overview": "Built a modular ETL pipeline to unify urban growth data spread across CSV, JSON, and PDF source files. Each format had a dedicated extraction module with its own cleaning and validation logic; a final merger step joined the outputs into one consistent dataset.",
+            "challenge": "The most difficult source was a PDF report containing embedded tables - standard CSV and JSON readers cannot parse these directly. Identifying and extracting the correct table regions, then normalising the output to match the other sources, required careful handling.",
+            "process": [
+                "Built separate extraction modules for each source format: CSV-to-CSV transformers with error detection, a JSON-to-CSV converter for weather data, and a PDF table extractor using pdfplumber.",
+                "Added validation logic to each module to flag missing values, type mismatches, and formatting inconsistencies before the data reached the merger.",
+                "Combined the cleaned outputs through a merger step that aligned columns and produced a single unified CSV ready for downstream analysis."
+            ],
+            "outcome": "A working multi-source pipeline that produces a single clean dataset from three incompatible input formats, with validation errors surfaced at each stage rather than silently propagating.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A data engineering project building a modular ETL pipeline to extract, clean, and unify urban growth data from CSV, JSON, and PDF sources."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Each source format had its own extraction and validation module; pdfplumber handled table extraction from the PDF report; pandas managed all joining and reshaping."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Real data rarely arrives in one clean format. This project demonstrates the ability to handle messy, heterogeneous inputs and produce reliable output - a core data engineering skill."
+                }
+            ],
+            "links": []
+        },
+        {
             "id": "tank-artillery",
             "featured": false,
             "title": "Procedural Tank Artillery Game",
@@ -304,12 +472,10 @@
             "tags": [
                 "python",
                 "game-dev",
-                "games",
-                "interactive",
-                "physics",
                 "simulation",
                 "matplotlib",
-                "numpy"
+                "numpy",
+                "interactive"
             ],
             "overview": "Implemented a turn-based artillery game in Python where terrain is procedurally generated and each shot is simulated against the landscape.",
             "challenge": "The core challenge was combining generation, collision checks, and game-state updates in a way that remained understandable and playable.",

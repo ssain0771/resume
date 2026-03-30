@@ -18,12 +18,12 @@
     const introDescription = document.querySelector("#portfolioDescription");
 
     let projects = [];
-    let activeTag = "";
+    let activeTags = new Set();
     let searchTerm = "";
     let isExpanded = false;
     let pageStrings = {};
 
-    /* Return true when a project matches the active search term and selected tag. */
+    /* Return true when a project matches the active search term and all selected tags. */
     function matchesFilter(project) {
         const haystack = [
             project.title,
@@ -32,7 +32,7 @@
             ...(project.tags || [])
         ].join(" ").toLowerCase();
 
-        const tagMatch = !activeTag || (project.tags || []).includes(activeTag);
+        const tagMatch = activeTags.size === 0 || [...activeTags].every((t) => (project.tags || []).includes(t));
         const searchMatch = !searchTerm || haystack.includes(searchTerm);
         return tagMatch && searchMatch;
     }
@@ -88,7 +88,7 @@
         article.setAttribute("data-project-id", project.id || "");
 
         const tagsHtml = (project.tags || []).slice(0, 4)
-            .map((tag) => `<span class="card-tag${tag === activeTag ? " is-active" : ""}" data-tag="${tag}">${tag}</span>`)
+            .map((tag) => `<span class="card-tag${activeTags.has(tag) ? " is-active" : ""}" data-tag="${tag}">${tag}</span>`)
             .join("");
 
         article.innerHTML = `
@@ -107,7 +107,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 const tag = span.dataset.tag;
-                activeTag = activeTag === tag ? "" : tag;
+                activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
                 renderTags();
                 renderProjects();
             });
@@ -131,9 +131,9 @@
             button.type = "button";
             button.className = "tag-button";
             button.textContent = tag;
-            if (tag === activeTag) button.classList.add("is-active");
+            if (activeTags.has(tag)) button.classList.add("is-active");
             button.addEventListener("click", () => {
-                activeTag = activeTag === tag ? "" : tag;
+                activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
                 renderTags();
                 renderProjects();
             });
