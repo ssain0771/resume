@@ -28,6 +28,30 @@
                     "organization": "Leaflet · JavaScript",
                     "period": "2025",
                     "details": ["Interactive web map with toggleable layers and spatial filtering for Calgary's green-space and pathway network."]
+                },
+                {
+                    "role": "Calgary Housing Affordability Dashboard",
+                    "organization": "Python · Dash · Plotly · pandas",
+                    "period": "2025",
+                    "details": ["Interactive choropleth dashboard mapping 2024 assessment values by community; budget slider recolours affordability in real time across 200,000+ property records."]
+                },
+                {
+                    "role": "Olympic Games Data Analysis",
+                    "organization": "Python · SQLite · pandas · Matplotlib",
+                    "period": "2025",
+                    "details": ["SQL-driven analysis of athlete and country performance across Olympic editions; custom Gold/Silver/Bronze palette applied across all publication-ready figures."]
+                },
+                {
+                    "role": "Multi-format Data Extraction Pipeline",
+                    "organization": "Python · pandas · pdfplumber",
+                    "period": "2025",
+                    "details": ["Modular ETL pipeline extracting urban growth data from CSV, JSON, and PDF sources into a unified validated dataset with per-stage error detection."]
+                },
+                {
+                    "role": "Reinforcement Learning Lab",
+                    "organization": "Python · Stable-Baselines3 · Gymnasium",
+                    "period": "2025",
+                    "details": ["Seven trained RL agents across Q-learning, REINFORCE, DQN, PPO, and Unity ML-Agents; each evaluated and published to Hugging Face Hub."]
                 }
             ],
             "education": [
@@ -158,16 +182,22 @@
             "printProfile": "Spatial Data Science student at Mount Royal University with a background in physics and chemistry, focused on Python, SQL, and data analysis workflows that support clear, decision-ready outputs. My work combines structured data cleaning, comparative analysis, and concise reporting to turn complex datasets into findings that are easy to act on.",
             "printProjects": [
                 {
+                    "role": "Calgary Housing Affordability Dashboard",
+                    "organization": "Python · Dash · Plotly · pandas",
+                    "period": "2025",
+                    "details": ["Interactive choropleth dashboard turning 200,000+ property assessment records into an explorable affordability map with a real-time budget slider."]
+                },
+                {
                     "role": "Competitive Game Patch Analysis",
                     "organization": "Python · Pandas · Matplotlib",
                     "period": "2025",
                     "details": ["Before/after analysis quantifying balance patch impact on agent pick rates and role viability across ranked and professional play."]
                 },
                 {
-                    "role": "Solar Farm GIS Analysis",
-                    "organization": "ArcGIS Pro",
+                    "role": "Reinforcement Learning Lab",
+                    "organization": "Python · Stable-Baselines3 · Gymnasium",
                     "period": "2025",
-                    "details": ["Layered suitability analysis ranking four candidate solar farm sites by installed capacity, generation potential, and access cost."]
+                    "details": ["Seven trained RL agents across Q-learning, REINFORCE, DQN, and PPO; each evaluated with reward metrics and published to Hugging Face Hub."]
                 }
             ],
             "printSkillsGrouped": [
@@ -264,10 +294,10 @@
                     "details": ["Layered suitability analysis on Saddle Lake IR #125 combining terrain, legal, and cost surfaces to rank four candidate solar farm sites by capacity and cost-per-MWh."]
                 },
                 {
-                    "role": "Calgary Parks & Pathways Web Map",
-                    "organization": "Leaflet · JavaScript · Esri-Leaflet",
+                    "role": "Calgary Housing Affordability Dashboard",
+                    "organization": "Python · Dash · Plotly · GeoJSON",
                     "period": "2025",
-                    "details": ["Interactive map with toggleable park and trail layers and spatial filtering for exploring Calgary's green-space network."]
+                    "details": ["Choropleth dashboard joining 200,000+ assessment records to community boundary GeoJSON; interactive budget slider recolours affordability across the city in real time."]
                 }
             ],
             "printSkillsGrouped": [
@@ -463,10 +493,10 @@
                     "details": ["Interactive map with layer controls, real-time filtering, and reset behavior to explore Calgary's parks and pathway network in the browser."]
                 },
                 {
-                    "role": "Procedural Tank Artillery Game",
-                    "organization": "Python · NumPy · Matplotlib",
+                    "role": "Multi-format Data Extraction Pipeline",
+                    "organization": "Python · pandas · pdfplumber",
                     "period": "2025",
-                    "details": ["Turn-based artillery game with procedural terrain generation, physics-based projectile simulation, and per-turn visualization built from scratch."]
+                    "details": ["Modular ETL pipeline with dedicated extraction and validation modules for CSV, JSON, and PDF sources; outputs a unified clean dataset with errors surfaced at each stage."]
                 }
             ],
             "printSkillsGrouped": [
