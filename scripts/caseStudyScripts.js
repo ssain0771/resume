@@ -30,8 +30,32 @@
             if (backLink) backLink.href = "../portfolio.html";
 
             if (image) {
-                image.src = `../${project.image || ""}`;
-                image.alt = project.imageAlt || project.title || "";
+                if (project.iframe) {
+                    image.style.display = "none";
+                    const embed = document.createElement("iframe");
+                    embed.src = project.iframe;
+                    embed.className = "case-study-embed";
+                    if (project.iframeHeight) embed.style.height = project.iframeHeight;
+                    embed.setAttribute("frameborder", "0");
+                    embed.setAttribute("allowfullscreen", "");
+                    embed.setAttribute("allow", "geolocation");
+                    embed.title = project.title || "Project embed";
+                    image.parentNode.insertBefore(embed, image);
+
+                    // Prevent the iframe's internal navigation from scrolling the parent page.
+                    let savedScrollY = window.scrollY;
+                    embed.addEventListener("mouseenter", () => {
+                        savedScrollY = window.scrollY;
+                    });
+                    window.addEventListener("scroll", () => {
+                        if (document.activeElement === embed) {
+                            window.scrollTo({ top: savedScrollY, behavior: "instant" });
+                        }
+                    });
+                } else {
+                    image.src = `../${project.image || ""}`;
+                    image.alt = project.imageAlt || project.title || "";
+                }
             }
 
             if (overviewEl) overviewEl.textContent = project.overview || "";

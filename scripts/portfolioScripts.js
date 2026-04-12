@@ -23,6 +23,17 @@
     let isExpanded = false;
     let pageStrings = {};
 
+    /* Expand to the full project list if not already expanded. */
+    function expandIfNeeded() {
+        if (isExpanded) return;
+        isExpanded = true;
+        if (projectSectionHeading) projectSectionHeading.textContent = pageStrings.allProjectsTitle || "All projects";
+        if (toggleProjects) {
+            toggleProjects.textContent = pageStrings.showLess || "Show fewer projects";
+            toggleProjects.setAttribute("aria-expanded", "true");
+        }
+    }
+
     /* Return true when a project matches the active search term and all selected tags. */
     function matchesFilter(project) {
         const haystack = [
@@ -37,7 +48,8 @@
         return tagMatch && searchMatch;
     }
 
-    /* Enable mouse-drag scrolling on an overflow-x element. */
+    /* Enable mouse-drag scrolling on an overflow-x element.
+       Returns { wasDragged, reset } so the parent card can query and clear drag state. */
     function addDragScroll(el) {
         let isDown = false;
         let startX;
@@ -78,6 +90,11 @@
         el.addEventListener("click", (e) => {
             if (hasDragged) e.stopPropagation();
         }, true);
+
+        return {
+            wasDragged: () => hasDragged,
+            reset: () => { hasDragged = false; }
+        };
     }
 
     /* Build one clickable project card. */
@@ -100,7 +117,19 @@
             </div>
         `;
 
-        addDragScroll(article.querySelector(".project-card-meta"));
+        const dragState = addDragScroll(article.querySelector(".project-card-meta"));
+
+        // Each new press resets drag state so a previous abandoned drag doesn't
+        // block a subsequent legitimate click on the card.
+        article.addEventListener("mousedown", () => dragState.reset());
+
+        // Block card navigation when the tag row was being dragged.
+        article.addEventListener("click", (e) => {
+            if (dragState.wasDragged()) {
+                e.preventDefault();
+                dragState.reset();
+            }
+        });
 
         article.querySelectorAll(".card-tag").forEach((span) => {
             span.addEventListener("click", (e) => {
@@ -116,17 +145,25 @@
         return article;
     }
 
-    /* Render the clickable tag filters based on all tags found in the project data. */
+    /* Render the clickable tag filters.
+       Only shows tags that appear on at least one currently-matching project,
+       plus any active tags (so they can always be deselected). */
     function renderTags() {
         if (!tagList) return;
 
-        const tagSet = new Set();
-        projects.forEach((project) => {
-            (project.tags || []).forEach((tag) => tagSet.add(tag));
-        });
+        // Tags on projects that pass the current filters.
+        const available = new Set();
+        projects.filter(matchesFilter).forEach((p) => (p.tags || []).forEach((t) => available.add(t)));
+        // Always keep active tags visible so the user can deselect them.
+        activeTags.forEach((t) => available.add(t));
+
+        // Maintain stable alphabetical order from the full tag universe.
+        const allTags = new Set();
+        projects.forEach((p) => (p.tags || []).forEach((t) => allTags.add(t)));
 
         tagList.innerHTML = "";
-        Array.from(tagSet).sort().forEach((tag) => {
+        Array.from(allTags).sort().forEach((tag) => {
+            if (!available.has(tag)) return;
             const button = document.createElement("button");
             button.type = "button";
             button.className = "tag-button";
@@ -134,6 +171,7 @@
             if (activeTags.has(tag)) button.classList.add("is-active");
             button.addEventListener("click", () => {
                 activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
+                expandIfNeeded();
                 renderTags();
                 renderProjects();
             });
@@ -210,6 +248,7 @@
                 searchInput.placeholder = pageStrings.searchPlaceholder || searchInput.placeholder;
                 searchInput.addEventListener("input", () => {
                     searchTerm = String(searchInput.value || "").trim().toLowerCase();
+                    expandIfNeeded();
                     renderProjects();
                 });
             }

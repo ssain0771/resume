@@ -15,7 +15,7 @@
     "projects": [
         {
             "id": "solar",
-            "featured": true,
+            "featured": false,
             "title": "Solar Farm GIS Project",
             "slug": "solar-farm-gis-project",
             "pageHref": "projects/solar-farm-gis-project.html",
@@ -453,6 +453,239 @@
                 {
                     "title": "Why it mattered",
                     "body": "Real data rarely arrives in one clean format. This project demonstrates the ability to handle messy, heterogeneous inputs and produce reliable output - a core data engineering skill."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "calgary-traffic-analysis",
+            "featured": true,
+            "title": "Calgary Traffic Camera Analysis",
+            "slug": "calgary-traffic-analysis",
+            "pageHref": "projects/calgary-traffic-analysis.html",
+            "image": "images/calgary_traffic.png",
+            "iframe": "traffic_dashboard.html",
+            "iframeHeight": "780px",
+            "imageAlt": "Interactive traffic density map of Calgary with hourly slider",
+            "summary": "End-to-end pipeline that polls Calgary's live traffic camera network, runs YOLOv8 vehicle detection on each feed, spatially joins results to traffic signal infrastructure, and produces an interactive hourly dashboard.",
+            "impact": "Turned ~300 live municipal camera feeds into a queryable dataset showing where and when Calgary traffic peaks — finding that the NE quadrant carries the highest load city-wide and that all quadrants peak at 4pm.",
+            "role": "Data engineering, computer vision, geospatial analysis, interactive visualization",
+            "tools": "Python, YOLOv8, GeoPandas, Plotly, pandas, Requests",
+            "tags": [
+                "data-analysis",
+                "python",
+                "gis",
+                "machine-learning",
+                "geojson",
+                "plotly",
+                "pandas",
+                "visualization",
+                "automation"
+            ],
+            "overview": "A three-stage pipeline built on City of Calgary open data. A collection module polls ~300 live traffic camera feeds every five minutes, downloading frames and running YOLOv8 nano inference to count vehicles by class. A geospatial stage loads camera and traffic signal locations as GeoDataFrames, creates 100-metre buffer zones, and spatially joins signals to their nearest cameras. A visualization stage produces an interactive HTML dashboard: a Mapbox map with an hourly scrubber, a smoothed traffic curve with peak-hour bands highlighted, and per-quadrant trend lines.",
+            "challenge": "Coordinating reliable real-time data collection across ~300 camera feeds while keeping the downstream spatial and temporal analysis clean enough to surface meaningful patterns rather than just noise.",
+            "process": [
+                "Built a polling loop that fetches live camera frames from the City of Calgary API every five minutes, runs YOLOv8 vehicle detection on each image, and logs timestamped vehicle counts with camera coordinates.",
+                "Used GeoPandas to project camera and traffic signal locations into UTM Zone 11N, buffer cameras by 100 metres, and spatial-join signals to identify which infrastructure each camera monitors.",
+                "Aggregated observations by camera and hour, applied Gaussian smoothing to the hourly averages, and built three coordinated Plotly figures — an interactive map with an hourly slider, a city-wide traffic curve, and quadrant-level breakdowns — exported as a single HTML dashboard."
+            ],
+            "outcome": "A working automated pipeline producing a self-contained interactive dashboard from live municipal data. Key findings: 4pm is Calgary's busiest traffic hour across all quadrants, and the NE quadrant consistently records the highest vehicle counts.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "An automated data pipeline combining real-time API polling, computer vision vehicle detection, and geospatial analysis to map Calgary traffic patterns from live camera feeds."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "YOLOv8 handled vehicle detection on live camera frames; GeoPandas managed spatial joins between cameras and traffic signal infrastructure; Plotly produced an interactive dashboard with an hourly time slider and smoothed trend lines."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "It demonstrates a full data engineering pipeline — from live API ingestion through computer vision, spatial analysis, and interactive output — using real open municipal data rather than a prepared dataset."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "urban-expansion-calgary",
+            "featured": false,
+            "title": "Urban Expansion in Calgary 2000–2025",
+            "slug": "urban-expansion-calgary",
+            "pageHref": "projects/urban-expansion-calgary.html",
+            "image": "images/urban_expansion_calgary.png",
+            "imageAlt": "ArcGIS Story Map: Urban Expansion in Calgary 2000–2025",
+            "summary": "An ArcGIS Story Map tracing Calgary's urban footprint growth from 2000 to 2025, examining how and where the city expanded over 25 years.",
+            "impact": "Makes 25 years of urban growth visible in a spatial narrative, connecting land use change to the broader patterns of how Calgary developed across different periods and directions.",
+            "role": "Story map authoring, spatial analysis, science communication",
+            "tools": "ArcGIS StoryMaps, ArcGIS Pro",
+            "tags": [
+                "gis",
+                "arcgis",
+                "story-map",
+                "urban",
+                "change-detection",
+                "spatial-analysis"
+            ],
+            "overview": "An ArcGIS Story Map documenting Calgary's urban expansion from 2000 to 2025. The story map traces the city's growing footprint across 25 years, examining the direction, pace, and pattern of development using spatial data to make the scale of growth legible.",
+            "challenge": "Presenting 25 years of urban change in a way that communicates both the spatial extent and the temporal pattern of growth without overwhelming the reader with raw data.",
+            "process": [
+                "Compiled and processed spatial data representing Calgary's urban footprint at key intervals between 2000 and 2025.",
+                "Structured the narrative to move through time, highlighting major growth periods and the geographic directions of expansion.",
+                "Used ArcGIS StoryMaps to combine before/after maps, imagery, and explanatory text into a coherent spatial story."
+            ],
+            "outcome": "An interactive story map that makes Calgary's 25-year urban expansion visible and interpretable through a spatial narrative.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "An ArcGIS Story Map tracing the spatial extent and pattern of Calgary's urban growth from 2000 to 2025 using mapped data and narrative framing."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Urban footprint data across key time intervals was compiled and visualized, then structured into a temporal narrative using ArcGIS StoryMaps."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Urban expansion is one of the most consequential spatial processes in a growing city — mapping it over time makes the scale and direction of change concrete rather than abstract."
+                }
+            ],
+            "links": [
+                {
+                    "href": "https://storymaps.arcgis.com/stories/ea645b4c05e74b3b918b1d5f8153b334",
+                    "text": "Open story map"
+                }
+            ]
+        },
+        {
+            "id": "stream-restoration-final",
+            "featured": false,
+            "title": "Quantifying Local Stream Restoration: Final Results",
+            "slug": "quantifying-local-stream-restoration-final",
+            "pageHref": "projects/quantifying-local-stream-restoration-final.html",
+            "image": "images/stream_restoration_final.png",
+            "iframe": "https://storymaps.arcgis.com/briefings/aa826d8f70d743ef8101900e81c069ad",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration Final Results",
+            "summary": "The final ArcGIS Story Map for the stream restoration quantification project, presenting the completed analysis, real data, and findings after data collection was complete.",
+            "impact": "Delivers the full results of the stream restoration study in an interactive narrative format, replacing the mock visuals from the intro story map with real outputs and documented findings.",
+            "role": "Story map authoring, spatial analysis, science communication",
+            "tools": "ArcGIS StoryMaps, ArcGIS Pro",
+            "tags": [
+                "gis",
+                "arcgis",
+                "spatial-analysis",
+                "story-map",
+                "environmental"
+            ],
+            "overview": "The final ArcGIS Story Map completing the stream restoration quantification project. Built after data collection and analysis were finished, this story map presents the real results — replacing the placeholder visuals from the introductory brief with actual maps, charts, and findings from the full study.",
+            "challenge": "Translating the completed analysis into a clear narrative that connects the original project framing to the actual results, making the findings accessible without losing the methodological rigour behind them.",
+            "process": [
+                "Integrated final analysis outputs — maps, spatial comparisons, and quantified restoration metrics — into the story map narrative.",
+                "Structured the presentation to follow from the study context established in the intro brief through to the conclusions.",
+                "Used ArcGIS StoryMaps to combine spatial outputs with explanatory text for a mixed technical and general audience."
+            ],
+            "outcome": "A complete final story map presenting the stream restoration study's real data, analysis outputs, and findings in an accessible interactive format.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "The final delivery of the stream restoration quantification project — an ArcGIS Story Map presenting the completed analysis and real results after data collection."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Final spatial analysis outputs were incorporated into a structured narrative using ArcGIS StoryMaps, building on the framing established in the introductory brief."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "The final story map closes the loop from project proposal to results — showing not just what was planned but what was actually found."
+                }
+            ],
+            "links": []
+        },
+        {
+            "id": "canada-energy-superpower",
+            "featured": false,
+            "title": "Canada as an Energy Superpower",
+            "slug": "canada-energy-superpower",
+            "pageHref": "projects/canada-energy-superpower.html",
+            "image": "images/canada_energy_superpower.png",
+            "imageAlt": "ArcGIS Story Map: Canada as an Energy Superpower",
+            "summary": "An ArcGIS Story Map examining Canada's position as a global energy superpower, exploring its resource base, infrastructure, and the geographic dimensions of energy production and export.",
+            "impact": "Presents a spatially grounded argument for Canada's energy superpower status, communicating complex resource geography and policy context through an interactive narrative format.",
+            "role": "Story map authoring, spatial research, science communication",
+            "tools": "ArcGIS StoryMaps",
+            "tags": [
+                "gis",
+                "arcgis",
+                "story-map",
+                "energy",
+                "environmental"
+            ],
+            "overview": "An ArcGIS Story Map exploring Canada's role as a global energy superpower. The story map examines the country's resource base — oil sands, hydropower, natural gas, and renewables — alongside the infrastructure and geographic context that shape how that energy is produced, moved, and exported.",
+            "challenge": "Communicating the scale and complexity of Canada's energy geography in a way that is accessible and spatially grounded, connecting resource data to broader arguments about energy policy and economic position.",
+            "process": [
+                "Researched Canada's energy resource base and production geography across fuel types and regions.",
+                "Structured the narrative to move from resource context through infrastructure to export capacity and policy implications.",
+                "Used ArcGIS StoryMaps to integrate maps, data, and explanatory text into a cohesive spatial argument."
+            ],
+            "outcome": "An interactive story map presenting a spatially grounded case for Canada's energy superpower status, readable by both technical and general audiences.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "An ArcGIS Story Map building a geographic and data-driven argument around Canada's position as a global energy superpower."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Resource and infrastructure data were organized into a narrative arc using ArcGIS StoryMaps, combining spatial context with policy and economic framing."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Energy geography is inherently spatial — story maps are one of the most effective formats for making that spatial argument visible and accessible."
+                }
+            ],
+            "links": [
+                {
+                    "href": "https://storymaps.arcgis.com/stories/1b1923605ba94abfa86a002846952208",
+                    "text": "Open story map"
+                }
+            ]
+        },
+        {
+            "id": "stream-restoration-intro",
+            "featured": false,
+            "title": "Quantifying Local Stream Restoration",
+            "slug": "quantifying-local-stream-restoration",
+            "pageHref": "projects/quantifying-local-stream-restoration.html",
+            "image": "images/stream_restoration_intro.png",
+            "iframe": "https://storymaps.arcgis.com/briefings/7a7096bcd05a4938a5faccdc3cbd5530",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
+            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
+            "impact": "Established the project framing, research questions, and methodological intent ahead of the full analysis, using mock visuals to communicate what the final outputs would represent.",
+            "role": "Story map authoring, project scoping, science communication",
+            "tools": "ArcGIS StoryMaps",
+            "tags": [
+                "gis",
+                "arcgis",
+                "story-map",
+                "environmental"
+            ],
+            "overview": "An introductory ArcGIS Story Map built at the outset of a stream restoration quantification project. It lays out the study area, research questions, and planned methodology using placeholder and mock visuals — serving as a project brief and communication piece before the actual data collection and analysis took place.",
+            "challenge": "Communicating the scope and intent of a project clearly before any real data or results are available, using mock visuals to stand in for the outputs that would come later.",
+            "process": [
+                "Defined the study context, research questions, and analysis approach in narrative form.",
+                "Used mock visuals to illustrate what the planned outputs — maps, charts, and spatial comparisons — would look like once real data was collected.",
+                "Structured the story map to serve as a project brief for collaborators and stakeholders at the project's start."
+            ],
+            "outcome": "A structured introductory story map that communicated the project's intent and scope ahead of the full analysis phase.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "An introductory ArcGIS Story Map produced before data collection began, outlining the study area, research questions, and planned approach for quantifying stream restoration outcomes."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "The story map combined narrative framing with mock visuals to communicate what the analysis would produce, functioning as a project scoping document rather than a results presentation."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Framing a project before the work begins forces clarity about goals and methods — and creates a reference point that the final analysis can be compared against."
                 }
             ],
             "links": []
