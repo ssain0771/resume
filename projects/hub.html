@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-        Web Games landing page.
-        This page sits outside the main navigation on purpose: it acts like a portfolio side branch for smaller interactive experiments.
-    -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Games | Simranjot Saini</title>
-    <meta name="description" content="Browser-based games and interactive experiments from Simranjot Saini.">
+    <title>Hub | Simranjot Saini</title>
+    <meta name="description" content="Portfolio hub page for Simranjot Saini.">
     <meta name="author" content="Simranjot Saini">
-    <link rel="stylesheet" href="styles/baseStyles.css">
-    <link rel="stylesheet" href="styles/webgamesStyles.css">
+    <link rel="stylesheet" href="../styles/baseStyles.css">
+    <link rel="stylesheet" href="../styles/webgamesStyles.css">
 </head>
-<body data-page="webgames" data-root="">
+<body data-page="hub" data-root="../">
 <a class="skip-link" href="#mainContent">Skip to content</a>
 
-    <!-- Shared site header populated by scripts/baseScripts.js. -->
     <header class="site-header">
         <div class="site-shell">
             <div class="header-bar">
-                <a class="brand-link" href="index.html">
+                <a class="brand-link" href="../index.html">
                     <span class="brand-mark">JS</span>
                     <span class="brand-copy">
                         <span id="brandName" class="brand-name">Simranjot Saini</span>
@@ -41,29 +36,26 @@
 
     <main id="mainContent" class="site-main">
         <div class="site-shell">
-            <!-- Intro card explains what the Web Games section is for. -->
             <section class="page-hero section">
                 <div class="hero-card">
-                    <div id="webgamesEyebrow" class="eyebrow">Portfolio / Web games</div>
-                    <h1 id="webgamesTitle" class="page-title">Small interactive builds that make technical ideas more hands-on.</h1>
-                    <p id="webgamesDescription" class="page-lead">This page is a home for browser-based experiments and mini-games. It stays outside the main navigation so it can grow over time without cluttering the core portfolio.</p>
-
+                    <div id="hubEyebrow" class="eyebrow"></div>
+                    <h1 id="hubTitle" class="page-title"></h1>
+                    <p id="hubDescription" class="page-lead"></p>
                     <div class="hero-actions">
-                        <a class="button-link" href="portfolio.html">Back to portfolio</a>
+                        <a class="button-link" href="../portfolio.html">Back to portfolio</a>
                     </div>
                 </div>
             </section>
 
-            <!-- This grid is populated from data/webgames.json so more games can be added later without rewriting the page. -->
             <section class="section">
                 <div class="section-card">
                     <div class="section-heading-wrap">
-                        <div class="eyebrow">Playable builds</div>
-                        <h2 class="section-heading">Current games and experiments</h2>
-                        <p class="section-description">Each game is self-contained and playable in the browser. More will be added over time.</p>
+                        <div id="hubSectionEyebrow" class="eyebrow"></div>
+                        <h2 id="hubSectionHeading" class="section-heading"></h2>
+                        <p id="hubSectionDescription" class="section-description"></p>
                     </div>
 
-                    <div id="webgamesGrid" class="webgames-grid"></div>
+                    <div id="hubGrid" class="webgames-grid"></div>
                 </div>
             </section>
         </div>
@@ -79,8 +71,7 @@
 
     <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
 
-    <!-- Shared site behavior loads first; page-specific rendering happens second. -->
-    <script src="scripts/baseScripts.js" defer></script>
-    <script src="scripts/webgamesScripts.js" defer></script>
+    <script src="../scripts/baseScripts.js" defer></script>
+    <script src="../scripts/hubScripts.js" defer></script>
 </body>
 </html>

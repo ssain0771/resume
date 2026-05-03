@@ -1,40 +1,40 @@
-{
+﻿{
     "page": {
         "eyebrow": "Portfolio / Web games",
         "title": "Small interactive builds that make technical ideas more hands-on.",
-        "description": "This page is a home for browser-based experiments and mini-games. It stays outside the main navigation so it can grow over time without cluttering the core portfolio."
+        "description": "This page is a home for browser-based experiments and mini-games. It stays outside the main navigation so it can grow over time without cluttering the core portfolio.",
+        "section": {
+            "eyebrow": "Playable builds",
+            "heading": "Current games and experiments",
+            "description": "Each game is self-contained and playable in the browser. More will be added over time."
+        }
     },
-    "games": [
+    "items": [
         {
             "id": "dodgeball",
             "title": "Dodgeball",
-            "pageHref": "games/dodgeball.html",
-            "image": "images/dodgeball-preview.svg",
+            "label": "Playable",
+            "actionHref": "projects/games/dodgeball.html",
+            "actionText": "Play game",
+            "image": "projects/images/dodgeball-preview.svg",
             "imageAlt": "Preview showing two paddles and a ball in flight across a divided arena",
             "summary": "A two-player game on one keyboard. Throw balls at your opponent and dodge the ones they throw back. First to lose all health loses.",
-            "learningGoal": "A simplified browser version of the first game I ever programmed, originally built in Lua with drawn characters and animations.",
-            "status": "Playable",
-            "tools": [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Canvas API"
-            ]
+            "note": "A simplified browser version of the first game I ever programmed, originally built in Lua with drawn characters and animations.",
+            "noteLabel": "Why this exists",
+            "tags": ["HTML", "CSS", "JavaScript", "Canvas API"]
         },
         {
             "id": "rgb-guesser",
             "title": "RGB Guesser",
-            "pageHref": "games/rgb-guesser.html",
-            "image": "images/rgb-guesser-preview.svg",
+            "label": "Playable",
+            "actionHref": "projects/games/rgb-guesser.html",
+            "actionText": "Play game",
+            "image": "projects/images/rgb-guesser-preview.svg",
             "imageAlt": "Preview illustration for the RGB Guesser web game",
             "summary": "You are shown a target RGB value and have to choose the matching colour from a small set of swatches.",
-            "learningGoal": "Useful for getting faster at reading RGB values and mentally translating them into visible colour.",
-            "status": "Playable",
-            "tools": [
-                "HTML",
-                "CSS",
-                "JavaScript"
-            ]
+            "note": "Useful for getting faster at reading RGB values and mentally translating them into visible colour.",
+            "noteLabel": "Why this exists",
+            "tags": ["HTML", "CSS", "JavaScript"]
         }
     ]
 }

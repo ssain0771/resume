@@ -1,14 +1,16 @@
 /*
     Generic case-study page behavior.
-    Looks up the project by data-project-id and renders a concise one-page view:
-    title, summary, image, what it is (overview), tools (chips), why it matters (impact), and links.
+    Reads the project id from ?id=<projectId> in the URL, fetches from projects.json,
+    and renders: title, summary, image/embed, what it is (overview), tools (chips),
+    why it matters (impact), and an external link in the hero if present.
 */
 
 (function initCaseStudyPage() {
-    const projectId = document.body.dataset.projectId;
+    const root = document.body.dataset.root || "";
+    const projectId = new URLSearchParams(location.search).get("id");
     if (!projectId) return;
 
-    fetch("../data/projects.json")
+    fetch(root + "data/projects.json")
         .then((response) => response.json())
         .then((data) => {
             const project = (data.projects || []).find((item) => item.id === projectId);
@@ -17,17 +19,28 @@
             const documentTitle = document.querySelector("title");
             const pageTitle = document.querySelector("#caseStudyPageTitle");
             const pageLead = document.querySelector("#caseStudyPageLead");
-            const backLink = document.querySelector("#backToPortfolioLink");
             const image = document.querySelector("#caseStudyImage");
             const overviewEl = document.querySelector("#caseStudyOverview");
             const tagsEl = document.querySelector("#caseStudyTags");
             const impactEl = document.querySelector("#caseStudyImpact");
-            const linkList = document.querySelector("#caseStudyLinkList");
 
             if (documentTitle) documentTitle.textContent = `${project.title || "Project"} | Simranjot Saini`;
             if (pageTitle) pageTitle.textContent = project.title || "";
             if (pageLead) pageLead.textContent = project.summary || "";
-            if (backLink) backLink.href = "../portfolio.html";
+
+            const heroActions = document.querySelector(".hero-card .hero-actions");
+            if (heroActions && project.links && project.links.length > 0) {
+                const firstLink = project.links[0];
+                const a = document.createElement("a");
+                a.className = "button-link";
+                a.href = firstLink.href || "#";
+                a.textContent = firstLink.text || "View project";
+                if (/^https?:\/\//i.test(firstLink.href || "")) {
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                }
+                heroActions.appendChild(a);
+            }
 
             if (image) {
                 if (project.iframe) {
@@ -53,7 +66,7 @@
                         }
                     });
                 } else {
-                    image.src = `../${project.image || ""}`;
+                    image.src = root + (project.image || "");
                     image.alt = project.imageAlt || project.title || "";
                 }
             }
@@ -72,21 +85,6 @@
             }
 
             if (impactEl) impactEl.textContent = project.impact || "";
-
-            if (linkList) {
-                linkList.innerHTML = "";
-                (project.links || []).forEach((link) => {
-                    const a = document.createElement("a");
-                    a.className = "button-link";
-                    a.href = link.href || "#";
-                    a.textContent = link.text || "Project link";
-                    if (/^https?:\/\//i.test(link.href || "")) {
-                        a.target = "_blank";
-                        a.rel = "noopener noreferrer";
-                    }
-                    linkList.appendChild(a);
-                });
-            }
         })
         .catch((error) => console.error("Failed to load case study.", error));
 })();

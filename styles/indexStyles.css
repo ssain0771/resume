@@ -167,4 +167,8 @@
     .featured-preview-image {
         height: 12.5rem;
     }
+
+    .hero-aside {
+        order: -1;
+    }
 }

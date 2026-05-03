@@ -153,13 +153,13 @@
 
         // Tags on projects that pass the current filters.
         const available = new Set();
-        projects.filter(matchesFilter).forEach((p) => (p.tags || []).forEach((t) => available.add(t)));
+        projects.filter((p) => !p.hidden).filter(matchesFilter).forEach((p) => (p.tags || []).forEach((t) => available.add(t)));
         // Always keep active tags visible so the user can deselect them.
         activeTags.forEach((t) => available.add(t));
 
         // Maintain stable alphabetical order from the full tag universe.
         const allTags = new Set();
-        projects.forEach((p) => (p.tags || []).forEach((t) => allTags.add(t)));
+        projects.filter((p) => !p.hidden).forEach((p) => (p.tags || []).forEach((t) => allTags.add(t)));
 
         tagList.innerHTML = "";
         Array.from(allTags).sort().forEach((tag) => {
@@ -188,9 +188,10 @@
     function renderProjects() {
         if (!projectGrid) return;
 
+        const visible = projects.filter((p) => !p.hidden);
         const source = isExpanded
-            ? [...projects].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-            : projects.filter((p) => p.featured);
+            ? [...visible].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+            : visible.filter((p) => p.featured);
         const filtered = source.filter(matchesFilter);
 
         projectGrid.innerHTML = "";

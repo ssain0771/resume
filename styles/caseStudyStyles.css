@@ -1,3 +1,12 @@
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.35rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* Case study content card: stacked blocks with consistent spacing. */
 .case-study-content {
     display: grid;

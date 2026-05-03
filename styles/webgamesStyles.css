@@ -70,6 +70,11 @@
     font-weight: 700;
 }
 
+.hub-sublabel {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
 @media (max-width: 960px) {
     .webgames-grid {
         grid-template-columns: 1fr;

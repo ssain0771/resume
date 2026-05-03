@@ -1,4 +1,4 @@
-{
+﻿{
     "page": {
         "eyebrow": "Portfolio",
         "title": "Project work with more context, process, and outcome.",
@@ -18,8 +18,8 @@
             "featured": false,
             "title": "Solar Farm GIS Project",
             "slug": "solar-farm-gis-project",
-            "pageHref": "projects/solar-farm-gis-project.html",
-            "image": "images/solar_farm.jpg",
+            "pageHref": "projects/project.html?id=solar",
+            "image": "projects/images/solar_farm.jpg",
             "imageAlt": "Solar Farm GIS Project map output",
             "summary": "Five-part GIS coursework project identifying candidate solar farm sites on Saddle Lake IR #125 through layered feasibility analysis and cost-per-MWh comparison.",
             "impact": "Reduced the full reserve area to four candidate parcels with quantified capacity, annual generation, and infrastructure access cost. Parcel 1 ranked most economical (CostPerMWh 0.196); Parcel 2 offered the largest potential output at 71.9 ha and ~485,000 MWh per year.",
@@ -60,7 +60,7 @@
             "title": "Parks & Pathways Overview",
             "slug": "parks-and-pathways-overview",
             "pageHref": "projects/webMap.html",
-            "image": "images/parks_pathways.png",
+            "image": "projects/images/parks_pathways.png",
             "imageAlt": "Interactive map showing Calgary parks and pathways layers",
             "summary": "Interactive Leaflet map exploring Calgary's green-space network with toggleable parks, trails, and boundary layers.",
             "impact": "Turned a course assignment web map into a more useful exploratory interface - going beyond the minimum requirements to add layer controls, filtering, and reset behavior that let viewers compare Calgary's green-space network on their own terms.",
@@ -110,8 +110,8 @@
             "featured": false,
             "title": "Web Games Lab",
             "slug": "web-games-lab",
-            "pageHref": "webgames.html",
-            "image": "images/webgames-hub.svg",
+            "pageHref": "projects/hub.html?id=webgames",
+            "image": "projects/images/webgames-hub.svg",
             "imageAlt": "Illustrated preview card for the Web Games Lab page",
             "summary": "Small browser-based games and interactive tools built to make colour reading, logic, and data intuition more hands-on.",
             "impact": "Creates a dedicated home for browser-based experiments that would otherwise sit as loose files with no context. Current builds include a two-player Dodgeball game rebuilt from the first game ever programmed (originally in Lua) and an RGB Guesser for building colour-reading intuition.",
@@ -141,7 +141,7 @@
             ],
             "links": [
                 {
-                    "href": "webgames.html",
+                    "href": "projects/hub.html?id=webgames",
                     "text": "Open Web Games Lab"
                 }
             ]
@@ -151,8 +151,8 @@
             "featured": false,
             "title": "Video Game Patch Analysis",
             "slug": "video-game-patch-data-impact-analysis",
-            "pageHref": "projects/video-game-patch-data-impact-analysis.html",
-            "image": "images/game_patch.png",
+            "pageHref": "projects/project.html?id=patch",
+            "image": "projects/images/game_patch.png",
             "imageAlt": "Gameplay data analysis chart",
             "summary": "Analyzed Valorant patch 11.08 to quantify whether balance changes shifted agent pick rates and win rates across ranked brackets and professional play.",
             "impact": "Identified the sentinel role had dropped below a 20% pick rate - a threshold argued to represent roughly one sentinel per team on average given four roles and five players - and built a structured before/after comparison to support the interpretation rather than relying on community perception.",
@@ -194,8 +194,8 @@
             "featured": false,
             "title": "Reinforcement Learning Lab",
             "slug": "reinforcement-learning-lab",
-            "pageHref": "rl-hub.html",
-            "image": "images/lunar_lander.png",
+            "pageHref": "projects/hub.html?id=rl",
+            "image": "projects/images/lunar_lander.png",
             "imageAlt": "LunarLander-v3 agent landing sequence",
             "summary": "Seven trained RL agents from the Hugging Face Deep RL Course, covering tabular Q-learning, REINFORCE, DQN, PPO, and Unity ML-Agents across classic control, Atari, and continuous environments.",
             "impact": "Completed the full Hugging Face Deep RL Course with trained and evaluated agents across five algorithm families, each published to the Hub for reuse and review.",
@@ -231,7 +231,7 @@
             ],
             "links": [
                 {
-                    "href": "rl-hub.html",
+                    "href": "projects/hub.html?id=rl",
                     "text": "View all models"
                 }
             ]
@@ -241,8 +241,8 @@
             "featured": false,
             "title": "White Tiger Websites",
             "slug": "white-tiger-websites",
-            "pageHref": "projects/white-tiger-websites.html",
-            "image": "images/website.png",
+            "pageHref": "projects/project.html?id=wtw",
+            "image": "projects/images/website.png",
             "imageAlt": "White Tiger Websites screenshot",
             "summary": "Responsive multi-page website with reusable layout components and interactive forms.",
             "impact": "Demonstrated a complete small-site build with reusable layout patterns, responsive behavior, and form logic rather than isolated page mockups.",
@@ -282,8 +282,9 @@
             "featured": true,
             "title": "Calgary Housing Affordability Dashboard",
             "slug": "calgary-housing-affordability-dashboard",
-            "pageHref": "projects/calgary-housing-affordability-dashboard.html",
-            "image": "images/calgary_housing.png",
+            "pageHref": "projects/project.html?id=calgary-housing",
+            "image": "projects/images/calgary_housing.png",
+            "iframe": "calgary-housing-map.html",
             "imageAlt": "Choropleth map of Calgary communities colour-coded by housing affordability",
             "summary": "Interactive choropleth dashboard mapping Calgary housing assessment values by community, with a budget slider that updates affordability shading in real time.",
             "impact": "Turned a 40 MB raw assessment dataset into an explorable map where any budget threshold immediately recolours the city's communities - making affordability geography visible at a glance rather than buried in a spreadsheet.",
@@ -324,57 +325,55 @@
             "links": []
         },
         {
-            "id": "land-cover",
+            "id": "fcc-hub",
             "featured": true,
-            "title": "Stream Health & Land Cover Classification",
-            "slug": "stream-health-land-cover-classification",
-            "pageHref": "projects/stream-health-land-cover-classification.html",
-            "image": "images/fcc_poster_detailed.png",
-            "imageAlt": "Detailed project poster for the Elk Creek stream health land cover classification study",
-            "summary": "Multi-temporal land cover classification for a stream-health study using machine-learning pixel classification on satellite imagery, with accuracy assessment and documented cartographic outputs.",
-            "impact": "Produced a validated land cover map comparing 2023 and 2025 conditions across the Elk Creek study area, supported by confusion matrices and a detailed project poster communicating the methodology and findings.",
-            "role": "Remote sensing, ML classification, accuracy assessment, GIS analysis",
-            "tools": "ArcGIS Pro, Python, Planet satellite imagery, DEM, Orthoimagery",
+            "title": "FCC Field Studies",
+            "slug": "fcc-field-studies",
+            "pageHref": "projects/hub.html?id=fcc",
+            "image": "projects/images/fcc_poster_detailed.png",
+            "imageAlt": "Stream restoration and land cover field studies hub",
+            "summary": "Three connected field course projects examining Elk Creek: project scoping, multi-temporal land cover classification, and final stream restoration quantification.",
+            "impact": "Brings together three interconnected studies into one coherent body of work covering the full arc from project proposal through classification and final results.",
+            "role": "GIS analysis, remote sensing, ML classification, science communication",
+            "tools": "ArcGIS Pro, ArcGIS StoryMaps, Python, Planet satellite imagery",
             "tags": [
                 "gis",
-                "remote-sensing",
                 "arcgis",
-                "machine-learning",
+                "remote-sensing",
                 "spatial-analysis",
-                "python",
-                "change-detection"
+                "story-map",
+                "environmental",
+                "machine-learning",
+                "python"
             ],
-            "overview": "Classified land cover across two time periods (2023 and 2025) using machine-learning pixel classification in ArcGIS Pro, integrating Planet satellite imagery stacks, a digital elevation model, and orthoimagery for the Elk Creek study area. Accuracy was validated with confusion matrices against independent validation point sets.",
-            "challenge": "The study area required integrating multiple data sources - multispectral satellite stacks, a DEM, orthoimagery, and precipitation data - and aligning them spatially before classification. Ensuring the classifier generalised across both time periods without retraining from scratch added additional complexity.",
+            "overview": "Three related GIS and remote sensing projects built around a field course study of Elk Creek, spanning a project scoping brief, multi-temporal land cover classification, and a final story map presenting completed results.",
+            "challenge": "Coordinating three distinct deliverables into a coherent body of work covering the full project arc from scoping through classification to final results communication.",
             "process": [
-                "Assembled and co-registered Planet satellite imagery stacks, DEM derivatives, and orthoimagery for 2023 and 2025 acquisition dates.",
-                "Trained a machine-learning pixel classifier in ArcGIS Pro using labelled training samples and evaluated accuracy with confusion matrices and validation point sets.",
-                "Compared 2023 and 2025 classified rasters to detect land cover change, and documented the methodology, accuracy results, and findings in a detailed project poster."
+                "Produced an introductory story map to frame the study context, research questions, and planned approach before data collection began.",
+                "Classified land cover across 2023 and 2025 using machine-learning pixel classification in ArcGIS Pro, integrating satellite imagery, DEM, and orthoimagery for accuracy validation.",
+                "Delivered the final results through an ArcGIS Story Map connecting the completed analysis and real findings back to the original project framing."
             ],
-            "outcome": "Validated land cover classifications for both time periods with documented accuracy, a change-detection layer highlighting areas of cover transition, and a project poster communicating the full methodology and results.",
+            "outcome": "A complete field course body of work: a project brief, a validated land cover classification study, and a final story map presenting the results.",
             "detailSections": [
                 {
-                    "title": "What this project was",
-                    "body": "An applied remote sensing project using machine-learning classification to map land cover change across two years in support of a stream-health assessment."
-                },
-                {
-                    "title": "How it was done",
-                    "body": "ArcGIS Pro's classification tools processed the satellite stacks and trained the pixel classifier; Python scripts handled precipitation data analysis; accuracy was assessed through confusion matrices against independent validation points."
-                },
-                {
-                    "title": "Why it mattered",
-                    "body": "It demonstrates end-to-end remote sensing workflow - from raw imagery ingestion through classification, validation, and communication - applied to a real environmental monitoring context."
+                    "title": "Why these are grouped",
+                    "body": "All three projects share the same study area and research thread — quantifying stream restoration outcomes in Elk Creek. Grouping them shows how a multi-stage field project progresses from scoping through analysis to final communication."
                 }
             ],
-            "links": []
+            "links": [
+                {
+                    "href": "projects/hub.html?id=fcc",
+                    "text": "View all studies"
+                }
+            ]
         },
         {
             "id": "olympic-analysis",
             "featured": false,
             "title": "Olympic Games Data Analysis",
             "slug": "olympic-games-data-analysis",
-            "pageHref": "projects/olympic-games-data-analysis.html",
-            "image": "images/olympics_poster.png",
+            "pageHref": "projects/project.html?id=olympic-analysis",
+            "image": "projects/images/olympics_poster.png",
             "imageAlt": "Olympic Games data analysis poster with medal statistics visualizations",
             "summary": "Comprehensive analysis of Olympic Games athlete and country performance using a SQLite database, with custom Gold/Silver/Bronze visualizations built in Python.",
             "impact": "Produced a full suite of publication-quality figures covering athlete results, country medal aggregations, and podium finish patterns - with a consistent visual identity built around the Olympic medal colour palette.",
@@ -419,8 +418,8 @@
             "featured": false,
             "title": "Multi-format Data Extraction Pipeline",
             "slug": "multi-format-data-extraction-pipeline",
-            "pageHref": "projects/multi-format-data-extraction-pipeline.html",
-            "image": "images/data_pipeline.png",
+            "pageHref": "projects/project.html?id=data-etl",
+            "image": "projects/images/data_pipeline.png",
             "imageAlt": "Flowchart showing CSV, JSON, and PDF sources merging into a unified dataset",
             "summary": "ETL pipeline that extracts tabular data from CSV, JSON, and PDF sources, cleans and validates each format, then merges them into a single unified dataset.",
             "impact": "Automated the extraction of urban growth statistics from three incompatible source formats - including a PDF report with embedded tables - into one clean, analysis-ready CSV with error detection at each stage.",
@@ -462,8 +461,8 @@
             "featured": true,
             "title": "Calgary Traffic Camera Analysis",
             "slug": "calgary-traffic-analysis",
-            "pageHref": "projects/calgary-traffic-analysis.html",
-            "image": "images/calgary_traffic.png",
+            "pageHref": "projects/project.html?id=calgary-traffic-analysis",
+            "image": "projects/images/calgary_traffic.png",
             "iframe": "traffic_dashboard.html",
             "iframeHeight": "780px",
             "imageAlt": "Interactive traffic density map of Calgary with hourly slider",
@@ -509,11 +508,12 @@
         {
             "id": "urban-expansion-calgary",
             "featured": false,
-            "title": "Urban Expansion in Calgary 2000–2025",
+            "title": "Urban Expansion in Calgary 2000-2025",
             "slug": "urban-expansion-calgary",
-            "pageHref": "projects/urban-expansion-calgary.html",
-            "image": "images/urban_expansion_calgary.png",
-            "imageAlt": "ArcGIS Story Map: Urban Expansion in Calgary 2000–2025",
+            "pageHref": "projects/project.html?id=urban-expansion-calgary",
+            "image": "projects/images/urban_expansion_calgary.png",
+            "iframe": "https://storymaps.arcgis.com/stories/afb6223db78249c99779bfd7b20db50d",
+            "imageAlt": "ArcGIS Story Map: Urban Expansion in Calgary 2000-2025",
             "summary": "An ArcGIS Story Map tracing Calgary's urban footprint growth from 2000 to 2025, examining how and where the city expanded over 25 years.",
             "impact": "Makes 25 years of urban growth visible in a spatial narrative, connecting land use change to the broader patterns of how Calgary developed across different periods and directions.",
             "role": "Story map authoring, spatial analysis, science communication",
@@ -556,56 +556,12 @@
             ]
         },
         {
-            "id": "stream-restoration-final",
-            "featured": false,
-            "title": "Quantifying Local Stream Restoration: Final Results",
-            "slug": "quantifying-local-stream-restoration-final",
-            "pageHref": "projects/quantifying-local-stream-restoration-final.html",
-            "image": "images/stream_restoration_final.png",
-            "iframe": "https://storymaps.arcgis.com/briefings/aa826d8f70d743ef8101900e81c069ad",
-            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration Final Results",
-            "summary": "The final ArcGIS Story Map for the stream restoration quantification project, presenting the completed analysis, real data, and findings after data collection was complete.",
-            "impact": "Delivers the full results of the stream restoration study in an interactive narrative format, replacing the mock visuals from the intro story map with real outputs and documented findings.",
-            "role": "Story map authoring, spatial analysis, science communication",
-            "tools": "ArcGIS StoryMaps, ArcGIS Pro",
-            "tags": [
-                "gis",
-                "arcgis",
-                "spatial-analysis",
-                "story-map",
-                "environmental"
-            ],
-            "overview": "The final ArcGIS Story Map completing the stream restoration quantification project. Built after data collection and analysis were finished, this story map presents the real results — replacing the placeholder visuals from the introductory brief with actual maps, charts, and findings from the full study.",
-            "challenge": "Translating the completed analysis into a clear narrative that connects the original project framing to the actual results, making the findings accessible without losing the methodological rigour behind them.",
-            "process": [
-                "Integrated final analysis outputs — maps, spatial comparisons, and quantified restoration metrics — into the story map narrative.",
-                "Structured the presentation to follow from the study context established in the intro brief through to the conclusions.",
-                "Used ArcGIS StoryMaps to combine spatial outputs with explanatory text for a mixed technical and general audience."
-            ],
-            "outcome": "A complete final story map presenting the stream restoration study's real data, analysis outputs, and findings in an accessible interactive format.",
-            "detailSections": [
-                {
-                    "title": "What this project was",
-                    "body": "The final delivery of the stream restoration quantification project — an ArcGIS Story Map presenting the completed analysis and real results after data collection."
-                },
-                {
-                    "title": "How it was done",
-                    "body": "Final spatial analysis outputs were incorporated into a structured narrative using ArcGIS StoryMaps, building on the framing established in the introductory brief."
-                },
-                {
-                    "title": "Why it mattered",
-                    "body": "The final story map closes the loop from project proposal to results — showing not just what was planned but what was actually found."
-                }
-            ],
-            "links": []
-        },
-        {
             "id": "canada-energy-superpower",
             "featured": false,
             "title": "Canada as an Energy Superpower",
             "slug": "canada-energy-superpower",
-            "pageHref": "projects/canada-energy-superpower.html",
-            "image": "images/canada_energy_superpower.png",
+            "pageHref": "projects/project.html?id=canada-energy-superpower",
+            "image": "projects/images/canada_energy_superpower.png",
             "imageAlt": "ArcGIS Story Map: Canada as an Energy Superpower",
             "summary": "An ArcGIS Story Map examining Canada's position as a global energy superpower, exploring its resource base, infrastructure, and the geographic dimensions of energy production and export.",
             "impact": "Presents a spatially grounded argument for Canada's energy superpower status, communicating complex resource geography and policy context through an interactive narrative format.",
@@ -648,55 +604,12 @@
             ]
         },
         {
-            "id": "stream-restoration-intro",
-            "featured": false,
-            "title": "Quantifying Local Stream Restoration",
-            "slug": "quantifying-local-stream-restoration",
-            "pageHref": "projects/quantifying-local-stream-restoration.html",
-            "image": "images/stream_restoration_intro.png",
-            "iframe": "https://storymaps.arcgis.com/briefings/7a7096bcd05a4938a5faccdc3cbd5530",
-            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
-            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
-            "impact": "Established the project framing, research questions, and methodological intent ahead of the full analysis, using mock visuals to communicate what the final outputs would represent.",
-            "role": "Story map authoring, project scoping, science communication",
-            "tools": "ArcGIS StoryMaps",
-            "tags": [
-                "gis",
-                "arcgis",
-                "story-map",
-                "environmental"
-            ],
-            "overview": "An introductory ArcGIS Story Map built at the outset of a stream restoration quantification project. It lays out the study area, research questions, and planned methodology using placeholder and mock visuals — serving as a project brief and communication piece before the actual data collection and analysis took place.",
-            "challenge": "Communicating the scope and intent of a project clearly before any real data or results are available, using mock visuals to stand in for the outputs that would come later.",
-            "process": [
-                "Defined the study context, research questions, and analysis approach in narrative form.",
-                "Used mock visuals to illustrate what the planned outputs — maps, charts, and spatial comparisons — would look like once real data was collected.",
-                "Structured the story map to serve as a project brief for collaborators and stakeholders at the project's start."
-            ],
-            "outcome": "A structured introductory story map that communicated the project's intent and scope ahead of the full analysis phase.",
-            "detailSections": [
-                {
-                    "title": "What this project was",
-                    "body": "An introductory ArcGIS Story Map produced before data collection began, outlining the study area, research questions, and planned approach for quantifying stream restoration outcomes."
-                },
-                {
-                    "title": "How it was done",
-                    "body": "The story map combined narrative framing with mock visuals to communicate what the analysis would produce, functioning as a project scoping document rather than a results presentation."
-                },
-                {
-                    "title": "Why it mattered",
-                    "body": "Framing a project before the work begins forces clarity about goals and methods — and creates a reference point that the final analysis can be compared against."
-                }
-            ],
-            "links": []
-        },
-        {
             "id": "tank-artillery",
             "featured": false,
             "title": "Procedural Tank Artillery Game",
             "slug": "procedural-tank-artillery-game",
-            "pageHref": "projects/procedural-tank-artillery-game.html",
-            "image": "images/tank_game.png",
+            "pageHref": "projects/project.html?id=tank-artillery",
+            "image": "projects/images/tank_game.png",
             "imageAlt": "Projectile trajectories over procedural terrain in a tank artillery game",
             "summary": "Turn-based artillery game with procedural terrain, projectile physics, and a simple computer opponent.",
             "impact": "Combined math, physics, and simulation logic into a playable terminal game that visualized each turn and tracked state over time.",
@@ -733,6 +646,83 @@
                 }
             ],
             "links": []
+        },
+        {
+            "id": "stream-restoration-intro",
+            "hidden": true,
+            "featured": false,
+            "title": "Quantifying Local Stream Restoration",
+            "slug": "quantifying-local-stream-restoration",
+            "pageHref": "projects/project.html?id=stream-restoration-intro",
+            "image": "projects/images/stream_restoration_intro.png",
+            "iframe": "https://storymaps.arcgis.com/briefings/7a7096bcd05a4938a5faccdc3cbd5530",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
+            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
+            "impact": "Established the project framing, research questions, and methodological intent ahead of the full analysis, using mock visuals to communicate what the final outputs would represent.",
+            "role": "Story map authoring, project scoping, science communication",
+            "tools": "ArcGIS StoryMaps",
+            "tags": ["gis", "arcgis", "story-map", "environmental"],
+            "overview": "An introductory ArcGIS Story Map built at the outset of a stream restoration quantification project. It lays out the study area, research questions, and planned methodology using placeholder and mock visuals — serving as a project brief and communication piece before the actual data collection and analysis took place.",
+            "challenge": "Communicating the scope and intent of a project clearly before any real data or results are available, using mock visuals to stand in for the outputs that would come later.",
+            "process": [
+                "Defined the study context, research questions, and analysis approach in narrative form.",
+                "Used mock visuals to illustrate what the planned outputs would look like once real data was collected.",
+                "Structured the story map to serve as a project brief for collaborators and stakeholders at the project's start."
+            ],
+            "outcome": "A structured introductory story map that communicated the project's intent and scope ahead of the full analysis phase.",
+            "detailSections": [],
+            "links": [{ "href": "https://storymaps.arcgis.com/briefings/7a7096bcd05a4938a5faccdc3cbd5530", "text": "View story map" }]
+        },
+        {
+            "id": "land-cover",
+            "hidden": true,
+            "featured": false,
+            "title": "Stream Health & Land Cover Classification",
+            "slug": "stream-health-land-cover-classification",
+            "pageHref": "projects/project.html?id=land-cover",
+            "image": "projects/images/fcc_poster_detailed.png",
+            "imageAlt": "Detailed project poster for the Elk Creek stream health land cover classification study",
+            "summary": "Multi-temporal land cover classification for a stream-health study using machine-learning pixel classification on satellite imagery, with accuracy assessment and documented cartographic outputs.",
+            "impact": "Produced a validated land cover map comparing 2023 and 2025 conditions across the Elk Creek study area, supported by confusion matrices and a detailed project poster communicating the methodology and findings.",
+            "role": "Remote sensing, ML classification, accuracy assessment, GIS analysis",
+            "tools": "ArcGIS Pro, Python, Planet satellite imagery, DEM, Orthoimagery",
+            "tags": ["gis", "remote-sensing", "arcgis", "machine-learning", "spatial-analysis", "python", "change-detection"],
+            "overview": "Classified land cover across two time periods (2023 and 2025) using machine-learning pixel classification in ArcGIS Pro, integrating Planet satellite imagery stacks, a digital elevation model, and orthoimagery for the Elk Creek study area.",
+            "challenge": "The study area required integrating multiple data sources and aligning them spatially before classification.",
+            "process": [
+                "Assembled and co-registered Planet satellite imagery stacks, DEM derivatives, and orthoimagery for 2023 and 2025 acquisition dates.",
+                "Trained a machine-learning pixel classifier in ArcGIS Pro using labelled training samples and evaluated accuracy with confusion matrices.",
+                "Compared 2023 and 2025 classified rasters to detect land cover change."
+            ],
+            "outcome": "Validated land cover classifications for both time periods with documented accuracy and a change-detection layer.",
+            "detailSections": [],
+            "links": []
+        },
+        {
+            "id": "stream-restoration-final",
+            "hidden": true,
+            "featured": false,
+            "title": "Quantifying Local Stream Restoration: Final Results",
+            "slug": "quantifying-local-stream-restoration-final",
+            "pageHref": "projects/project.html?id=stream-restoration-final",
+            "image": "projects/images/stream_restoration_final.png",
+            "iframe": "https://storymaps.arcgis.com/briefings/aa826d8f70d743ef8101900e81c069ad",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration Final Results",
+            "summary": "The final ArcGIS Story Map for the stream restoration quantification project, presenting the completed analysis, real data, and findings after data collection was complete.",
+            "impact": "Delivers the full results of the stream restoration study in an interactive narrative format.",
+            "role": "Story map authoring, spatial analysis, science communication",
+            "tools": "ArcGIS StoryMaps, ArcGIS Pro",
+            "tags": ["gis", "arcgis", "spatial-analysis", "story-map", "environmental"],
+            "overview": "The final ArcGIS Story Map completing the stream restoration quantification project, presenting the real results with actual maps, charts, and findings from the full study.",
+            "challenge": "Translating the completed analysis into a clear narrative connecting the original project framing to the actual results.",
+            "process": [
+                "Integrated final analysis outputs into the story map narrative.",
+                "Structured the presentation to follow from the study context through to the conclusions.",
+                "Used ArcGIS StoryMaps to combine spatial outputs with explanatory text."
+            ],
+            "outcome": "A complete final story map presenting the stream restoration study's real data, analysis outputs, and findings.",
+            "detailSections": [],
+            "links": [{ "href": "https://storymaps.arcgis.com/briefings/aa826d8f70d743ef8101900e81c069ad", "text": "View story map" }]
         }
     ]
 }

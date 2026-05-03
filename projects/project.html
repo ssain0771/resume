@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-        HTML template for this page.
-        Shared styling and behaviors come from styles/baseStyles.css and scripts/baseScripts.js.
-        Page-specific structure is documented inline below.
-    -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Project Case Study | Simranjot Saini</title>
@@ -14,10 +9,9 @@
     <link rel="stylesheet" href="../styles/baseStyles.css">
     <link rel="stylesheet" href="../styles/caseStudyStyles.css">
 </head>
-<body data-page="case-study" data-root="../" data-project-id="stream-restoration-intro">
-<!-- Skip link improves keyboard navigation by allowing users to jump directly to the main content. -->
+<body data-page="case-study" data-root="../">
 <a class="skip-link" href="#mainContent">Skip to content</a>
-    <!-- Shared site header: brand, navigation, and theme toggle. -->
+
     <header class="site-header">
         <div class="site-shell">
             <div class="header-bar">
@@ -40,7 +34,6 @@
         </div>
     </header>
 
-    <!-- Main page content for an individual portfolio case study. -->
     <main id="mainContent" class="site-main">
         <div class="site-shell">
             <section class="page-hero section">
@@ -49,7 +42,7 @@
                     <h1 id="caseStudyPageTitle" class="page-title">Project title</h1>
                     <p id="caseStudyPageLead" class="page-lead">Project summary</p>
                     <div class="hero-actions">
-                        <a id="backToPortfolioLink" class="button-link" href="../portfolio.html">Back to portfolio</a>
+                        <a class="button-link" href="../portfolio.html">Back to portfolio</a>
                     </div>
                 </div>
             </section>
@@ -74,14 +67,11 @@
                     </div>
 
                     <img id="caseStudyImage" class="case-study-image" src="" alt="Project image">
-
-                    <div id="caseStudyLinkList" class="case-study-link-list"></div>
                 </div>
             </section>
         </div>
     </main>
 
-<!-- Shared footer: kept intentionally minimal so it does not compete with page content. -->
     <footer class="site-footer">
         <div class="site-shell">
             <div class="footer-card">
@@ -92,7 +82,6 @@
 
     <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
 
-    <!-- Shared behavior loads first, then page-specific behavior for the case study page. -->
     <script src="../scripts/baseScripts.js" defer></script>
     <script src="../scripts/caseStudyScripts.js" defer></script>
 </body>

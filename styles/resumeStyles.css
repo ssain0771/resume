@@ -43,12 +43,6 @@
     color: var(--text);
 }
 
-/* Intro/profile block shown only on screen. */
-.resume-intro {
-    display: grid;
-    gap: 1rem;
-}
-
 /* Shared contact-chip styling for the on-screen resume header/profile section. */
 .resume-contact {
     display: flex;
@@ -293,16 +287,60 @@
     }
 }
 
-/* Small-screen adjustments keep the selector and controls from feeling cramped. */
+/* 2-column grid: education/skills (2fr) left, profile/experience (3fr) right. */
+/* align-items: stretch makes the two cards in each row match height. */
+.resume-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 1rem;
+    align-items: stretch;
+    margin-bottom: 1rem;
+}
+
+/* Profile: paragraph block. */
+.resume-doc-copy {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+}
+
+.resume-doc-copy p {
+    margin: 0;
+}
+
+/* Skills: 2-column grid so every category card is the same width regardless of label length. */
+.resume-skills-card .resume-skill-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+/* Version selector + print button bar inside its section-card. */
+.resume-print-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* Small-screen: stack the two columns and reorder sections for readability. */
 @media (max-width: 720px) {
-    .resume-toolbar-controls {
-        width: 100%;
-        align-items: stretch;
+    .resume-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-profile-card   { order: 1; }
+    .resume-education-card { order: 2; }
+    .resume-skills-card    { order: 3; }
+    .resume-experience-card { order: 4; }
+
+    .resume-skills-card .resume-skill-groups {
+        grid-template-columns: 1fr 1fr;
     }
 
     .resume-select-wrap,
-    .resume-select,
-    #printResume {
+    .resume-select {
         width: 100%;
     }
 }

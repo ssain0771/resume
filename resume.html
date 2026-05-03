@@ -86,88 +86,49 @@
                 </section>
             </article>
 
-            <!-- Screen-only hero with the resume selector and print button. -->
-            <section class="page-hero section screen-only">
-                <div class="hero-card">
-                    <div class="resume-toolbar">
-                        <div>
-                            <div class="eyebrow">Resume</div>
-                            <h1 id="resumePageTitle" class="page-title">Full resume</h1>
-                            <p id="resumePageLead" class="page-lead">Structured for screen and print, with grouped skills and content tailored to the selected resume version.</p>
-                        </div>
-
-                        <div class="resume-toolbar-controls">
-                            <div class="resume-select-wrap">
-                                <label for="resumeVariant">Resume version</label>
-                                <select id="resumeVariant" class="resume-select" aria-label="Select resume variant"></select>
-                            </div>
-
-                            <button id="printResume" class="btn btn-primary" type="button">Print / Save PDF</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Short on-screen profile block; the print version above has its own formatting. -->
-            <section class="section screen-only">
-                <div class="section-card resume-intro">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Profile</div>
-                        <h2 id="resumeIntroTitle" class="section-heading">Spatial data science student</h2>
-                    </div>
-
-                    <div id="resumeIntroCopy" class="about-copy"></div>
-                    <ul id="resumeContact" class="resume-contact" aria-label="Contact links"></ul>
-                </div>
-            </section>
-
-            <!-- Education stays above skills, matching the requested screen order. -->
-            <section class="section screen-only">
+            <!-- Screen-only: page header card. -->
+            <div class="section screen-only">
                 <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Education</div>
-                        <h2 class="section-heading">Education</h2>
-                    </div>
+                    <div class="eyebrow">Resume</div>
+                    <h1 id="resumePageTitle" class="page-title">Full resume</h1>
+                </div>
+            </div>
 
+            <!-- Screen-only: 2-column grid of section cards. -->
+            <div class="resume-grid screen-only">
+                <section class="section-card resume-education-card" aria-label="Education">
+                    <div class="eyebrow">Education</div>
                     <div id="educationList" class="resume-entry-list"></div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Grouped skills remain on the resume page, but only for screen browsing. -->
-            <section class="section screen-only">
-                <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Skills</div>
-                        <h2 class="section-heading">Grouped skills</h2>
-                    </div>
+                <section class="section-card resume-profile-card" aria-label="Profile">
+                    <div class="eyebrow">Profile</div>
+                    <div id="resumeIntroCopy" class="resume-doc-copy"></div>
+                    <ul id="resumeContact" class="resume-contact" aria-label="Contact links"></ul>
+                </section>
 
+                <section class="section-card resume-skills-card" aria-label="Skills">
+                    <div class="eyebrow">Skills</div>
                     <div id="skillsList" class="resume-skill-groups"></div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Experience entries are rendered from the currently selected resume variant. -->
-            <section class="section screen-only">
-                <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Experience</div>
-                        <h2 class="section-heading">Experience</h2>
-                    </div>
-
+                <section class="section-card resume-experience-card" aria-label="Experience">
+                    <div class="eyebrow">Experience</div>
                     <div id="experienceList" class="resume-entry-list"></div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <!-- Selected projects for the current resume variant. -->
-            <section id="projectsSection" class="section screen-only">
-                <div class="section-card">
-                    <div class="section-heading-wrap">
-                        <div class="eyebrow">Projects</div>
-                        <h2 class="section-heading">Selected projects</h2>
+            <!-- Screen-only: version selector and print button in a card. -->
+            <div class="section screen-only">
+                <div class="section-card resume-print-bar">
+                    <div class="resume-select-wrap">
+                        <label for="resumeVariant">Resume version</label>
+                        <select id="resumeVariant" class="resume-select" aria-label="Select resume variant"></select>
                     </div>
-
-                    <div id="projectsList" class="resume-entry-list"></div>
+                    <button id="printResume" class="btn btn-primary" type="button">Print / Save PDF</button>
+                    <p id="resumePageLead" class="visually-hidden"></p>
                 </div>
-            </section>
+            </div>
         </div>
     </main>
 

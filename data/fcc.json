@@ -1,0 +1,50 @@
+﻿{
+    "page": {
+        "eyebrow": "Portfolio / Field Studies",
+        "title": "Stream restoration and land cover studies from a local field course.",
+        "description": "Three interconnected projects examining Elk Creek — covering project scoping, multi-temporal land cover classification, and final quantification of stream restoration outcomes.",
+        "section": {
+            "eyebrow": "Case studies",
+            "heading": "Three related field studies",
+            "description": "Each study has its own case study page with full methodology, process, and outcomes."
+        }
+    },
+    "items": [
+        {
+            "id": "stream-restoration-intro",
+            "title": "Quantifying Local Stream Restoration",
+            "actionHref": "projects/project.html?id=stream-restoration-intro",
+            "actionText": "View case study",
+            "image": "projects/images/stream_restoration_intro.png",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
+            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
+            "note": "Story map authoring, project scoping, science communication",
+            "noteLabel": "Role",
+            "tags": ["ArcGIS StoryMaps"]
+        },
+        {
+            "id": "land-cover",
+            "title": "Stream Health & Land Cover Classification",
+            "actionHref": "projects/project.html?id=land-cover",
+            "actionText": "View case study",
+            "image": "projects/images/fcc_poster_detailed.png",
+            "imageAlt": "Detailed project poster for the Elk Creek stream health land cover classification study",
+            "summary": "Multi-temporal land cover classification for a stream-health study using machine-learning pixel classification on satellite imagery, with accuracy assessment and documented cartographic outputs.",
+            "note": "Remote sensing, ML classification, accuracy assessment, GIS analysis",
+            "noteLabel": "Role",
+            "tags": ["ArcGIS Pro", "Python", "Planet satellite imagery", "DEM", "Orthoimagery"]
+        },
+        {
+            "id": "stream-restoration-final",
+            "title": "Quantifying Local Stream Restoration: Final Results",
+            "actionHref": "projects/project.html?id=stream-restoration-final",
+            "actionText": "View case study",
+            "image": "projects/images/stream_restoration_final.png",
+            "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration Final Results",
+            "summary": "The final ArcGIS Story Map presenting the completed analysis, real data, and findings after data collection was complete.",
+            "note": "Story map authoring, spatial analysis, science communication",
+            "noteLabel": "Role",
+            "tags": ["ArcGIS StoryMaps", "ArcGIS Pro"]
+        }
+    ]
+}
