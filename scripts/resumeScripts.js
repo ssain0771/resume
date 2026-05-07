@@ -202,7 +202,7 @@ function renderPrintEntries(target, entries) {
         article.innerHTML = `
             <div class="print-resume-item-row">
                 <h3 class="print-resume-item-title">
-                    <strong>${primary}</strong>${organization ? ` <span class="print-resume-item-org">&mdash; ${organization}</span>` : ""}
+                    <strong>${primary}</strong>${organization ? ` <span class="print-resume-item-org">, ${organization}</span>` : ""}
                 </h3>
                 <div class="print-resume-item-period">${period}</div>
             </div>

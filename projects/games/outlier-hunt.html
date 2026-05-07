@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Outlier Hunt | Simranjot Saini</title>
+    <meta name="description" content="A timed game where you click the data point that does not belong to any cluster before time runs out.">
+    <meta name="author" content="Simranjot Saini">
+    <link rel="stylesheet" href="../../styles/baseStyles.css">
+    <link rel="stylesheet" href="../../styles/gameStyles.css">
+</head>
+<body data-page="game" data-root="../../">
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+    <header class="site-header">
+        <div class="site-shell">
+            <div class="header-bar">
+                <a class="brand-link" href="../../index.html">
+                    <span class="brand-mark">JS</span>
+                    <span class="brand-copy">
+                        <span id="brandName" class="brand-name">Simranjot Saini</span>
+                        <span id="brandTagline" class="brand-tagline">Spatial Data Science | Workflow Automation | Sciences</span>
+                    </span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary">
+                    <ul id="globalNavList" class="nav-list"></ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn" type="button" aria-pressed="false">Dark mode</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent" class="site-main">
+        <div class="site-shell">
+
+            <section class="page-hero section">
+                <div class="hero-card">
+                    <div class="eyebrow">Web games / Outlier Hunt</div>
+                    <h1 class="page-title">Click the point that does not belong.</h1>
+                    <p class="page-lead">Points are arranged in clusters. One or two are outliers that sit far from every group. Find them before the timer runs out. Wrong clicks cost you three seconds.</p>
+                    <div class="hero-actions">
+                        <a class="button-link" href="../hub.html?id=webgames">Back to Web Games</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-card">
+                    <div class="game-layout">
+
+                        <div class="game-sidebar">
+                            <div class="section-heading-wrap">
+                                <div class="eyebrow">Stats</div>
+                                <h2 class="section-heading">Current session</h2>
+                            </div>
+
+                            <ul class="stat-list game-stat-list">
+                                <li class="meta-item">
+                                    <span class="meta-label">Round</span>
+                                    <span id="ohRound">1</span>
+                                </li>
+                                <li class="meta-item">
+                                    <span class="meta-label">Score</span>
+                                    <span id="ohScore">0</span>
+                                </li>
+                                <li class="meta-item">
+                                    <span class="meta-label">Best</span>
+                                    <span id="ohBest">0</span>
+                                </li>
+                            </ul>
+
+                            <article class="info-card">
+                                <h3>How scoring works</h3>
+                                <p>Each outlier found scores 100 points plus a time bonus. Finding them quickly earns more. Wrong clicks drain the clock by three seconds each.</p>
+                            </article>
+
+                            <article class="info-card">
+                                <h3>How difficulty scales</h3>
+                                <p>Clusters get tighter and the timer shorter each round. From round four onward, two outliers appear per round instead of one.</p>
+                            </article>
+
+                            <article class="info-card">
+                                <h3>What is an outlier?</h3>
+                                <p>In data analysis, an outlier is an observation that sits far from the bulk of the data. Identifying them quickly is a core skill in any clustering or anomaly detection workflow.</p>
+                            </article>
+                        </div>
+
+                        <div class="game-main">
+                            <div class="outlier-wrap">
+                                <canvas id="outlierCanvas" aria-label="Outlier Hunt game canvas"></canvas>
+
+                                <div id="outlierIntro" class="outlier-overlay">
+                                    <h3>Outlier Hunt</h3>
+                                    <p>Points are grouped into clusters. One or two do not belong anywhere. Click them before time runs out.</p>
+                                    <p>Wrong clicks cost <strong>3 seconds</strong>. Rounds get harder as you progress.</p>
+                                    <button id="outlierStartBtn" class="btn btn-primary" type="button">Start game</button>
+                                </div>
+                            </div>
+
+                            <div id="outlierGamePanel" class="outlier-game-panel hidden">
+                                <div class="outlier-game-panel-text">
+                                    <p id="ohGoMsg" class="outlier-game-panel-score">Final score: 0</p>
+                                    <p id="ohGoRound">You reached round 1. Missed outliers are shown in blue.</p>
+                                </div>
+                                <button id="outlierRestartBtn" class="btn btn-primary" type="button">Play again</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-shell">
+            <div class="footer-card">
+                <p id="footerAuthor">Simranjot (Jot) Saini</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="btn" type="button" aria-hidden="true">Back to top</button>
+
+    <script src="../../scripts/baseScripts.js" defer></script>
+    <script src="../../scripts/outlierHuntScripts.js" defer></script>
+</body>
+</html>

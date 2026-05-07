@@ -332,10 +332,10 @@
             "pageHref": "projects/hub.html?id=fcc",
             "image": "projects/images/fcc_poster_detailed.png",
             "imageAlt": "Stream restoration and land cover field studies hub",
-            "summary": "Three connected field course projects examining Elk Creek: project scoping, multi-temporal land cover classification, and final stream restoration quantification.",
-            "impact": "Brings together three interconnected studies into one coherent body of work covering the full arc from project proposal through classification and final results.",
-            "role": "GIS analysis, remote sensing, ML classification, science communication",
-            "tools": "ArcGIS Pro, ArcGIS StoryMaps, Python, Planet satellite imagery",
+            "summary": "Five connected projects examining FCC restoration sites: project scoping, land cover classification, group final results, a standalone quantitative story map, and a field data collection exercise at Whispering Pines.",
+            "impact": "Brings together five interconnected studies into one coherent body of work covering the full arc from project proposal through classification, group results, solo quantitative analysis, and direct field data collection.",
+            "role": "GIS analysis, remote sensing, ML classification, science communication, story map authoring",
+            "tools": "ArcGIS Pro, ArcGIS StoryMaps, Python, Planet satellite imagery, drone orthoimagery, DeepLabv3, Random Forest",
             "tags": [
                 "gis",
                 "arcgis",
@@ -346,18 +346,19 @@
                 "machine-learning",
                 "python"
             ],
-            "overview": "Three related GIS and remote sensing projects built around a field course study of Elk Creek, spanning a project scoping brief, multi-temporal land cover classification, and a final story map presenting completed results.",
-            "challenge": "Coordinating three distinct deliverables into a coherent body of work covering the full project arc from scoping through classification to final results communication.",
+            "overview": "Four related GIS and remote sensing projects built around a field course study and follow-up solo analysis of Elk Creek: a project scoping brief, multi-temporal land cover classification, a group final story map, and a standalone quantitative story map measuring stream sinuosity, woody structure stability, and riparian land cover change.",
+            "challenge": "Building a coherent body of work across group and solo deliverables, covering the full arc from scoping through classification and group results to a detailed solo quantitative analysis.",
             "process": [
                 "Produced an introductory story map to frame the study context, research questions, and planned approach before data collection began.",
                 "Classified land cover across 2023 and 2025 using machine-learning pixel classification in ArcGIS Pro, integrating satellite imagery, DEM, and orthoimagery for accuracy validation.",
-                "Delivered the final results through an ArcGIS Story Map connecting the completed analysis and real findings back to the original project framing."
+                "Delivered the group final results through an ArcGIS Story Map connecting the completed analysis and real findings back to the original project framing.",
+                "Produced a standalone solo story map using drone imagery, PlanetScope satellite data, DeepLabv3, and Random Forest classification to quantify stream sinuosity change, woody structure persistence, and vegetation recovery between 2023 and 2025."
             ],
-            "outcome": "A complete field course body of work: a project brief, a validated land cover classification study, and a final story map presenting the results.",
+            "outcome": "A complete body of work spanning four studies: a project brief, a validated land cover classification, a group final story map, and a solo quantitative analysis establishing the first spatial baseline for Elk Creek restoration.",
             "detailSections": [
                 {
                     "title": "Why these are grouped",
-                    "body": "All three projects share the same study area and research thread — quantifying stream restoration outcomes in Elk Creek. Grouping them shows how a multi-stage field project progresses from scoping through analysis to final communication."
+                    "body": "All three projects share the same study area and research thread: quantifying stream restoration outcomes in Elk Creek. Grouping them shows how a multi-stage field project progresses from scoping through analysis to final communication."
                 }
             ],
             "links": [
@@ -467,7 +468,7 @@
             "iframeHeight": "780px",
             "imageAlt": "Interactive traffic density map of Calgary with hourly slider",
             "summary": "End-to-end pipeline that polls Calgary's live traffic camera network, runs YOLOv8 vehicle detection on each feed, spatially joins results to traffic signal infrastructure, and produces an interactive hourly dashboard.",
-            "impact": "Turned ~300 live municipal camera feeds into a queryable dataset showing where and when Calgary traffic peaks — finding that the NE quadrant carries the highest load city-wide and that all quadrants peak at 4pm.",
+            "impact": "Turned ~300 live municipal camera feeds into a queryable dataset showing where and when Calgary traffic peaks, finding that the NE quadrant carries the highest load city-wide and that all quadrants peak at 4pm.",
             "role": "Data engineering, computer vision, geospatial analysis, interactive visualization",
             "tools": "Python, YOLOv8, GeoPandas, Plotly, pandas, Requests",
             "tags": [
@@ -486,7 +487,7 @@
             "process": [
                 "Built a polling loop that fetches live camera frames from the City of Calgary API every five minutes, runs YOLOv8 vehicle detection on each image, and logs timestamped vehicle counts with camera coordinates.",
                 "Used GeoPandas to project camera and traffic signal locations into UTM Zone 11N, buffer cameras by 100 metres, and spatial-join signals to identify which infrastructure each camera monitors.",
-                "Aggregated observations by camera and hour, applied Gaussian smoothing to the hourly averages, and built three coordinated Plotly figures — an interactive map with an hourly slider, a city-wide traffic curve, and quadrant-level breakdowns — exported as a single HTML dashboard."
+                "Aggregated observations by camera and hour, applied Gaussian smoothing to the hourly averages, and built three coordinated Plotly figures: an interactive map with an hourly slider, a city-wide traffic curve, and quadrant-level breakdowns, exported as a single HTML dashboard."
             ],
             "outcome": "A working automated pipeline producing a self-contained interactive dashboard from live municipal data. Key findings: 4pm is Calgary's busiest traffic hour across all quadrants, and the NE quadrant consistently records the highest vehicle counts.",
             "detailSections": [
@@ -500,7 +501,7 @@
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "It demonstrates a full data engineering pipeline — from live API ingestion through computer vision, spatial analysis, and interactive output — using real open municipal data rather than a prepared dataset."
+                    "body": "It demonstrates a full data engineering pipeline, from live API ingestion through computer vision, spatial analysis, and interactive output, using real open municipal data rather than a prepared dataset."
                 }
             ],
             "links": []
@@ -545,7 +546,7 @@
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "Urban expansion is one of the most consequential spatial processes in a growing city — mapping it over time makes the scale and direction of change concrete rather than abstract."
+                    "body": "Urban expansion is one of the most consequential spatial processes in a growing city. Mapping it over time makes the scale and direction of change concrete rather than abstract."
                 }
             ],
             "links": [
@@ -574,7 +575,7 @@
                 "energy",
                 "environmental"
             ],
-            "overview": "An ArcGIS Story Map exploring Canada's role as a global energy superpower. The story map examines the country's resource base — oil sands, hydropower, natural gas, and renewables — alongside the infrastructure and geographic context that shape how that energy is produced, moved, and exported.",
+            "overview": "An ArcGIS Story Map exploring Canada's role as a global energy superpower. The story map examines the country's resource base, including oil sands, hydropower, natural gas, and renewables, alongside the infrastructure and geographic context that shape how that energy is produced, moved, and exported.",
             "challenge": "Communicating the scale and complexity of Canada's energy geography in a way that is accessible and spatially grounded, connecting resource data to broader arguments about energy policy and economic position.",
             "process": [
                 "Researched Canada's energy resource base and production geography across fuel types and regions.",
@@ -593,7 +594,7 @@
                 },
                 {
                     "title": "Why it mattered",
-                    "body": "Energy geography is inherently spatial — story maps are one of the most effective formats for making that spatial argument visible and accessible."
+                    "body": "Energy geography is inherently spatial. Story maps are one of the most effective formats for making that spatial argument visible and accessible."
                 }
             ],
             "links": [
@@ -648,6 +649,45 @@
             "links": []
         },
         {
+            "id": "wildcat-sightings-field-map",
+            "featured": false,
+            "title": "Wildcat Sightings Field Map",
+            "slug": "wildcat-sightings-field-map",
+            "pageHref": "projects/project.html?id=wildcat-sightings-field-map",
+            "image": "projects/images/wildcat_sightings_field_map.png",
+            "iframe": "https://mrulabs.maps.arcgis.com/apps/mapviewer/index.html?webmap=f63abdf2d4c240cbaeb6a2f837bd73df",
+            "imageAlt": "ArcGIS Field Maps web map for collecting wildcat sightings in Calgary",
+            "summary": "An ArcGIS Field Maps web map built as a course exercise to collect wildcat sighting records and define search areas across Calgary and a 5 km buffer. Covers the full configuration workflow from feature layer setup through form design and geographic scoping.",
+            "impact": "Demonstrated a complete field data collection workflow end-to-end, from feature layer and form configuration in ArcGIS Online through geographic scoping and deployment in Field Maps.",
+            "role": "Field map configuration, feature layer setup, form design, geographic scoping",
+            "tools": "ArcGIS Field Maps, ArcGIS Online",
+            "tags": ["gis", "arcgis", "field-methods"],
+            "overview": "A web map built in ArcGIS Field Maps for a Field Methods course exercise at Mount Royal University (GEOG 4554). The map collects wildcat sighting records and defines search areas within Calgary and a 5 km buffer. It is not an official wildlife occurrence dataset and was created for educational purposes to learn the complete workflow of field data collection app configuration and deployment.",
+            "challenge": "Designing a collection form that captures meaningful, spatially referenced observations while keeping the interface simple enough for reliable field use.",
+            "process": [
+                "Created feature layers in ArcGIS Online for point sighting records and polygon search areas.",
+                "Configured the Field Maps collection form with fields appropriate for wildlife occurrence observations.",
+                "Defined the geographic scope using a Calgary city boundary plus a 5 km buffer.",
+                "Tested the workflow end-to-end to confirm data collection and submission worked as intended."
+            ],
+            "outcome": "A functional field data collection app demonstrating the complete ArcGIS Field Maps workflow from feature layer creation through form configuration, geographic scoping, and deployment.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A course exercise in ArcGIS Field Maps configured to simulate a wildlife occurrence survey. The goal was to learn how to set up, configure, and deploy a field data collection workflow, not to produce an official dataset."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Feature layers were created in ArcGIS Online for sighting points and search area polygons, a collection form was configured in Field Maps, and the geographic scope was defined using a Calgary city boundary buffer."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Field data collection is a core part of applied GIS work. Knowing how to configure and deploy a Field Maps app end-to-end is a practical skill that transfers directly to real environmental survey and monitoring projects."
+                }
+            ],
+            "links": [{ "href": "https://arcg.is/0uXDyW2", "text": "Open in ArcGIS" }]
+        },
+        {
             "id": "stream-restoration-intro",
             "hidden": true,
             "featured": false,
@@ -657,12 +697,12 @@
             "image": "projects/images/stream_restoration_intro.png",
             "iframe": "https://storymaps.arcgis.com/briefings/7a7096bcd05a4938a5faccdc3cbd5530",
             "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
-            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
+            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes, produced before data collection and analysis were complete.",
             "impact": "Established the project framing, research questions, and methodological intent ahead of the full analysis, using mock visuals to communicate what the final outputs would represent.",
             "role": "Story map authoring, project scoping, science communication",
             "tools": "ArcGIS StoryMaps",
             "tags": ["gis", "arcgis", "story-map", "environmental"],
-            "overview": "An introductory ArcGIS Story Map built at the outset of a stream restoration quantification project. It lays out the study area, research questions, and planned methodology using placeholder and mock visuals — serving as a project brief and communication piece before the actual data collection and analysis took place.",
+            "overview": "An introductory ArcGIS Story Map built at the outset of a stream restoration quantification project. It lays out the study area, research questions, and planned methodology using placeholder and mock visuals, serving as a project brief and communication piece before the actual data collection and analysis took place.",
             "challenge": "Communicating the scope and intent of a project clearly before any real data or results are available, using mock visuals to stand in for the outputs that would come later.",
             "process": [
                 "Defined the study context, research questions, and analysis approach in narrative form.",
@@ -723,6 +763,86 @@
             "outcome": "A complete final story map presenting the stream restoration study's real data, analysis outputs, and findings.",
             "detailSections": [],
             "links": [{ "href": "https://storymaps.arcgis.com/briefings/aa826d8f70d743ef8101900e81c069ad", "text": "View story map" }]
+        },
+        {
+            "id": "elk-creek-comeback",
+            "hidden": true,
+            "featured": false,
+            "title": "Measuring a Comeback at Elk Creek",
+            "slug": "measuring-a-comeback-at-elk-creek",
+            "pageHref": "projects/project.html?id=elk-creek-comeback",
+            "image": "projects/images/elk_creek_comeback.png",
+            "iframe": "https://storymaps.arcgis.com/stories/80843332acd74eca9a666f9bd10d1f34",
+            "imageAlt": "ArcGIS Story Map: Measuring a Comeback at Elk Creek",
+            "summary": "A standalone story map presenting GIS and remote sensing measurements of stream restoration outcomes at Elk Creek one year after FCC's nature-based interventions began. Covers stream sinuosity, woody structure stability, and riparian land cover change between 2023 and 2025.",
+            "impact": "Provided FCC with the first quantitative baseline for Elk Creek restoration: sinuosity increased 1.76% inside the fence at roughly twice the natural rate, 83% of woody structures held position, and vegetation shifted from grass to shrub with 76% positive land cover change inside the restoration area versus 70% downstream.",
+            "role": "Solo. Story map authoring, stream sinuosity analysis, woody structure mapping, ML land cover classification, change detection, science communication",
+            "tools": "ArcGIS StoryMaps, ArcGIS Pro, Python, PlanetScope satellite imagery, drone orthoimagery, DeepLabv3, Random Forest",
+            "tags": ["gis", "arcgis", "python", "remote-sensing", "machine-learning", "story-map", "environmental", "change-detection"],
+            "overview": "A standalone ArcGIS Story Map presenting the results of a GIS and remote sensing study measuring stream restoration outcomes at Elk Creek, a tributary of the Clearwater River in West Central Alberta where Freshwater Conservation Canada began restoration work in July 2024. Three parallel analyses compared conditions inside the fenced restoration area against conditions downstream across two time periods, 2023 (pre-restoration) and 2025 (post-restoration), using drone imagery at approximately 3 cm resolution and PlanetScope satellite imagery at approximately 3.7 m resolution.",
+            "challenge": "Measuring meaningful ecological change at a site where restoration had been underway for less than two years, using multi-source imagery with varying resolution and coverage, while distinguishing restoration-driven change from natural background variability.",
+            "process": [
+                "Measured stream sinuosity by digitizing the channel from 2023 and 2025 drone imagery, comparing length and curvature changes inside the fence, downstream, and upstream of the bridge.",
+                "Mapped lateral connectivity by identifying new side channels and back eddies that developed between the two time periods, indicating increased channel complexity.",
+                "Classified water features (pools, riffles, and runs) using a DeepLabv3 deep learning model trained on manually digitized samples from high-resolution drone imagery.",
+                "Tracked 24 woody structures installed by FCC in 2024 by comparing installation positions against 2025 imagery, classifying each as unchanged, moved, or naturally recruited by the stream.",
+                "Mapped land cover across six classes using a Random Forest pixel-based supervised classifier on combined drone and satellite imagery, then ran change detection comparing inside-fence and downstream transition rates."
+            ],
+            "outcome": "Stream sinuosity inside the fence increased by 1.76%, roughly twice the natural rate observed upstream (0.70%) and downstream (1.33%). Ten new side channels were identified. Of 24 woody structures, 20 remained in their original positions and 2 natural log structures were recruited by the stream. Shrub cover increased from 38% to 47% while grass decreased from 32% to 22%. Positive land cover change accounted for 76% of all transitions inside the fence versus 70% downstream.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A solo GIS and remote sensing study quantifying stream restoration outcomes at Elk Creek one year after FCC's nature-based interventions. The story map presents measurements across three independent analyses: stream sinuosity and lateral connectivity, woody structure persistence, and riparian land cover change."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "Drone imagery at 3 cm resolution and PlanetScope satellite imagery at 3.7 m resolution were analyzed across 2023 and 2025. Stream sinuosity was measured by digitizing the channel. Woody structures were tracked visually. Land cover was classified using a Random Forest model and water features using a DeepLabv3 deep learning model, with change detection comparing inside-fence and downstream transition rates."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "FCC needed quantitative evidence of measurable progress to meet regulatory reporting requirements and communicate outcomes to funders. This analysis provided the first reproducible spatial baseline for Elk Creek restoration, establishing methods and metrics that future monitoring rounds can build on."
+                }
+            ],
+            "links": [{ "href": "https://storymaps.arcgis.com/stories/80843332acd74eca9a666f9bd10d1f34", "text": "View story map" }]
+        },
+        {
+            "id": "whispering-pines-field-survey",
+            "hidden": true,
+            "featured": false,
+            "title": "Whispering Pines Field Survey",
+            "slug": "whispering-pines-field-survey",
+            "pageHref": "projects/project.html?id=whispering-pines-field-survey",
+            "image": "projects/images/whispering_pines_field_map.png",
+            "imageAlt": "ArcGIS Field Maps screenshot from the Whispering Pines site visit",
+            "summary": "A site visit and field data collection exercise at Whispering Pines, an FCC restoration site north of Ghose Lake. Recorded vegetation types, stream features, land cover, and woody infrastructure including BDAs, PALs, and historic beaver dams using ArcGIS Field Maps.",
+            "impact": "Produced a spatial dataset of site conditions at Whispering Pines across four feature categories, providing observational data in a real restoration monitoring context.",
+            "role": "Field data collection, site survey, feature recording",
+            "tools": "ArcGIS Field Maps, ArcGIS Online",
+            "tags": ["gis", "arcgis", "environmental", "field-methods"],
+            "overview": "A field data collection exercise at Whispering Pines, a Freshwater Conservation Canada site north of Ghose Lake. Using ArcGIS Field Maps, observations were recorded across four categories: vegetation characteristics, stream features and conditions, land cover types, and restoration infrastructure including beaver dam analogs, post-assisted log structures, and historic beaver dams.",
+            "challenge": "Systematically capturing multiple data types across different feature categories while in the field, ensuring records were spatially accurate and consistently attributed.",
+            "process": [
+                "Recorded vegetation observations including species types and coverage characteristics at point locations across the site.",
+                "Documented stream features including channel characteristics and water presence along the reach.",
+                "Logged land cover types observed across the site area.",
+                "Located and recorded restoration infrastructure including beaver dam analogs, post-assisted log structures, and historic beaver dams."
+            ],
+            "outcome": "A spatial dataset capturing site conditions at Whispering Pines across vegetation, stream, land cover, and infrastructure categories.",
+            "detailSections": [
+                {
+                    "title": "What this project was",
+                    "body": "A field data collection exercise at a Freshwater Conservation Canada restoration site. The site visit used ArcGIS Field Maps to record observations across four categories: vegetation, stream characteristics, land cover, and installed restoration infrastructure."
+                },
+                {
+                    "title": "How it was done",
+                    "body": "ArcGIS Field Maps was used to record spatially referenced observations across the site, with each feature category captured through its own collection form and attribute fields."
+                },
+                {
+                    "title": "Why it mattered",
+                    "body": "Field data collection is a foundational part of GIS work in environmental monitoring. This exercise provided hands-on experience with the full workflow in a real restoration context."
+                }
+            ],
+            "links": []
         }
     ]
 }

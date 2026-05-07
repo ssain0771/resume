@@ -151,6 +151,88 @@
     height: auto;
 }
 
+/* Outlier Hunt */
+.outlier-wrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+#outlierCanvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    cursor: crosshair;
+}
+
+.outlier-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--surface);
+    text-align: center;
+    padding: 2rem;
+}
+
+
+.outlier-overlay.hidden {
+    display: none;
+}
+
+.outlier-overlay h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.outlier-overlay p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 30ch;
+    line-height: 1.55;
+}
+
+.outlier-overlay .btn {
+    margin-top: 0.5rem;
+}
+
+.outlier-game-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface-alt);
+}
+
+.outlier-game-panel.hidden {
+    display: none;
+}
+
+.outlier-game-panel-score {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.outlier-game-panel p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.outlier-game-panel p.outlier-game-panel-score {
+    color: var(--text);
+}
+
 @media (max-width: 960px) {
     .game-layout {
         grid-template-columns: 1fr;

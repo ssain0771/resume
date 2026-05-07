@@ -2,10 +2,10 @@
     "page": {
         "eyebrow": "Portfolio / Field Studies",
         "title": "Stream restoration and land cover studies from a local field course.",
-        "description": "Three interconnected projects examining Elk Creek — covering project scoping, multi-temporal land cover classification, and final quantification of stream restoration outcomes.",
+        "description": "Five interconnected projects examining FCC restoration sites, covering project scoping, land cover classification, group final results, a standalone quantitative analysis, and a field data collection exercise at Whispering Pines.",
         "section": {
             "eyebrow": "Case studies",
-            "heading": "Three related field studies",
+            "heading": "Five related field studies",
             "description": "Each study has its own case study page with full methodology, process, and outcomes."
         }
     },
@@ -17,7 +17,7 @@
             "actionText": "View case study",
             "image": "projects/images/stream_restoration_intro.png",
             "imageAlt": "ArcGIS Story Map: Quantifying Local Stream Restoration",
-            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes — produced before data collection and analysis were complete.",
+            "summary": "An introductory ArcGIS Story Map outlining the goals, study context, and proposed approach for quantifying local stream restoration outcomes, produced before data collection and analysis were complete.",
             "note": "Story map authoring, project scoping, science communication",
             "noteLabel": "Role",
             "tags": ["ArcGIS StoryMaps"]
@@ -45,6 +45,30 @@
             "note": "Story map authoring, spatial analysis, science communication",
             "noteLabel": "Role",
             "tags": ["ArcGIS StoryMaps", "ArcGIS Pro"]
+        },
+        {
+            "id": "elk-creek-comeback",
+            "title": "Measuring a Comeback at Elk Creek",
+            "actionHref": "projects/project.html?id=elk-creek-comeback",
+            "actionText": "View case study",
+            "image": "projects/images/elk_creek_comeback.png",
+            "imageAlt": "ArcGIS Story Map: Measuring a Comeback at Elk Creek",
+            "summary": "A standalone story map presenting GIS and remote sensing measurements of stream sinuosity, woody structure stability, and riparian land cover change at Elk Creek between 2023 and 2025, one year after restoration began.",
+            "note": "Solo project. Story map authoring, sinuosity analysis, woody structure mapping, ML land cover classification, change detection",
+            "noteLabel": "Role",
+            "tags": ["ArcGIS StoryMaps", "ArcGIS Pro", "Python", "PlanetScope", "DeepLabv3", "Random Forest"]
+        },
+        {
+            "id": "whispering-pines-field-survey",
+            "title": "Whispering Pines Field Survey",
+            "actionHref": "projects/project.html?id=whispering-pines-field-survey",
+            "actionText": "View case study",
+            "image": "projects/images/whispering_pines_field_map.png",
+            "imageAlt": "ArcGIS Field Maps screenshot from the Whispering Pines site visit",
+            "summary": "A site visit and field data collection exercise at Whispering Pines, an FCC restoration site north of Ghose Lake. Recorded vegetation, stream features, land cover, and woody infrastructure using ArcGIS Field Maps.",
+            "note": "Field data collection, site survey, feature recording",
+            "noteLabel": "Role",
+            "tags": ["ArcGIS Field Maps", "ArcGIS Online"]
         }
     ]
 }

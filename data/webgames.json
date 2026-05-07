@@ -35,6 +35,19 @@
             "note": "Useful for getting faster at reading RGB values and mentally translating them into visible colour.",
             "noteLabel": "Why this exists",
             "tags": ["HTML", "CSS", "JavaScript"]
+        },
+        {
+            "id": "outlier-hunt",
+            "title": "Outlier Hunt",
+            "label": "Playable",
+            "actionHref": "projects/games/outlier-hunt.html",
+            "actionText": "Play game",
+            "image": "projects/images/outlier-hunt-preview.svg",
+            "imageAlt": "Preview showing two clusters of blue dots with one orange outlier clearly isolated in the corner",
+            "summary": "Points are arranged into clusters. One or two do not belong. Click the outliers before the timer runs out. Wrong clicks cost three seconds.",
+            "note": "Identifying points that sit outside every cluster is a real task in spatial analysis and anomaly detection. This game makes that pattern recognition feel immediate.",
+            "noteLabel": "Why this exists",
+            "tags": ["HTML", "CSS", "JavaScript", "Canvas API"]
         }
     ]
 }
